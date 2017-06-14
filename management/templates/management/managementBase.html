@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+    {% load staticfiles %}
+        
+        <div class="col-md-12 container mainContainer">
+
+            {% block page_content %}
+
+                <div class="container menuContainerCollapsed">
+
+                    <div class="collapsedMenuElement" align="middle">
+                        <img src="{% static 'images/menuIcon.png' %}" class="menuToggleIcon" id="menuToggle">
+                    </div>
+
+                    <div class="collapsedMenuElement" align="middle">
+                        {% block dash_element %}
+                            <a href="{% url 'management:dashboard' %}">
+                                <img src="{% static 'images/dashIcon.png' %}" class="menuToggleIcon" id="dashIcon">
+                            </a>
+                        {% endblock %}
+                    </div>
+
+                    <div class="collapsedMenuElement" align="middle">
+                        {% block strain_element %}
+                            <a href="{% url 'management:strains' %}">
+                                <img src="{% static 'images/strainIcon.png' %}" class="menuToggleIcon" id="strainIcon">
+                            </a>
+                        {% endblock %}
+                    </div>
+
+                    <div class="collapsedMenuElement" align="middle">
+                        {% block sales_element %}
+                        <a href="{% url 'management:sales' %}">
+                            <img src="{% static 'images/salesIcon.png' %}" class="menuToggleIcon" id="salesIcon">
+                        </a>
+                        {% endblock %}
+                    </div>
+
+                    <div class="collapsedMenuElement" align="middle">
+                        {% block users_element %}
+                            <a href="{% url 'management:users' %}">
+                                <img src="{% static 'images/usersIcon.png' %}" class="menuToggleIcon" id="usersIcon">
+                            </a>
+                        {% endblock %}
+                    </div>
+                    
+                </div>
+
+                <div class="container displayContainer">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+
+            {% endblock %}
+
+        </div>
+
+    </body>
+
+</html>
