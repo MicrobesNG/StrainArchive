@@ -1,74 +1,46 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
 
-    <head>
+<form action="." id="login_form" name="login_form" method="post">
+    {% csrf_token %}
+    {% for field in login_form %}
+        {{field.as_hidden}}
+    {% endfor %}
+</form>
 
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+{% block header_text %}
+    <h2>My Dashboard</h2>
+{% endblock %}
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <script src="{% static 'js/messages.js' %}"></script>
-        <link href="{% static 'css/base.css' %}" rel="stylesheet">
-        <link href="{% static 'css/messages.css' %}" rel="stylesheet">
-        <link href="{% static 'css/login.css' %}" rel="stylesheet">
-
-    </head>
-
-    <body>
-
-        {% include 'include/messages.html' %}
-
-        <form action="." id="login_form" name="login_form" method="post">
-            {% csrf_token %}
-            {% for field in login_form %}
-                {{field.as_hidden}}
-            {% endfor %}
-        </form>
-
-        <div class="col-md-12 container headerContainer">
-            <div class="col-md-6" aling="left">
-                <h2 class="headerText">MicrobesNG Strain Archive</h2>
+{% block page_content %}
+    <div class="col-md-12 row">
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <h2>My Quotes and Orders</h2>
             </div>
-            <div class="col-md-6" align="right">
-                <h2>My Dashboard</h2>
-            </div>
-        </div>
-
-        <div class="col-md-12 container mainContainer">
-            <div class="col-md-12 row">
-                <div class="col-md-6">
-                    <div class="col-md-12">
-                        <h2>My Quotes and Orders</h2>
-                    </div>
-                    <div class="col-md-12" id="quoteTableContainer">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for quote in quotes %}
-                                    <tr>
-                                        <td></td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="col-md-12">
-                        <h2>My Strains</h2>
-                    </div>
-                </div>
+            <div class="col-md-12" id="quoteTableContainer">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Basket</td>
+                            <td>Quoted Cost</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for quote in quotes %}
+                            <tr>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
-
-    </body>
-
-</html>
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <h2>My Strains</h2>
+            </div>
+        </div>
+    </div>
+{% endblock %}
