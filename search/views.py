@@ -4,11 +4,23 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import Http404
 from archive.models import Strain, Family, Genus, Species
-
+import json
 
 def search(request):
 
-    return render(request, "search/search.html", {})
+    data = {"data": []}
+
+    for family in Family.objects.all():
+
+        data["data"].append(family.to_dict)
+
+    return render(
+        request,
+        "search/search.html",
+        {
+            "data": json.dumps(data)
+        }
+    )
 
 
 def results(request):
