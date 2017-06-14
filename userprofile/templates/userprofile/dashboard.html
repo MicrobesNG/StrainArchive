@@ -19,7 +19,7 @@
                 <h2>My Quotes and Orders</h2>
             </div>
             <div class="col-md-12" id="quoteTableContainer">
-                <table class="table table-hover">
+                <table class="table table-hover" id="quoteTable">
                     <thead>
                         <tr>
                             <td>ID</td>
@@ -28,9 +28,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for quote in quotes %}
-                            <tr>
-                                <td></td>
+                        {% for request.user.quote_set.all %}
+                            <tr class="quoteRow" id="{{quote.pk}}">
+                                <td>{{quote.pk}}</td>
+                                <td>
+                                    <ul class="basketContentList">
+                                        {% for p in quote.basket.purchases.all %}
+                                            <li class="purchaseElement" id="{{p.pk}}">
+                                                {{p.strain.name}}: x<b>{{p.quantity}}</b>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -39,7 +48,23 @@
         </div>
         <div class="col-md-6">
             <div class="col-md-12">
-                <h2>My Strains</h2>
+                <h2>Purchased Strains</h2>
+            </div>
+            <div class="col-md-12" id="strainTableContainer">
+                <table class="table table-hover" id="strainTable">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for strain in request.user.strain_set.all %}
+                            <tr class="strainRow" id="{{strain.pk}}">
+                                <td>{{strain.name}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
