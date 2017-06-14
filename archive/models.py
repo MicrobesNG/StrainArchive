@@ -10,8 +10,7 @@ from userprofile.models import Organisation
 
 # taxonomical models
 class Family(models.Model):
-    name = models.CharField(max_length = 100)
-    
+    name = models.CharField(max_length = 100)    
     # other family data fields?
 
 class Genus(models.Model):
