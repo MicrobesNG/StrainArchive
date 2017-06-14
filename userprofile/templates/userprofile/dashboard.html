@@ -28,7 +28,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for request.user.quote_set.all %}
+                        {% for quote in request.user.quote_set.all %}
                             <tr class="quoteRow" id="{{quote.pk}}">
                                 <td>{{quote.pk}}</td>
                                 <td>
