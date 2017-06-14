@@ -6,14 +6,15 @@ from django.contrib.auth.models import User
 
 from datetime import datetime
 from userprofile.models import Organisation
-
+import json
 
 # taxonomical models
 class Family(models.Model):
     name = models.CharField(max_length = 100)    
     # other family data fields?
 
-    def serialize(self):
+
+    def to_dict(self):
         output_dict = {
             "name": self.name,
             "pk": self.pk,
@@ -24,14 +25,20 @@ class Family(models.Model):
 
             output_dict["genera"].append(genus.serialize())
 
-        pass
+        return output_dict
+
+
+    def to_json_string(self):
+
+        return json.dumps(self.to_dict())
 
 class Genus(models.Model):
     name = models.CharField(max_length = 100)
     family = models.ForeignKey(Family, null = True)
     # other genus data fields?
 
-    def serialize(self):
+
+    def to_dict(self):
         output_dict = {
             "name": self.name,
             "pk": self.pk,
@@ -46,10 +53,21 @@ class Genus(models.Model):
                 }
             )
 
+        return output_dict
+    
+
+    def to_json_string(self):
+
+        return json.dumps(self.to_dict())
+
 class Species(models.Model):
     name = models.CharField(max_length = 100)
     genus = models.ForeignKey(Genus, null = True)
     # other species data fields? 
+
+
+
+
 
 class Strain(models.Model):
 
