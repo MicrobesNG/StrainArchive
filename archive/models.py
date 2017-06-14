@@ -16,12 +16,12 @@ class Family(models.Model):
 
 class Genus(models.Model):
     name = models.CharField(max_length = 100)
-    
+    family = models.ForeignKey(Family, null = True)
     # other genus data fields?
 
 class Species(models.Model):
     name = models.CharField(max_length = 100)
-    
+    genus = models.ForeignKey(Genus, null = True)
     # other species data fields? 
 
 class Strain(models.Model):
