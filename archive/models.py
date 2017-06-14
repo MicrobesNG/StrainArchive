@@ -83,6 +83,6 @@ class Strain(models.Model):
     data_url = models.URLField(null = True)
     number_of_sales = models.IntegerField(default = 0)
 
-    family = models.ForeignKey(Family, null = True)
-    genus = models.ForeignKey(Genus, null = True)
+    # family = models.ForeignKey(Family, null = True)
+    # genus = models.ForeignKey(Genus, null = True)
     species = models.ForeignKey(Species, null = True)
