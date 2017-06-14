@@ -1,5 +1,22 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block header_text %}
     <h2>Strain Search</h2>
+{% endblock %}
+
+{% block page_content %}
+
+    <div class="col-md-12">
+        <h2>Construct Search</h2>
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <h3>Strain Name Contains:</h3>
+        </div>
+        <div class="col-md-6">
+              <input type="text" class="form-control" id="strainName">
+        </div>
+    </div>
+
 {% endblock %}
