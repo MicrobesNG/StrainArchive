@@ -1,0 +1,17 @@
+.displayContainer {
+    left: 90px;
+    right: 0px;
+    position: absolute;
+    background-color: #ededed;
+    height: 95vh;
+}
+
+.loginContainer {
+    width: 40%;
+    left: 30%;
+    top: 30vh;
+}
+
+#submitLoginForm {
+    width: 100%;
+}

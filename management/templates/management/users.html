@@ -1,0 +1,87 @@
+{% extends "management/base.html" %}
+{% load staticfiles %}
+
+{% block extra_css_files %}
+    <link href="{% static 'css/users.css' %}" rel="stylesheet">
+{% endblock %}
+{% block extra_js_files %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.min.js"></script>
+{% endblock %}
+
+
+{% block inpage_js %}
+    <script>
+        
+        $(document).ready(function() {
+            $(".displayContainer").width($(".headerContainer").width() - 90);
+            
+        });
+
+    </script>
+{% endblock %}
+
+{% block header_text %}
+    <h2 class="headerText">Management: Users</h2>
+{% endblock %}
+
+{% block users_element %}
+    <img src="{% static 'images/usersIcon_selected.png' %}" class="menuToggleIcon" id="selectedUsersIcon">
+{% endblock %}
+
+
+{% block content %}
+    <div class="col-md-12"><br></div>
+
+    <div class="col-md-6" id="usersContainer">
+        <div class="col-md-12">
+            <h2>Users</h2>
+        </div>
+        <div class="col-md-12" id="usersTableContainer">
+
+            <table class="table table-hover" id="usersTable">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Active</th>
+                        <th>Full Name</th>
+                        <th>Organisation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{user.username}}</td>
+                        <td>{{user.is_active}}</td>
+                        <td>{{user.userdata.get_full_name}}</td>
+                        <td>{{user.organisation.name}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+    <div class="col-md-6" id="organisationsContainer">
+        <div class="col-md-12">
+            <h2>Organisations</h2>
+        </div>
+        <div class="col-md-12" id="organisationsTableContainer">
+            <table class="table table-hover" id="organisationsTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Memebers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for org in organisations %}
+                        <tr class="organisationRow" id="{{org.pk}}">
+                            <td>{{org.name}}</td>
+                            <td>{{org.user_set.all.count}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

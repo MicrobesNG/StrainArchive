@@ -1,0 +1,29 @@
+
+.headerContainer {
+    background-color: #3f3f3f;
+    color: #5bc0de;
+    /*color: #5fe1ef;*/
+}
+
+.menuToggleIcon {
+    width: 60px !important;
+}
+    
+.menuContainerCollapsed {
+    width: 90px !important;
+    left: 0px;
+    height: 95vh;
+    background-color: #4f4f4f;
+    position: absolute;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    z-index: 10;
+}
+
+.displayContainer {
+    left: 90px;
+    right: 0px;
+    position: absolute;
+    background-color: #ededed;
+    height: 95vh;
+}

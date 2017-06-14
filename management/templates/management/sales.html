@@ -1,0 +1,109 @@
+{% extends "management/base.html" %}
+{% load staticfiles %}
+
+{% block extra_css_files %}
+    <link href="{% static 'css/sales.css' %}" rel="stylesheet">
+{% endblock %}
+{% block extra_js_files %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.min.js"></script>
+{% endblock %}
+
+
+{% block inpage_js %}
+    <script>
+        
+        $(document).ready(function() {
+            $(".displayContainer").width($(".headerContainer").width() - 90);
+
+            $(".openCostEditModal").click(function() {
+                $("#costModal").modal("show");
+            });
+
+        });
+
+    </script>
+{% endblock %}
+
+{% block header_text %}
+    <h2 class="headerText">Management: Sales</h2>
+{% endblock %}
+
+{% block sales_element %}
+    <img src="{% static 'images/salesIcon_selected.png' %}" class="menuToggleIcon" id="selectedSalesIcon">
+{% endblock %}
+
+
+{% block content %}
+    {% include 'include/costModal.html' %}
+    <div class="col-md-12"><br></div>
+
+    <div class="col-md-12" id="mainViewContainer">
+        <div class="col-md-12">
+            <h2>Quotes and Orders</h2>
+        </div>
+        <div class="col-md-12" id="quotesTableContainer">
+            <table class="table table-hover" id="quotesTable">
+                <thead>
+                    <tr>
+                        <th class="userCell">User</th>
+                        <th class="organisationCell">Organisation</th>
+                        <th class="basketCell">Basket</th>
+                        <th class="costCell">Cost</th>
+                        <th class="quoteStatusCell">Quote Status</th>
+                        <th class="orderStatusCell">Order Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for q in quotes %}
+                        <tr class="quoteRow" id="{{q.pk}}">
+                            <td class="userCell">{{q.user.userdata.get_full_name}}</td>
+                            <td class="organisationCell">{{q.user.userdata.organisation.name}}
+                            <td class="basketCell">
+                                <ul class="basketContentList">
+                                    {% for p in q.basket.purchases.all %}
+                                        <li class="purchaseElement" id="{{p.pk}}">{{p.strain.name}}: x<b>{{p.quantity}}</b></li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            <td class="costCell">{{q.cost}}<button type="button" class="btn btn-xs btn-primary openCostEditModal">Edit</button></td>
+                            <td class="quoteStatusCell">
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle quoteStatusSelect" type="button" data-toggle="dropdown">
+                                        {{q.get_verbose_status_name}}
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu quoteStatusDropdownMenu">
+                                        <li class="quoteStatusDropdownOption">Pending</li>
+                                        <li class="quoteStatusDropdownOption">Sent</li>
+                                        <li class="quoteStatusDropdownOption">Accepted</li>
+                                        <li class="quoteStatusDropdownOption">Cancelled</li>
+                                    </ul>
+                                </div>
+                            </td>
+                            {% if q.order %}
+                                <td class="orderStatusCell">{{q.order.get_verbose_status_name}}</td>
+                                <td class="orderStatusCell">
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle orderStatusSelect" type="button" data-toggle="dropdown">
+                                            {{q.order.get_verbose_status_name}}
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu orderStatusDropdownMenu">
+                                            <li class="orderStatusDropdownOption">Processing</li>
+                                            <li class="orderStatusDropdownOption">Dispatched</li>
+                                            <li class="orderStatusDropdownOption">Received</li>
+                                            <li class="orderStatusDropdownOption">Void</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            {% else %}
+                                <td class="orderStatusCell"><p>No Order Present</p><p>(quote not accepted)</p></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

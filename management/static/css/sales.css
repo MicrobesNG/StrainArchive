@@ -1,0 +1,26 @@
+.openCostEditModal {
+    margin-left: 10px;
+}
+
+.userCell {
+    width: 15%;
+}
+.organisationCell {
+    width: 15%;
+}
+.basketCell {
+    width: 40%;
+}
+.costCell {
+    width: 10%;
+}
+.quoteStatusCell {
+    width: 10%;
+}
+.orderStatusCell {
+    width: 10%;
+}
+
+#quoteCostInput {
+    width: 50%;
+}
