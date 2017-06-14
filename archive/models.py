@@ -13,10 +13,38 @@ class Family(models.Model):
     name = models.CharField(max_length = 100)    
     # other family data fields?
 
+    def serialize(self):
+        output_dict = {
+            "name": self.name,
+            "pk": self.pk,
+            "genera": []
+        }
+
+        for genus in self.genus_set.all():
+
+            output_dict["genera"].append(genus.serialize())
+
+        pass
+
 class Genus(models.Model):
     name = models.CharField(max_length = 100)
     family = models.ForeignKey(Family, null = True)
     # other genus data fields?
+
+    def serialize(self):
+        output_dict = {
+            "name": self.name,
+            "pk": self.pk,
+            "species": []
+        }
+
+        for species in self.species_set.all():
+            output_dict["species"].append(
+                {
+                    "name": species.name,
+                    "pk": species.pk,
+                }
+            )
 
 class Species(models.Model):
     name = models.CharField(max_length = 100)
