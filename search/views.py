@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 
-# Create your views here.
+from archive.models import Strain
 
 
 def search(request):
@@ -17,6 +17,23 @@ def results(request):
     return render(request, "search/results.html", {})
 
 
-def details(request, strain_id):
+def details(request, strain_pk):
 
-    return render(request, "search/details.html", {})
+    try:
+
+        selected_strain = Strain.objects.get(pk = strain_pk)
+    
+    except Strain.DoesNotExist:
+
+        pass
+        # redirect to 404 page
+    
+    else:
+        
+        return render(
+            request,
+            "search/details.html",
+            {
+                "selected_strain": selected_strain
+            }
+        )
