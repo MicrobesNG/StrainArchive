@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-
+from django.http import Http404
 from archive.models import Strain
 
 
@@ -25,8 +25,7 @@ def details(request, strain_pk):
     
     except Strain.DoesNotExist:
 
-        pass
-        # redirect to 404 page
+        raise Http404("Can't find the strain with id %d." % strain_pk)
     
     else:
         
