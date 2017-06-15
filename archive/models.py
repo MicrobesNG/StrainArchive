@@ -23,7 +23,7 @@ class Family(models.Model):
 
         for genus in self.genus_set.all():
 
-            output_dict["genera"].append(genus.serialize())
+            output_dict["genera"].append(genus.to_dict())
 
         return output_dict
 

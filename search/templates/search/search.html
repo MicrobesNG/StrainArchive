@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block extra_js_files %}
+    <script>
+        var taxStructure = {{data|safe}};
+    </script>
+    <script type="text/javascript" src="{% static 'js/dropdownFilter.js' %}"></script>
+{% endblock %}
+
+
 {% block header_text %}
     <h2>Strain Search</h2>
 {% endblock %}

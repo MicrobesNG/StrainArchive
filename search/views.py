@@ -8,11 +8,16 @@ import json
 
 def search(request):
 
-    data = {"data": []}
+    if Family.objects.all().count() > 0:
+        data = {"data": []}
 
-    for family in Family.objects.all():
+        for family in Family.objects.all():
 
-        data["data"].append(family.to_dict)
+            data["data"].append(family.to_dict())
+    
+    else:
+
+        data = {"data": "EMPTY"}
 
     return render(
         request,
