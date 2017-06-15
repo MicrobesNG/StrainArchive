@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block extra_css_files %}
+<link href="{% static 'css/search.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block extra_js_files %}
     <script>
         var taxStructure = {{data|safe}};
