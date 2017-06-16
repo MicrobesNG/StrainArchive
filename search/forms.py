@@ -3,7 +3,7 @@ from django.contrib import messages
 import requests
 import json
 
-class SearchParameterForm(forms.form):
+class SearchParameterForm(forms.Form):
 
     selected_family_ids = forms.CharField(max_length = None)
     selected_genus_ids = forms.CharField(max_length = None)

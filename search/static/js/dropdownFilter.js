@@ -1,6 +1,5 @@
 function addOptionToDropdownMenu(menuID, optionName, optionID, optionClass, tax, hidden) {
     
-    // var checkBoxHTML = '<input type="checkbox" class="' + optionClass + 'Checkbox cb" id="' + tax + "_" + optionID + '" value=""> ' + optionName + '</label>';
     var optionHTML = "<li class='" + optionClass + "' id='" + tax + "_" + optionID + "'>" + optionName + "</li>";
 
     $("#" + menuID).append(optionHTML);
