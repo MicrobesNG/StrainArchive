@@ -1,6 +1,10 @@
 .selectedOption {
-
     background-color: #555555;
     font-weight: bold;
-
+}
+.taxDropdown {
+    width: 100%;
+}
+.taxDropdownMenu {
+    width: 100%;
 }
