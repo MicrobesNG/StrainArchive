@@ -158,7 +158,7 @@ $(document).ready(function() {
         
     }
 
-    $("#familyDropdownMenu").on("click", ".familyDropdownOption", function() {
+    $("#familyDropdownMenu").on("click", ".familyDropdownOption", function(e) {
 
         if ($(this).hasClass("selectedOption")) {
             $(this).removeClass("selectedOption");
@@ -167,10 +167,12 @@ $(document).ready(function() {
             $(this).addClass("selectedOption");
             setTreeVisibility($(this).text().replace(/\s+/g, ''), "FAMILY", false);
         }
+        
+        e.stopPropagation();
 
     });
 
-    $("#generaDropdownMenu").on("click", ".generaDropdownOption", function() {
+    $("#generaDropdownMenu").on("click", ".generaDropdownOption", function(e) {
 
        if ($(this).hasClass("selectedOption")) {
             $(this).removeClass("selectedOption");
@@ -180,7 +182,22 @@ $(document).ready(function() {
             setTreeVisibility($(this).text().replace(/\s+/g, ''), "GENUS", false);
         }
 
+        e.stopPropagation();
 
     });
+
+    $("#speciesDropdownMenu").on("click", ".speciesDropdownOption", function(e) {
+
+       if ($(this).hasClass("selectedOption")) {
+            $(this).removeClass("selectedOption");
+        } else {
+            $(this).addClass("selectedOption");
+        }
+
+        e.stopPropagation();
+
+    });
+
+
 
 });
