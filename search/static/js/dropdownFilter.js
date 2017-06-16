@@ -23,7 +23,7 @@ function setTreeVisibility(nodeName, nodeType, hide) {
                         var currentGene = node["genera"][j];
                         if (hide) {
                             
-                            $("#G_" + currentGene["pk"]).parent().hide();
+                            $("#G_" + currentGene["pk"]).hide();
                             
                             for (var k = 0; k < currentGene["species"].length; k++) {
                                 
@@ -38,14 +38,14 @@ function setTreeVisibility(nodeName, nodeType, hide) {
 
                         }
 
-                        for (var k = 0; k < currentGene["species"].length; k++) {
-                            var currentSpecies = currentGene["species"][k];
-                            if (hide) {
-                                $("#S_" + currentSpecies["pk"]).hide();
-                            } else{
-                                $("#S_" + currentSpecies["pk"]).show();
-                            }
-                        }
+                        // for (var k = 0; k < currentGene["species"].length; k++) {
+                        //     var currentSpecies = currentGene["species"][k];
+                        //     if (hide) {
+                        //         $("#S_" + currentSpecies["pk"]).hide();
+                        //     } else{
+                        //         $("#S_" + currentSpecies["pk"]).show();
+                        //     }
+                        // }
                     }
                     break;
                 }
@@ -61,7 +61,7 @@ function setTreeVisibility(nodeName, nodeType, hide) {
                         var selectedGene = currentFamily["genera"][i];
                         for (var k = 0; k < selectedGene["species"].length; k++) {
                             
-                            var currentSpecies = currentGene["species"][k];
+                            var currentSpecies = selectedGene["species"][k];
                             if (hide) {
                                 $("#S_" + currentSpecies["pk"]).hide();
                             } else{
@@ -88,6 +88,8 @@ function setTreeVisibility(nodeName, nodeType, hide) {
 
 
 $(document).ready(function() {
+
+    console.log(taxStructure);
 
     for (var i = 0; i < taxStructure["data"].length; i++) {
 
@@ -150,35 +152,24 @@ $(document).ready(function() {
 
         }
 
-
-
-        // if ($(this).prop("checked")) {
-
-        //     $(this).prop("checked", false);
-        //     setTreeVisibility($(this).text().replace(/\s+/g, ''), "FAMILY", true);
-
-        // } else {
-
-        //     $(this).prop("checked", true);
-        //     setTreeVisibility($(this).text().replace(/\s+/g, ''), "FAMILY", false);
-
-        // }
-
     });
 
-    $("#generaDropdownMenu").on("click", ".cb", function() {
+    $("#generaDropdownMenu").on("click", ".generaDropdownOption", function() {
 
-        if ($(this).prop("checked")) {
+       if ($(this).hasClass("selectedOption")) {
 
-            $(this).prop("checked", false);
+            $(this).removeClass("selectedOption");
+
             setTreeVisibility($(this).text().replace(/\s+/g, ''), "GENUS", true);
 
         } else {
 
-            $(this).prop("checked", true);
+            $(this).addClass("selectedOption");
+
             setTreeVisibility($(this).text().replace(/\s+/g, ''), "GENUS", false);
 
         }
+
 
     });
 
