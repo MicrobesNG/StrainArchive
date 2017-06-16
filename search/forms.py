@@ -1,7 +1,10 @@
 from django import forms
 from django.contrib import messages
+from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
 import json
-import requests as req
+
+
 
 class SearchParameterForm(forms.Form):
 
@@ -15,14 +18,16 @@ class SearchParameterForm(forms.Form):
         cleaned_genus_ids = self.cleaned_data["selected_genus_ids"]
         cleaned_species_ids = self.cleaned_data["selected_species_ids"]
 
+
         payload = {
             "families": cleaned_family_ids,
             "genera": cleaned_genus_ids,
             "species": cleaned_species_ids
         }
 
-        r = req.request("http://127.0.0.1:8000/results", params = payload)
-        print r.url
+        return HttpResponseRedirect("/search/results/" + json.dumps(payload))
+        # return redirect("search.views.results", parameterString = json.dumps(payload))
+
         
     
     def process_errors(self, request):

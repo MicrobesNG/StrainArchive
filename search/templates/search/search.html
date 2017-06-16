@@ -19,7 +19,7 @@
 {% endblock %}
 
 {% block page_content %}
-    <form id="searchParameterForm" action="." method="post" name="searchParameterForm">
+    <form id="searchParameterForm" method="post" name="searchParameterForm">
         {% csrf_token %}
         {% for field in searchParameterForm %}
             {{field.as_hidden}}

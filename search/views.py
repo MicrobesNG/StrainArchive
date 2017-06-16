@@ -49,7 +49,9 @@ def search(request):
     )
 
 
-def results(request):
+def results(request, parameterString):
+
+    print parameterString
 
 
     return render(request, "search/results.html", {})
