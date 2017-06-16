@@ -18,6 +18,12 @@
 {% endblock %}
 
 {% block page_content %}
+    <form id="searchParameterForm" action="." method="post" name="searchParameterForm">
+        {% csrf_token %}
+        {% for field in searchParameterForm %}
+            {{form.as_hidden}}
+        {% endform %}
+    </form>
 
     <div class="col-md-12">
         <h2>Construct Search</h2>
@@ -73,7 +79,7 @@
 
     <div class="col-md-12"><hr></div>
     <div class="col-md-12">
-          <input type="submit" class="btn btn-success" value="Search">
+          <input type="submit" class="btn btn-success" form="searchParameterForm" value="Search">
     </div>
 
 

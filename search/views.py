@@ -4,9 +4,19 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import Http404
 from archive.models import Strain, Family, Genus, Species
+from . forms import SearchParameterForm
 import json
 
 def search(request):
+
+    if request.method == "POST":
+
+        pass
+    
+    else:
+
+
+
 
     if Family.objects.all().count() > 0:
         
