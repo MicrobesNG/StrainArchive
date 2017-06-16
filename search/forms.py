@@ -11,7 +11,6 @@ class SearchParameterForm(forms.form):
 
     def process(self, request):
 
-
         cleaned_family_ids = self.cleaned_data["selected_family_ids"]
         cleaned_genus_ids = self.cleaned_data["selected_genus_ids"]
         cleaned_species_ids = self.cleaned_data["selected_species_ids"]
@@ -22,10 +21,8 @@ class SearchParameterForm(forms.form):
             "species": cleaned_species_ids
         }
 
-        r = requests.request("127.0.0.1:8000/results", params = payload)
-
-        print r.url
-
+        r = requests.request("http://127.0.0.1:8000/results", params = payload)
+        
     
     def process_errors(self, request):
 

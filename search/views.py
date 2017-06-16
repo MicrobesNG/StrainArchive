@@ -9,6 +9,7 @@ import json
 def search(request):
 
     if Family.objects.all().count() > 0:
+        
         data = {"data": []}
 
         for family in Family.objects.all():
