@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import Http404
 from archive.models import Strain, Family, Genus, Species
 from . forms import SearchParameterForm
 import json
+
+def results(request):
+    print "HERE!!!!!"
+    return render(request, "search/results.html", {})
 
 def search(request):
 
@@ -16,6 +20,9 @@ def search(request):
         if searchParameterForm.is_valid():
 
             searchParameterForm.process(request)
+
+            return redirect("results")
+
         
         else:
 
@@ -48,13 +55,6 @@ def search(request):
         }
     )
 
-
-def results(request, parameterString):
-
-    print parameterString
-
-
-    return render(request, "search/results.html", {})
 
 
 def details(request, strain_pk):
