@@ -139,17 +139,11 @@ $(document).ready(function() {
     $("#familyDropdownMenu").on("click", ".familyDropdownOption", function() {
 
         if ($(this).hasClass("selectedOption")) {
-
             $(this).removeClass("selectedOption");
-
             setTreeVisibility($(this).text().replace(/\s+/g, ''), "FAMILY", true);
-
         } else {
-
             $(this).addClass("selectedOption");
-
             setTreeVisibility($(this).text().replace(/\s+/g, ''), "FAMILY", false);
-
         }
 
     });
@@ -157,17 +151,11 @@ $(document).ready(function() {
     $("#generaDropdownMenu").on("click", ".generaDropdownOption", function() {
 
        if ($(this).hasClass("selectedOption")) {
-
             $(this).removeClass("selectedOption");
-
             setTreeVisibility($(this).text().replace(/\s+/g, ''), "GENUS", true);
-
         } else {
-
             $(this).addClass("selectedOption");
-
             setTreeVisibility($(this).text().replace(/\s+/g, ''), "GENUS", false);
-
         }
 
 
