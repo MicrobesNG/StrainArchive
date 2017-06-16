@@ -22,7 +22,7 @@
     <form id="searchParameterForm" action="." method="post" name="searchParameterForm">
         {% csrf_token %}
         {% for field in searchParameterForm %}
-            {{form.as_hidden}}
+            {{field.as_hidden}}
         {% endfor %}
     </form>
 
@@ -79,6 +79,7 @@
     </div>
 
     <div class="col-md-12"><hr></div>
+
     <div class="col-md-12">
           <input type="submit" class="btn btn-success" form="searchParameterForm" value="Search">
     </div>

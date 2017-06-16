@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import messages
-import requests
 import json
+import requests as req
 
 class SearchParameterForm(forms.Form):
 
@@ -21,7 +21,8 @@ class SearchParameterForm(forms.Form):
             "species": cleaned_species_ids
         }
 
-        r = requests.request("http://127.0.0.1:8000/results", params = payload)
+        r = req.request("http://127.0.0.1:8000/results", params = payload)
+        print r.url
         
     
     def process_errors(self, request):

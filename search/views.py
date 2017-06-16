@@ -43,6 +43,7 @@ def search(request):
         request,
         "search/search.html",
         {
+            "searchParameterForm": searchParameterForm,
             "data": json.dumps(data)
         }
     )
