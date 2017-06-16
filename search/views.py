@@ -15,7 +15,7 @@ def search(request):
 
             data["data"].append(family.to_dict())
     
-    else:
+    else: 
 
         data = {"data": "EMPTY"}
 
