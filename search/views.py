@@ -11,10 +11,19 @@ def search(request):
 
     if request.method == "POST":
 
-        pass
+        searchParameterForm = SearchParameterForm(request.POST)
+
+        if searchParameterForm.is_valid():
+
+            searchParameterForm.process(request)
+        
+        else:
+
+            searchParameterForm.process_errors(request)
     
     else:
 
+        searchParameterForm = SearchParameterForm()
 
 
 
