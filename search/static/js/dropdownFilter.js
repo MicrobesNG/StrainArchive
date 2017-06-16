@@ -11,7 +11,17 @@ function addOptionToDropdownMenu(menuID, optionName, optionID, optionClass, tax,
 
 }
 
+function deselectDropdownOption(elementID) {
 
+    var selected = $("#" + elementID);
+    
+    if (selected.hasClass("selectedOption")) {
+        selected.removeClass("selectedOption");
+    }
+    
+    selected.hide();
+
+}
 
 function setTreeVisibility(nodeName, nodeType, hide) {
     switch (nodeType) {
@@ -23,12 +33,13 @@ function setTreeVisibility(nodeName, nodeType, hide) {
                         var currentGene = node["genera"][j];
                         if (hide) {
                             
-                            $("#G_" + currentGene["pk"]).hide();
+                            deselectDropdownOption("G_" + currentGene["pk"]);
                             
                             for (var k = 0; k < currentGene["species"].length; k++) {
                                 
                                 var currentSpecies = currentGene["species"][k];
-                                $("#S_" + currentSpecies["pk"]).hide();
+
+                                deselectDropdownOption("S_" + currentSpecies["pk"]);
 
                             }
 
@@ -38,41 +49,52 @@ function setTreeVisibility(nodeName, nodeType, hide) {
 
                         }
 
-                        // for (var k = 0; k < currentGene["species"].length; k++) {
-                        //     var currentSpecies = currentGene["species"][k];
-                        //     if (hide) {
-                        //         $("#S_" + currentSpecies["pk"]).hide();
-                        //     } else{
-                        //         $("#S_" + currentSpecies["pk"]).show();
-                        //     }
-                        // }
                     }
+
                     break;
+
                 }
+
             }
+
             break;
         
         case "GENUS":
 
             for (var i = 0; i < taxStructure["data"].length; i++) {
+                
                 var currentFamily = taxStructure["data"][i];
+                
                 for (var j = 0; j < currentFamily["genera"].length; j++) {
-                    if (currentFamily["genera"][i]["name"] == nodeName) {
-                        var selectedGene = currentFamily["genera"][i];
+
+                    if (currentFamily["genera"][j]["name"] == nodeName) {
+                        
+                        var selectedGene = currentFamily["genera"][j];
+
                         for (var k = 0; k < selectedGene["species"].length; k++) {
                             
                             var currentSpecies = selectedGene["species"][k];
+
                             if (hide) {
-                                $("#S_" + currentSpecies["pk"]).hide();
+
+                                deselectDropdownOption("S_" + currentSpecies["pk"]);
+
                             } else{
+
                                 $("#S_" + currentSpecies["pk"]).show();
+                                
                             }
+
                         }
+
                     }
+
                     break;
+
                 }
-                break;
+
             }
+
             break;
         
         default:
