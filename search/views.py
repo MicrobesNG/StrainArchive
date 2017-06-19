@@ -2,14 +2,78 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from archive.models import Strain, Family, Genus, Species
 from . forms import SearchParameterForm
 import json
 
-def results(request):
-    print "HERE!!!!!"
-    return render(request, "search/results.html", {})
+
+def results(request, page_number):
+
+    empty_basket = {
+        "total_cost": 0.0,
+        "items": [
+            {"name": "basket test", "amount": 3, "cost": 50},
+            {"name": "basket test", "amount": 3, "cost": 50},
+            {"name": "basket test", "amount": 3, "cost": 50},
+            {"name": "basket test", "amount": 3, "cost": 50},
+            {"name": "basket test", "amount": 3, "cost": 50},
+            {"name": "basket test", "amount": 3, "cost": 50},
+            {"name": "basket test", "amount": 3, "cost": 50},
+            {"name": "basket test", "amount": 3, "cost": 50},
+            {"name": "basket test", "amount": 3, "cost": 50},
+            {"name": "basket test", "amount": 3, "cost": 50},
+            {"name": "basket test", "amount": 3, "cost": 50},
+            {"name": "basket test", "amount": 3, "cost": 50},
+            {"name": "big big big nammmmmmmeeeeeeeedddd basket test", "amount": 2, "cost": 50}
+        ]
+    }
+    
+    if "basket" in request.session:
+
+        if request.session["basket"] != empty_basket:
+
+            basket = request.session["basket"]
+        
+        else:
+
+            basket = empty_basket
+    
+    else:
+
+        basket = empty_basket
+
+
+    
+    paginator = Paginator(request.session["search_results"], 25)
+
+    page = request.GET.get("page")
+
+    try:
+
+        strains = paginator.page(page)
+    
+    except PageNotAnInteger:
+
+        strains = paginator.page(page_number)
+
+    except EmptyPage:
+
+        strains = paginator.page(paginator.num_pages)
+
+
+    return render(
+        request,
+        "search/results.html",
+        {
+            "strains": strains,
+            "num_pages": range(paginator.num_pages),
+            "basket": basket
+        }
+    )
+
+
 
 def search(request):
 
@@ -21,7 +85,7 @@ def search(request):
 
             searchParameterForm.process(request)
 
-            return redirect("search:results")
+            return redirect("search:results", 1)
 
         
         else:

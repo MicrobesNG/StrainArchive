@@ -1,8 +1,74 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
+{% block extra_css_files %}
+<link href="{% static 'css/basket.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_js_files %}
+<script type="text/javascript" src="{% static 'js/basket.js' %}"></script>
+{% endblock %}
 
 {% block header_text %}
     <h2>Search Results</h2>
 {% endblock %}
 
 
+{% block page_content %}
+    <div class="col-md-9" id="resultsListContainer">
+        <table class="table table-hover">
+            <tbody>
+                {% for s in strains %}
+                    <tr class="resultRow" id="{{s.pk}}">
+                        <td class="strainTypeCell">Strain type?</td>
+                        <td class="strainNameCell">{{s.name}}</td>
+                        <td class="someDataCell">Some Data</td>
+                        <td class="dataCell">Data</td>
+                        <td class="quickAddCell">Add to Basket</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3" id="basketContainer">
+        <div class="col-md-12">
+            <h2>My Basket</h2>
+        </div>
+        <div class="col-md-12" id="basketContentTableContainer">
+            <table class="table table-hover" id="basketContentTable">
+                <thead>
+                    <tr>
+                        <th class="itemNameCell basketHeaderCell">Name</th>
+                        <th class="itemAmountCell basketHeaderCell">Amount</th>
+                        <th class="itemCostCell basketHeaderCell">Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in basket.items %}
+                        <tr class="itemRow">
+                            <td class="itemNameCell">{{item.name}}</td>
+                            <td class="itemAmountCell">{{item.amount}}</td>
+                            <td class="itemCostCell">{{item.cost}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-12 row-eq-height" id="totalContainer">
+            <div class="col-md-4">
+                <h3>Total:</h3>
+            </div>
+            <div class="col-md-8" align="right">
+                <h3 id="basketTotalCost">{{basket.total_cost}}</h3>
+            </div>
+        </div>
+        <div class="col-md-12" id="basketFooter">
+            <input type="submit" class="btn btn-success" id="checkout" form="" value="Checkout">
+        </div>
+    </div>
+    <div class="col-md-12" id="pageSelectFooter">
+        {% for i in num_pages %}
+
+        {% endfor %}
+    </div>
+{% endblock %}

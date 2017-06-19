@@ -1,0 +1,42 @@
+#basketContainer {
+    background-color: #e8e8e8;
+    height: 91.5vh;
+    padding: 0px;
+    margin: 0px;
+}
+
+.mainContainer {
+    padding-right: 0px;
+}
+
+#basketContentTableContainer {
+    height: 68.5vh;
+    overflow-y: auto;
+}
+
+#checkout {
+    width: 100%;
+}
+
+#totalContainer {
+    padding: 0px;
+}
+
+.itemNameCell {
+    width: 80%;
+    word-wrap: break-word;
+}
+
+.itemAmountCell {
+    width: 5%;
+}
+
+.itemCostCell {
+    width: 15%;
+}
+
+#basketTotalCost {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
