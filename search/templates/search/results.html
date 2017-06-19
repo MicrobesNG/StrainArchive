@@ -31,13 +31,20 @@
         </table>
     </div>
     <div class="col-md-3" id="basketContainer">
-        <div class="col-md-12">
-            <h2>My Basket</h2>
+        <div class="col-md-12 row-eq-height" id="basketHeaderRow">
+            <div class="col-md-10">
+                <h2>My Basket</h2>
+            </div>
+            <div class="col-md-2">
+                <br>
+                <button type="button" class="btn btn-xs btn-warning" id="basketEditButton">EDIT</button>
+            </div>
         </div>
         <div class="col-md-12" id="basketContentTableContainer">
             <table class="table table-hover" id="basketContentTable">
                 <thead>
                     <tr>
+                        <th class="removeItemCell"></th>
                         <th class="itemNameCell basketHeaderCell">Name</th>
                         <th class="itemAmountCell basketHeaderCell">Amount</th>
                         <th class="itemCostCell basketHeaderCell">Cost</th>
@@ -46,6 +53,7 @@
                 <tbody>
                     {% for item in basket.items %}
                         <tr class="itemRow">
+                            <td class="removeItemCell"><button type="button" class="btn btn-xs btn-danger removeFromBasket">&times;</button></td>
                             <td class="itemNameCell">{{item.name}}</td>
                             <td class="itemAmountCell">{{item.amount}}</td>
                             <td class="itemCostCell">{{item.cost}}</td>
