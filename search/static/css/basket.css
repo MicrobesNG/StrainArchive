@@ -1,6 +1,6 @@
 #basketContainer {
     background-color: #e8e8e8;
-    height: 91.5vh;
+    height: 95vh;
     padding: 0px;
     margin: 0px;
 }
@@ -10,7 +10,7 @@
 }
 
 #basketContentTableContainer {
-    height: 68.5vh;
+    height: 80vh;
     overflow-y: auto;
 }
 
@@ -42,8 +42,4 @@
 
 #basketHeaderRow {
     padding-left: 0px;
-}
-
-#basketEditButton {
-    
 }

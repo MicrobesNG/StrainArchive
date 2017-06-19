@@ -3,6 +3,7 @@
 
 {% block extra_css_files %}
 <link href="{% static 'css/basket.css' %}" rel="stylesheet">
+<link href="{% static 'css/results.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block extra_js_files %}
@@ -15,20 +16,31 @@
 
 
 {% block page_content %}
-    <div class="col-md-9" id="resultsListContainer">
-        <table class="table table-hover">
-            <tbody>
-                {% for s in strains %}
-                    <tr class="resultRow" id="{{s.pk}}">
-                        <td class="strainTypeCell">Strain type?</td>
-                        <td class="strainNameCell">{{s.name}}</td>
-                        <td class="someDataCell">Some Data</td>
-                        <td class="dataCell">Data</td>
-                        <td class="quickAddCell">Add to Basket</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="col-md-9" id="resultsContainer">
+        <div class="col-md-12" id="resultsTableContainer">
+            <table class="table table-hover">
+                <tbody>
+                    {% for s in strains %}
+                        <tr class="resultRow" id="{{s.pk}}">
+                            <td class="strainTypeCell">Strain type?</td>
+                            <td class="strainNameCell">{{s.name}}</td>
+                            <td class="someDataCell">Some Data</td>
+                            <td class="dataCell">Data</td>
+                            <td class="quickAddCell">Add to Basket</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-12" id="pageSelectFooter" align="middle">
+            <table>
+                <thead>
+                    {% for i in num_pages %}
+                        <th>{{i}}</th>
+                    {% endfor %}
+                </thead>
+            </table>
+        </div>
     </div>
     <div class="col-md-3" id="basketContainer">
         <div class="col-md-12 row-eq-height" id="basketHeaderRow">
@@ -73,10 +85,5 @@
         <div class="col-md-12" id="basketFooter">
             <input type="submit" class="btn btn-success" id="checkout" form="" value="Checkout">
         </div>
-    </div>
-    <div class="col-md-12" id="pageSelectFooter">
-        {% for i in num_pages %}
-
-        {% endfor %}
     </div>
 {% endblock %}
