@@ -73,6 +73,7 @@ class SearchParameterForm(forms.Form):
             if strain.family in families_list and strain.genus in genera_list and strain.species in species_list:
 
                 strains.append({"name": strain.name, "pk": strain.pk})
+        
         request.session["search_results"] = None
         request.session["search_results"] = strains
         

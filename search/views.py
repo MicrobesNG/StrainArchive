@@ -21,7 +21,7 @@ def search(request):
 
             searchParameterForm.process(request)
 
-            return redirect("results")
+            return redirect("search:results")
 
         
         else:
