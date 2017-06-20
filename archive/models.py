@@ -86,3 +86,4 @@ class Strain(models.Model):
     family = models.ForeignKey(Family, null = True)
     genus = models.ForeignKey(Genus, null = True)
     species = models.ForeignKey(Species, null = True)
+    cost = models.FloatField(default = 0.0)
