@@ -9,6 +9,7 @@ from . forms import SearchParameterForm
 import json
 
 
+
 def results(request, page_number):
 
     empty_basket = {
@@ -118,6 +119,8 @@ def search(request):
             "data": json.dumps(data)
         }
     )
+
+
 
 
 

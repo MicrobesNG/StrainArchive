@@ -19,6 +19,8 @@ function setBasketCostText() {
 }
 
 
+
+
 $(document).ready(function() {
 
     // toggle remove column on edit button click

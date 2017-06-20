@@ -17,20 +17,30 @@
 
 {% block page_content %}
     <div class="col-md-9" id="resultsContainer">
+        <div class="col-md-12">
+            <h2>Results</h2>
+            <hr>
+        </div>
         <div class="col-md-12" id="resultsTableContainer">
-            <table class="table table-hover">
-                <tbody>
-                    {% for s in strains %}
-                        <tr class="resultRow" id="{{s.pk}}">
-                            <td class="strainTypeCell">Strain type?</td>
-                            <td class="strainNameCell">{{s.name}}</td>
-                            <td class="someDataCell">Some Data</td>
-                            <td class="dataCell">Data</td>
-                            <td class="quickAddCell">Add to Basket</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            {% for x in "aaaaaaaaaaaaaaaaaaaaaaaaaaaa" %}
+                <div class="col-md-12 strainRow" id="{{s.pk}}">
+                    <div class="col-md-4">
+                        <h4 class="rowText">STRAIN TYPE</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="rowText">NAMEEEEE</h4>
+                    </div>
+                    <div class="col-md-2">
+                        <h4 class="rowText">£straincost</h4>
+                    </div>
+                    <div class="col-md-1">
+                        <h4 class="rowText">VIEW</h4>
+                    </div>
+                    <div class="col-md-1">
+                        <h4><button type="button" class="btn btn-success addToBasket">+</button></h4>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
         <div class="col-md-12" id="pageSelectFooter" align="middle">
             <table>
@@ -47,8 +57,7 @@
             <div class="col-md-10">
                 <h2>My Basket</h2>
             </div>
-            <div class="col-md-2">
-                <br>
+            <div class="col-md-2" id="editButtonContainer">
                 <button type="button" class="btn btn-xs btn-warning" id="basketEditButton">EDIT</button>
             </div>
         </div>
