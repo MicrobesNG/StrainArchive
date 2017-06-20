@@ -1,31 +1,33 @@
 
 
 def get_basket(request):
+
     empty_basket = {
         "total_cost": 0.0,
         "items": []
     }
-    
+
     if "basket" in request.session:
 
         if request.session["basket"] != empty_basket:
 
             basket = request.session["basket"]
-        
+
         else:
 
-            basket = empty_basket
+            request.session["basket"] = empty_basket
     
     else:
 
-        basket = empty_basket
-    
+        request.session["basket"] = empty_basket
 
-    return basket
+    return request.session["basket"]
 
 
 def add_to_basket(request, selected_strain):
-    
+
+    print "SELECTED:", selected_strain.name
+
     present_in_basket = False
     for strain_order in request.session["basket"]["items"]:
 
@@ -41,6 +43,9 @@ def add_to_basket(request, selected_strain):
         request.session["basket"]["items"].append(
             {"name": selected_strain.name, "amount": 1, "cost": selected_strain.cost}
         )
+    
+    print "BASKET NOW:"
+    print request.session["basket"]
 
 
 def remove_from_basket(request, selected_strain):

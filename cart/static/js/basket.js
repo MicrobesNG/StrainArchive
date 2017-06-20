@@ -42,7 +42,7 @@ function generateBasketEntryRow(newName, newAmount, newCost) {
 function updateBasket(data) {
     
     for (var i = 0; i < data["items"].length; i++) {
-        
+        console.log(i);
         var currentSessionStrain = data["items"][i];
         
         var located = false;
@@ -60,8 +60,7 @@ function updateBasket(data) {
                     currentSessionStrain["amount"],
                     currentSessionStrain["cost"]
                 );
-
-                break;
+                // break;
             }
         });
 
@@ -72,6 +71,8 @@ function updateBasket(data) {
                 currentSessionStrain["amount"],
                 currentSessionStrain["cost"]
             );
+
+            $("#basketContentTable").append(html)
 
         }
 
@@ -84,7 +85,16 @@ function updateBasket(data) {
 
 function addToBasket(strainPK) {
     $.ajax({
-        url: "/add_to_basket/" + strainPK,
+        url: "/cart/addToBasket/" + strainPK,
+        success: function(data) {
+            updateBasket(data);
+        }
+    });
+}
+
+function removeFromBasket(strainPK) {
+    $.ajax({
+        url: "/cart/removeFromBasket/" + strainPK,
         success: function(data) {
             updateBasket(data);
         }
@@ -99,31 +109,11 @@ $(document).ready(function() {
         $(".removeItemCell").toggle();
     });
 
-
-
-    // $(".removeFromBasket").click(function() {
-
-    //     var amount = parseInt($(this).parent().parent().find(".itemAmountCell").html());
-
-    //     var costPerAmount = (parseFloat($(this).parent().parent().find(".itemCostCell").html()) / amount).toFixed(2);
-
-    //     amount--;
-
-    //     if (amount == 0) {
-    //         $(this).parent().parent().remove();
-    //     } else {
-    //         $(this).parent().parent().find(".itemAmountCell").html(amount);
-    //         $(this).parent().parent().find(".itemCostCell").html(amount * costPerAmount);
-    //     }
-        
-    //     setBasketCostText();
-
-    // });
-
     // initially hide the remove column
     $(".removeItemCell").hide();
 
-    // calculate inital basket cost
-    setBasketCostText();
-
+    $(".addToBasket").click(function() {
+        addToBasket($(this).closest(".strainRow").attr("id"));
+    });
+    
 });

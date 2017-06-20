@@ -12,8 +12,10 @@ import json
 
 
 def results(request, page_number):
-
+    
     basket = cart.utils.get_basket(request)
+
+    print basket
     
     paginator = Paginator(request.session["search_results"], 25)
 

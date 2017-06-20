@@ -22,16 +22,13 @@
             <hr>
         </div>
         <div class="col-md-12" id="resultsTableContainer">
-            {% for x in "aaaaaaaaaaaaaaaaaaaaaaaaaaaa" %}
+            {% for s in strains %}
                 <div class="col-md-12 strainRow" id="{{s.pk}}">
-                    <div class="col-md-4">
-                        <h4 class="rowText">STRAIN TYPE</h4>
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="rowText">NAMEEEEE</h4>
+                    <div class="col-md-8">
+                        <h4 class="rowText">{{s.name}}</h4>
                     </div>
                     <div class="col-md-2">
-                        <h4 class="rowText">£straincost</h4>
+                        <h4 class="rowText">£{{s.cost}}</h4>
                     </div>
                     <div class="col-md-1">
                         <h4 class="rowText">VIEW</h4>
