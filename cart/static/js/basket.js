@@ -60,7 +60,7 @@ function updateBasket(data) {
                     currentSessionStrain["amount"],
                     currentSessionStrain["cost"]
                 );
-                // break;
+                
             }
         });
 
@@ -114,6 +114,10 @@ $(document).ready(function() {
 
     $(".addToBasket").click(function() {
         addToBasket($(this).closest(".strainRow").attr("id"));
+    });
+
+    $(".basketContentTable").on("click", ".removeFromBasket", function() {
+        removeFromBasket($(this).closest(".strainRow").attr("id"));
     });
     
 });

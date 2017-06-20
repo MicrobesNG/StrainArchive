@@ -47,6 +47,6 @@ def remove_from_basket(request, strain_pk):
         utils.remove_from_basket(request, selected_strain)
 
     return HttpResponse(
-        json.dumps(utils.get_basket(request)),
+        json.dumps(request.session["basket"]),
         content_type = "application/json"
     )
