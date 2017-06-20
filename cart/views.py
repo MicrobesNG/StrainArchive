@@ -12,20 +12,21 @@ import json
 def add_to_basket(request, strain_pk):
     
     try:
-        print "A"
 
         selected_strain = Strain.objects.get(pk = strain_pk)
-        print "B"
+
     except Strain.DoesNotExist:
 
         pass
 
     else:
-        print "C"
-        utils.add_to_basket(request, selected_strain)
-        print "D"
 
-    return HttpResponse(json.dumps(utils.get_basket(request)), content_type = "application/json")
+        utils.add_to_basket(request, selected_strain)
+
+    return HttpResponse(
+        json.dumps(request.session["basket"]),
+        content_type = "application/json"
+    )
 
 
 
@@ -45,4 +46,7 @@ def remove_from_basket(request, strain_pk):
 
         utils.remove_from_basket(request, selected_strain)
 
-    return HttpResponse(json.dumps(utils.get_basket(request)), content_type = "application/json")
+    return HttpResponse(
+        json.dumps(utils.get_basket(request)),
+        content_type = "application/json"
+    )
