@@ -12,39 +12,6 @@ import json
 
 def results(request, page_number):
 
-    empty_basket = {
-        "total_cost": 0.0,
-        "items": [
-            {"name": "basket test", "amount": 3, "cost": 50},
-            {"name": "basket test", "amount": 3, "cost": 50},
-            {"name": "basket test", "amount": 3, "cost": 50},
-            {"name": "basket test", "amount": 3, "cost": 50},
-            {"name": "basket test", "amount": 3, "cost": 50},
-            {"name": "basket test", "amount": 3, "cost": 50},
-            {"name": "basket test", "amount": 3, "cost": 50},
-            {"name": "basket test", "amount": 3, "cost": 50},
-            {"name": "basket test", "amount": 3, "cost": 50},
-            {"name": "basket test", "amount": 3, "cost": 50},
-            {"name": "basket test", "amount": 3, "cost": 50},
-            {"name": "basket test", "amount": 3, "cost": 50},
-            {"name": "big big big nammmmmmmeeeeeeeedddd basket test", "amount": 2, "cost": 50}
-        ]
-    }
-    
-    if "basket" in request.session:
-
-        if request.session["basket"] != empty_basket:
-
-            basket = request.session["basket"]
-        
-        else:
-
-            basket = empty_basket
-    
-    else:
-
-        basket = empty_basket
-
 
     
     paginator = Paginator(request.session["search_results"], 25)
