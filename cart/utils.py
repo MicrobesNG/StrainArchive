@@ -1,6 +1,6 @@
 
 
-def check_basket(request):
+def get_basket(request):
     empty_basket = {
         "total_cost": 0.0,
         "items": []
