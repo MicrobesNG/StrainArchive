@@ -19,6 +19,14 @@ function setBasketCostText() {
 }
 
 
+function addToBasket(strainPK) {
+    $.ajax({
+        url: "someurl",
+        success: function() {
+            // somefunction
+        }
+    });
+}
 
 
 $(document).ready(function() {
@@ -28,24 +36,26 @@ $(document).ready(function() {
         $(".removeItemCell").toggle();
     });
 
-    $(".removeFromBasket").click(function() {
 
-        var amount = parseInt($(this).parent().parent().find(".itemAmountCell").html());
 
-        var costPerAmount = (parseFloat($(this).parent().parent().find(".itemCostCell").html()) / amount).toFixed(2);
+    // $(".removeFromBasket").click(function() {
 
-        amount--;
+    //     var amount = parseInt($(this).parent().parent().find(".itemAmountCell").html());
 
-        if (amount == 0) {
-            $(this).parent().parent().remove();
-        } else {
-            $(this).parent().parent().find(".itemAmountCell").html(amount);
-            $(this).parent().parent().find(".itemCostCell").html(amount * costPerAmount);
-        }
+    //     var costPerAmount = (parseFloat($(this).parent().parent().find(".itemCostCell").html()) / amount).toFixed(2);
+
+    //     amount--;
+
+    //     if (amount == 0) {
+    //         $(this).parent().parent().remove();
+    //     } else {
+    //         $(this).parent().parent().find(".itemAmountCell").html(amount);
+    //         $(this).parent().parent().find(".itemCostCell").html(amount * costPerAmount);
+    //     }
         
-        setBasketCostText();
+    //     setBasketCostText();
 
-    });
+    // });
 
     // initially hide the remove column
     $(".removeItemCell").hide();
