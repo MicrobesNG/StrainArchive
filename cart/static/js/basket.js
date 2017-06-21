@@ -59,6 +59,7 @@ function updateBasket(data) {
         $(".itemRow").each(function() {
             $(this).remove();
         });
+
     }
 
     // loop over all items in session basket
@@ -108,13 +109,14 @@ function updateBasket(data) {
             );
 
             $("#basketContentTable").append(html)
+            $(".removeItemCell").hide();
 
         }
 
-        // update cost on page basket
-        setBasketCostText(data["total_cost"]);
-
     }
+    
+    // update cost on page basket
+    setBasketCostText(data["total_cost"]);
 
 }
 
@@ -141,6 +143,9 @@ function removeFromBasket(strainPK) {
 
 $(document).ready(function() {
 
+    // initially hide the remove cell column
+    $(".removeItemCell").hide();
+
     // toggle remove column on edit button click
     $("#basketEditButton").click(function() {
         
@@ -162,9 +167,6 @@ $(document).ready(function() {
         }
         
     });
-
-    // initially hide the remove column
-    $(".removeItemCell").hide();
 
     $(".addToBasket").click(function() {
         addToBasket($(this).closest(".strainRow").attr("id"));

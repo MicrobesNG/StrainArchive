@@ -64,3 +64,16 @@ def remove_from_basket(request, selected_strain):
                 
     request.session["basket"]["items"] = orders
     request.session.modified = True
+
+
+
+def calculate_basket_cost(request):
+
+    return sum(item["cost"] for item in request.session["basket"]["items"])
+
+
+
+def set_basket_cost(request):
+
+    request.session["basket"]["total_cost"] = calculate_basket_cost(request)
+    request.session.modified = True

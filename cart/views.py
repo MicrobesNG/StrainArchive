@@ -22,6 +22,8 @@ def add_to_basket(request, strain_pk):
     else:
 
         utils.add_to_basket(request, selected_strain)
+        utils.set_basket_cost(request)
+
 
     return HttpResponse(
         json.dumps(request.session["basket"]),
@@ -45,6 +47,8 @@ def remove_from_basket(request, strain_pk):
     else:
 
         utils.remove_from_basket(request, selected_strain)
+        utils.set_basket_cost(request)
+
 
     return HttpResponse(
         json.dumps(request.session["basket"]),
