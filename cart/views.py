@@ -9,6 +9,12 @@ from . import utils
 import json
 
 
+def checkout(request):
+
+    pass
+    
+
+
 def add_to_basket(request, strain_pk):
     
     try:

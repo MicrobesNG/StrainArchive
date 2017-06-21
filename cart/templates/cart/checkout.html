@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block extra_css_files %}
+<link href="{% static 'css/basket.css' %}" rel="stylesheet">
+<link href="{% static 'css/results.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_js_files %}
+<script type="text/javascript" src="{% static 'js/basket.js' %}"></script>
+{% endblock %}
+
+{% block header_text %}
+    <h2>Checkout</h2>
+{% endblock %}
+
+
+
+{% block page_content %}
+
+{% endblock %}
