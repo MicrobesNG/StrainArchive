@@ -9,17 +9,88 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Checkout Summary</h4>
             </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
+
+            <div class="modal-body col-md-12">
                 <div class="col-md-12">
-                    <div class="col-md-6" align="left">
-                        <button type="button" class="btn btn-basic" data-dismiss="modal">Close</button>
+                    <div class="col-md-12">
+                        <h3>Your Orders</h3>
                     </div>
-                    <div class="col-md-6" align="right">
-                        <button type="button" class="btn btn-success">Confirm and Send</button>
+                    <div class="col-md-12">
+                        {% for item in basket.items %}
+                            <div class="col-md-12">
+                                <div class="col-md-2">
+                                    {{item.amount}}x
+                                </div>
+                                <div class="col-md-8">
+                                    {{item.name}}
+                                </div>
+                                <div class="col-md-2" align="right">
+                                    £{{item.cost}}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="col-md-12" align="right">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8" align="right"><h4>TOTAL:</h4></div>
+                            <div class="col-md-2"><h4>£{{basket.total_cost}}</h4></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12"><hr></div>
+                    <div class="col-md-12">
+                        <h3>Your Details</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h4>Name:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="summaryField" id="nameFieldSummary">Some Name</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h4>Email:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="summaryField" id="emailFieldSummary">Some Email</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h4>Funding Type:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="summaryField" id="fundingFieldSummary">Some funding</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-12"><hr></div>
+                    <div class="col-md-12">
+                        <h3>Billing Address</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <textarea readonly class="form-control addressInput" rows="10" id="billingAddressSummary"></textarea>
+                    </div>
+                    <div class="col-md-12"><hr></div>
+                    <div class="col-md-12">
+                        <h3>Delivery Address</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <textarea readonly class="form-control addressInput" rows="10" id="deliveryAddressSummary"></textarea>
                     </div>
                 </div>
+            </div>
+            
+            <div class="col-md-12"><hr></div>
+
+            <div class="col-md-12">
+                <div class="col-md-6" align="left">
+                    <button type="button" class="btn btn-basic" data-dismiss="modal">Close</button>
+                </div>
+                <div class="col-md-6" align="right">
+                    <button type="button" class="btn btn-success">Confirm and Send</button>
+                </div>
+            </div>
+            <div class="modal-footer">
             </div>
         </div>
 
