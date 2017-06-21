@@ -1,4 +1,12 @@
+function populateSummaryModal() {
 
+    $("#nameFieldSummary").text($("#nameInput").val());
+    $("#emailFieldSummary").text($("#emailInput").val());
+    $("#fundingFieldSummary").text($("#fundingTypeDropdown").val());
+    $("#billingAddressSummary").val($("#billingAddressInput").val());
+    $("#deliveryAddressSummary").val($("#deliveryAddressInput").val());
+
+}
 
 
 $(document).ready(function() {
@@ -9,6 +17,7 @@ $(document).ready(function() {
     });
 
     $("#viewSummary").click(function() {
+        populateSummaryModal();
         $("#checkoutSummaryModal").modal("show");
     });
 
