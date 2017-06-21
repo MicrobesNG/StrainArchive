@@ -3,7 +3,7 @@
         <h2>My Basket</h2>
     </div>
     <div class="col-md-2" id="editButtonContainer">
-        <button type="button" class="btn btn-xs btn-warning" id="basketEditButton">EDIT</button>
+        <button type="button" class="btn btn-xs btn-primary" id="basketEditButton">EDIT</button>
     </div>
 </div>
 <div class="col-md-12" id="basketContentTableContainer">
@@ -18,7 +18,7 @@
         </thead>
         <tbody>
             {% for item in basket.items %}
-                <tr class="itemRow">
+                <tr class="itemRow" id="{{item.pk}}">
                     <td class="removeItemCell"><button type="button" class="btn btn-xs btn-danger removeFromBasket">&times;</button></td>
                     <td class="itemNameCell">{{item.name}}</td>
                     <td class="itemAmountCell">{{item.amount}}</td>

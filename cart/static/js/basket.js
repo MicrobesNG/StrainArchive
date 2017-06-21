@@ -13,22 +13,21 @@ function generateBasketCostText(amount) {
 }
 
 function setBasketCostText(amount) {
-    // var amount = calculateBasketTotalCost();
     var text = generateBasketCostText(amount.toFixed(2));
     $(BASKET_COST_TEXT_SELECTOR).html(text);
 }
 
 
-function updateRowInBasket(row, newAmount, newCost) {
+function updateRowInBasket(row, newAmount, newCost, newPK) {
     
     row.find(".itemAmountCell").html(newAmount);
     row.find(".itemCostCell").html(newCost);
 
 }
 
-function generateBasketEntryRow(newName, newAmount, newCost) {
+function generateBasketEntryRow(newName, newAmount, newCost, newPK) {
 
-    var row = '<tr class="itemRow">';
+    var row = '<tr class="itemRow" id="item_' + newPK + '">';
     row += '<td class="removeItemCell"><button type="button" class="btn btn-xs btn-danger removeFromBasket">&times;</button></td>';
     row += '<td class="itemNameCell">' + newName + '</td>';
     row += '<td class="itemAmountCell">' + newAmount + '</td>';
@@ -39,46 +38,83 @@ function generateBasketEntryRow(newName, newAmount, newCost) {
 }
 
 
+function itemInSession(itemPK, sessionItems) {
+
+    for (var i = 0; i < sessionItems.length; i++) {
+
+        if (sessionItems[i]["pk"] == itemPK) {
+            return true;
+        }
+    }
+
+    return false;
+
+}
+
+
 function updateBasket(data) {
-    
+
+    // if no items in session basket, remove everything
+    if (data["items"].length == 0) {
+        $(".itemRow").each(function() {
+            $(this).remove();
+        });
+    }
+
+    // loop over all items in session basket
     for (var i = 0; i < data["items"].length; i++) {
-        console.log(i);
+        
         var currentSessionStrain = data["items"][i];
         
-        var located = false;
+        // loop over all items on page basket   
+        var locatedOnPage = false;
         $(".itemRow").each(function() {
 
+            // grab properties
             var basketName = $(this).find(".itemNameCell").html();
             var basketAmount = $(this).find(".itemAmountCell").html();
             var basketCost = $(this).find(".itemCostCell").html();
+            var basketPK = parseInt($(this).attr("id").replace("item_", ""));
 
-            if (basketName == currentSessionStrain["name"]) {
-                located = true;
+            // if the page item is not present in session basket remove from page
+            if (!itemInSession(basketPK, data["items"])) {
+                $(this).remove();
+            } else {
+            
+                // if found in session basket, update the item row on page
+                if (basketPK == currentSessionStrain["pk"]) {
+                    
+                    locatedOnPage = true;
 
-                updateRowInBasket(
-                    $(this),
-                    currentSessionStrain["amount"],
-                    currentSessionStrain["cost"]
-                );
-                
+                    updateRowInBasket(
+                        $(this),
+                        currentSessionStrain["amount"],
+                        currentSessionStrain["cost"]
+                    );
+                    
+                }
             }
         });
 
-        if (!located) {
+        // if after looping over each row on page it has not been found
+        if (!locatedOnPage) {
 
+            // add a new row to the page basket
             var html = generateBasketEntryRow(
                 currentSessionStrain["name"],
                 currentSessionStrain["amount"],
-                currentSessionStrain["cost"]
+                currentSessionStrain["cost"],
+                currentSessionStrain["pk"]
             );
 
             $("#basketContentTable").append(html)
 
         }
 
-    }
+        // update cost on page basket
+        setBasketCostText(data["total_cost"]);
 
-    setBasketCostText(data["total_cost"]);
+    }
 
 }
 
@@ -96,6 +132,7 @@ function removeFromBasket(strainPK) {
     $.ajax({
         url: "/cart/removeFromBasket/" + strainPK,
         success: function(data) {
+            console.log(data);
             updateBasket(data);
         }
     });
@@ -106,7 +143,24 @@ $(document).ready(function() {
 
     // toggle remove column on edit button click
     $("#basketEditButton").click(function() {
-        $(".removeItemCell").toggle();
+        
+        if ($(this).hasClass("btn-warning")) {
+            
+            $(this).removeClass("btn-warning");
+            $(this).addClass("btn-primary");
+
+            $(".removeItemCell").hide();
+            $(".addToBasket").show();
+
+        } else {
+
+            $(this).removeClass("btn-primary");
+            $(this).addClass("btn-warning");
+
+            $(".removeItemCell").show();
+            $(".addToBasket").hide();
+        }
+        
     });
 
     // initially hide the remove column
@@ -116,8 +170,8 @@ $(document).ready(function() {
         addToBasket($(this).closest(".strainRow").attr("id"));
     });
 
-    $(".basketContentTable").on("click", ".removeFromBasket", function() {
-        removeFromBasket($(this).closest(".strainRow").attr("id"));
+    $("#basketContainer").on("click", ".removeFromBasket", function() {
+        removeFromBasket(parseInt($(this).closest(".itemRow").attr("id").replace("item_", "")));
     });
     
 });

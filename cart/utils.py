@@ -22,7 +22,7 @@ def add_to_basket(request, selected_strain):
     
     for strain_order in orders:
 
-        if str(strain_order["name"]) == str(selected_strain.name):
+        if strain_order["pk"] == selected_strain.pk:
 
             present_in_basket = True
 
@@ -35,7 +35,7 @@ def add_to_basket(request, selected_strain):
     if not present_in_basket:
 
         orders.append(
-            {"name": selected_strain.name, "amount": 1, "cost": selected_strain.cost}
+            {"name": selected_strain.name, "amount": 1, "cost": selected_strain.cost, "pk": selected_strain.pk}
         )
     
 
@@ -50,16 +50,17 @@ def remove_from_basket(request, selected_strain):
 
     for strain_order in orders:
 
-        if str(strain_order["name"]) == str(selected_strain.name):
+        if strain_order["pk"] == selected_strain.pk:
 
             if strain_order["amount"] > 1:
 
                 strain_order["amount"] -= 1
                 strain_order["cost"] -= selected_strain.cost
+
             
             elif strain_order["amount"] == 1:
-
+                
                 orders.remove(strain_order)
-    
+                
     request.session["basket"]["items"] = orders
     request.session.modified = True
