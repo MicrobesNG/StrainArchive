@@ -37,5 +37,7 @@
     </div>
 </div>
 <div class="col-md-12" id="basketFooter">
-    <input type="submit" class="btn btn-success" id="checkout" form="" value="Checkout">
+    <a href="{% url 'cart:checkout' %}">
+        <input type="submit" class="btn btn-success" id="checkout" form="" value="Checkout">
+    </a>
 </div>

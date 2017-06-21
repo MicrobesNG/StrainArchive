@@ -43,7 +43,7 @@
             <table>
                 <thead>
                     {% for i in num_pages %}
-                        <th>{{i}}</th>
+                        <th><a href="/search/results/{{i|add:'1'}}">{{i|add:"1"}}</a></th>
                     {% endfor %}
                 </thead>
             </table>
