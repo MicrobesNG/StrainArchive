@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block extra_js_files %}
-
+<script type="text/javascript" src="{% static 'js/checkout.js' %}"></script>
 {% endblock %}
 
 {% block header_text %}
@@ -16,6 +16,8 @@
 
 
 {% block page_content %}
+
+    {% include 'include/checkoutSummaryModal.html' %}
     <div class="col-md-12">
         <h2>My Basket</h2>
         <hr>
@@ -27,22 +29,43 @@
                     <tr class="itemRow">
                         <td class="itemAmountCell"><b>{{item.amount}}x</b></td>
                         <td class="itemNameCell">{{item.name}}</td>
-                        <td class="itemCostCell">£{{item.cost}}</td>
+                        <td class="itemCostCell" align="right">£{{item.cost}}</td>
                     </tr>
                 {% endfor %}
                 <tr clas="costSummaryRow">
                     <td></td>
                     <td></td>
-                    <td><h3><b>£{{basket.total_cost}}</b></h3></td>
+                    <td align="right"><h3><b>TOTAL: £{{basket.total_cost}}</b></h3></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div class="col-md-12 orderDetailsRow">
+    <div class="col-md-12" id="orderDetailsRow">
         <div class="col-md-4 orderDetailsContainer">
             <div class="col-md-12">
                 <h3>Order Details</h3>
                 <hr>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <h4>Funding Type:</h4>
+                </div>
+                <div class="col-md-6">
+                    <div class="dropdown">
+                        
+                        <button class="btn btn-primary dropdown-toggle" id="fundingTypeDropdown" type="button" data-toggle="dropdown">
+                            Select Funding Type
+                            <span class="caret"></span>
+                        </button>
+                        
+                        <ul class="dropdown-menu" id="fundingTypeDropdownMenu">
+                            <li class="fundingTypeOption">A</li>
+                            <li class="fundingTypeOption">B</li>
+                            <li class="fundingTypeOption">C</li>
+                        </ul>
+
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-4 orderDetailsContainer">
@@ -50,12 +73,21 @@
                 <h3><b>Billing</b> Address</h3>
                 <hr>
             </div>
+            <div class="col-md-12">
+                <textarea class="form-control addressInput" rows="10" id="billingAddressInput"></textarea>
+            </div>
         </div>
         <div class="col-md-4 orderDetailsContainer">
             <div class="col-md-12">
                 <h3><b>Delivery</b> Address</h3>
                 <hr>
             </div>
+            <div class="col-md-12">
+                <textarea class="form-control addressInput" rows="10" id="deliveryAddressInput"></textarea>
+            </div>
         </div>
+    </div>
+    <div class="col-md-12" align="right">
+        <button type="button" class="btn btn-success" id="viewSummary">Submit</button>
     </div>
 {% endblock %}

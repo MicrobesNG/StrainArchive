@@ -1,9 +1,38 @@
 .itemAmountCell {
-    width: 20%;
+    width: 15%;
 }
 .itemNameCell {
     width: 70%;
 }
 .itemCostCell {
+    width: 15%;
+}
+
+#fundingTypeDropdown {
+    width: 100%;
+}
+
+.fundingTypeOption {
+    width: 100%;
+}
+
+
+#basketSummaryContainer {
+    height: 40vh;
+}
+
+#basketSummary {
+    overflow-y: auto;
+}
+
+#orderDetailsRow {
+    height: 40vh;
+}
+
+.addressInput {
+    resize: none;
+}
+
+#viewSummary {
     width: 10%;
 }
