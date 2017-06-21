@@ -11,8 +11,15 @@ import json
 
 def checkout(request):
 
-    pass
     
+
+    return render(
+        request,
+        "cart/checkout.html",
+        {
+            "basket": request.session["basket"]
+        }
+    )
 
 
 def add_to_basket(request, strain_pk):

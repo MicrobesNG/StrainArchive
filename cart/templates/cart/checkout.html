@@ -2,12 +2,11 @@
 {% load staticfiles %}
 
 {% block extra_css_files %}
-<link href="{% static 'css/basket.css' %}" rel="stylesheet">
-<link href="{% static 'css/results.css' %}" rel="stylesheet">
+<link href="{% static 'css/checkout.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block extra_js_files %}
-<script type="text/javascript" src="{% static 'js/basket.js' %}"></script>
+
 {% endblock %}
 
 {% block header_text %}
@@ -17,5 +16,46 @@
 
 
 {% block page_content %}
-
+    <div class="col-md-12">
+        <h2>My Basket</h2>
+        <hr>
+    </div>
+    <div class="col-md-12" id="basketSummaryContainer">
+        <table class="table table-hover" id="basketSummary">
+            <tbody>
+                {% for item in basket.items %}
+                    <tr class="itemRow">
+                        <td class="itemAmountCell"><b>{{item.amount}}x</b></td>
+                        <td class="itemNameCell">{{item.name}}</td>
+                        <td class="itemCostCell">£{{item.cost}}</td>
+                    </tr>
+                {% endfor %}
+                <tr clas="costSummaryRow">
+                    <td></td>
+                    <td></td>
+                    <td><h3><b>£{{basket.total_cost}}</b></h3></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12 orderDetailsRow">
+        <div class="col-md-4 orderDetailsContainer">
+            <div class="col-md-12">
+                <h3>Order Details</h3>
+                <hr>
+            </div>
+        </div>
+        <div class="col-md-4 orderDetailsContainer">
+            <div class="col-md-12">
+                <h3><b>Billing</b> Address</h3>
+                <hr>
+            </div>
+        </div>
+        <div class="col-md-4 orderDetailsContainer">
+            <div class="col-md-12">
+                <h3><b>Delivery</b> Address</h3>
+                <hr>
+            </div>
+        </div>
+    </div>
 {% endblock %}
