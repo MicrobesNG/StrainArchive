@@ -18,8 +18,8 @@ function populateSummaryModal() {
 }
 
 function submitBasket() {
-        
-        $("#id_customer_name").val($("nameInput").val());
+
+        $("#id_customer_name").val($("#nameInput").val());
         $("#id_email").val($("#emailInput").val());
         $("#id_billing_address").val($("#billingAddressInput").val());
         $("#id_delivery_address").val($("#deliveryAddressInput").val());
@@ -30,6 +30,7 @@ function submitBasket() {
         }
 
         $("#id_note").val($("#noteInput").val());
+        alert($("#id_customer_name").val());
         $("#quoteForm").submit();
 }
 
