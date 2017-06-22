@@ -15,7 +15,7 @@ class Purchase(models.Model):
 # collection of purchases and user which requested them
 class ConfirmedBasket(models.Model):
 
-    user = models.ForeignKey(User)
+    
     purchases = models.ManyToManyField(Purchase)
     total_cost = models.FloatField(default = 0.0)
 

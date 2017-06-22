@@ -1,3 +1,19 @@
+from . models import ConfirmedBasket
+
+def save_session_basket_to_db(request):
+
+    if request.session["basket"]:
+        pass        
+        # newBasket = ConfirmedBasket(
+
+        # )
+
+    else:
+
+        raise AttributeError("Could not find basket in session.")
+
+
+
 
 
 def get_basket(request):
