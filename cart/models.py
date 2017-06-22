@@ -105,8 +105,8 @@ class Order(models.Model):
 
 
     start_date = models.DateTimeField(default = datetime.now)
-    post_date = models.DateTimeField(default = datetime.now)
-    received_date = models.DateTimeField(default = datetime.now)
+    post_date = models.DateTimeField(null = True)
+    received_date = models.DateTimeField(null = True)
 
 
     def get_verbose_status_name(self):
