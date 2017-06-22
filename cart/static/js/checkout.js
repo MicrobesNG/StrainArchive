@@ -26,11 +26,10 @@ function submitBasket() {
         $("#id_funding_type").val($("#fundingTypeDropdown").val());
         
         if ($("#fundingTypeDropdown").val() == "B") {
-            $("#id_bbsrc_code").val($("#bbsrcCodeInput").val());    
+            $("#id_bbsrc_code").val($("#bbsrcCodeInput").val());
         }
 
         $("#id_note").val($("#noteInput").val());
-
         $("#quoteForm").submit();
 }
 

@@ -19,7 +19,7 @@
 
 {% block page_content %}
 
-    <form name="quoteForm" id="quoteForm">
+    <form name="quoteForm" id="quoteForm" method="POST">
         {% csrf_token %}
         {% for field in quote_form %}
             {{field.as_hidden}}
