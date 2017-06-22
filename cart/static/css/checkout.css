@@ -19,6 +19,7 @@
 
 #basketSummaryContainer {
     height: 35vh;
+    overflow-y: auto;
 }
 
 #basketSummary {
@@ -49,4 +50,8 @@
 
 .fundingTypeOption {
     width: 100%;
+}
+
+#noteSummary {
+    white-space: pre-wrap;
 }

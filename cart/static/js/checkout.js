@@ -2,9 +2,17 @@ function populateSummaryModal() {
 
     $("#nameFieldSummary").text($("#nameInput").val());
     $("#emailFieldSummary").text($("#emailInput").val());
-    $("#fundingFieldSummary").text($("#fundingTypeDropdown").val());
+    $("#fundingFieldSummary").text($("#fundingTypeDropdown").text());
+
+    if ($("#fundingTypeDropdown").val() == "B") {
+        $("#bbrscCodeSummary").text($("#bbsrcCodeInput").val());
+    } else {
+        $("#bbrscCodeSummary").text("N/A");
+    }
     $("#billingAddressSummary").val($("#billingAddressInput").val());
     $("#deliveryAddressSummary").val($("#deliveryAddressInput").val());
+
+    $("#noteSummary").text($("#noteInput").val());
 
 }
 
@@ -14,7 +22,7 @@ $(document).ready(function() {
     $("#bbsrcCodeInput").prop("disabled", true);
 
     $(".fundingTypeOption").click(function() {
-        $("#fundingTypeDropdown").val($(this).html());
+        $("#fundingTypeDropdown").val($(this).attr("id"));
         $("#fundingTypeDropdown").text($(this).html());
 
         if ($(this).attr("id") == "B") {
