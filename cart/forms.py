@@ -28,6 +28,10 @@ class QuoteForm(forms.Form):
         cleaned_billing_address = self.cleaned_data["billing_address"]
         cleaned_delivery_address = self.cleaned_data["delivery_address"]
         cleaned_funding_type = self.cleaned_data["funding_type"]
+        cleaned_bbsrc_code = self.cleaned_data["bbsrc_code"]
+        cleaned_note = self.cleaned_data["note"]
+
+        
 
 
 

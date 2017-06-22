@@ -17,6 +17,7 @@ class ConfirmedBasket(models.Model):
 
     user = models.ForeignKey(User)
     purchases = models.ManyToManyField(Purchase)
+    total_cost = models.FloatField(default = 0.0)
 
     def as_dict(self):
 
@@ -48,16 +49,32 @@ class Quote(models.Model):
         ("R", "Rejected"),
         ("C", "Cancelled")
     )
-
-    user = models.ForeignKey(User)
-    basket = models.OneToOneField(ConfirmedBasket, null = True)
-    cost = models.FloatField(default = 0)
-
+    FUNDING_TYPES = (
+        ("NC", "Non-Commercial"),
+        ("B", "BBSRC"),
+        ("I", "Industry"),
+        ("UB", "Internal UoB"),
+        ("NS", "Not Set")
+    )
+    
     status = models.CharField(
         default = "P",
         choices = STATUS_CHOICES,
         max_length = 1
     )
+
+    customer_email = models.EmailField(null = True)
+    basket = models.OneToOneField(ConfirmedBasket, null = True)
+    funding_type = models.CharField(max_length = 2, default = "NS")
+    bbsrc_code = models.CharField(max_length = 10, null = True)
+
+    billing_address = models.TextField(default = "")
+    delivery_address = models.TextField(default = "")
+
+    customer_note = models.TextField(default = "")
+
+
+
 
     def get_verbose_status_name(self):
 
