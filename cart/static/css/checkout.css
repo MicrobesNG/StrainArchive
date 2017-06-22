@@ -18,7 +18,7 @@
 
 
 #basketSummaryContainer {
-    height: 40vh;
+    height: 35vh;
 }
 
 #basketSummary {
@@ -33,10 +33,20 @@
     resize: none;
 }
 
+#noteInput {
+    resize: none;
+    width: 100%;
+}
+
 #viewSummary {
     width: 10%;
 }
 
 .fieldLabel {
     width: 40%;
+}
+
+
+.fundingTypeOption {
+    width: 100%;
 }

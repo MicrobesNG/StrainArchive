@@ -11,9 +11,18 @@ function populateSummaryModal() {
 
 $(document).ready(function() {
 
+    $("#bbsrcCodeInput").prop("disabled", true);
+
     $(".fundingTypeOption").click(function() {
         $("#fundingTypeDropdown").val($(this).html());
         $("#fundingTypeDropdown").text($(this).html());
+
+        if ($(this).attr("id") == "B") {
+            $("#bbsrcCodeInput").prop("disabled", false);
+        } else {
+            $("#bbsrcCodeInput").prop("disabled", true);
+        }
+
     });
 
     $("#viewSummary").click(function() {
