@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from archive.models import Strain
+from datetime import datetime
 import json
 
 # how many of which strain to be purchased
@@ -75,6 +76,7 @@ class Quote(models.Model):
     delivery_address = models.TextField(default = "")
     customer_note = models.TextField(default = "")
 
+    creation_date = models.DateTimeField(default = datetime.now)
 
 
 
@@ -87,7 +89,6 @@ class Quote(models.Model):
 class Order(models.Model):
 
     STATUS_CHOICES = (
-        ("A", "Awaiting Payment"),
         ("P", "Processing"),
         ("D", "Dispatched"),
         ("R", "Received"),
@@ -101,6 +102,11 @@ class Order(models.Model):
         choices = STATUS_CHOICES,
         max_length = 1
     )
+
+
+    start_date = models.DateTimeField(default = datetime.now)
+    post_date = models.DateTimeField(default = datetime.now)
+    received_date = models.DateTimeField(default = datetime.now)
 
 
     def get_verbose_status_name(self):
