@@ -3,9 +3,11 @@
 
 {% block extra_css_files %}
 <link href="{% static 'css/checkout.css' %}" rel="stylesheet">
+<link href="{% static 'css/errorModal.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block extra_js_files %}
+<script type="text/javascript" src="{% static 'js/validation.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/checkout.js' %}"></script>
 {% endblock %}
 
@@ -20,11 +22,13 @@
     <form name="quoteForm" id="quoteForm">
         {% csrf_token %}
         {% for field in quote_form %}
-            {% field.as_hidden %}
-        {% endform %}
+            {{field.as_hidden}}
+        {% endfor %}
     </form>
 
     {% include 'include/checkoutSummaryModal.html' %}
+    {% include 'include/errorModal.html' %}
+
     <div class="col-md-12">
         <h2>My Basket</h2>
         <hr>

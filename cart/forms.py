@@ -1,5 +1,4 @@
 from django import forms
-from django.conf import messages
 from archive.models import Strain
 from . models import Quote
 import json

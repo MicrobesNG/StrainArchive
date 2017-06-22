@@ -5,18 +5,15 @@ function populateSummaryModal() {
     $("#fundingFieldSummary").text($("#fundingTypeDropdown").text());
 
     if ($("#fundingTypeDropdown").val() == "B") {
-        $("#bbrscCodeSummary").text($("#bbsrcCodeInput").val());
+        alert($("#bbsrcCodeInput").val());
+        $("#bbsrcCodeSummary").text($("#bbsrcCodeInput").val());
     } else {
-        $("#bbrscCodeSummary").text("N/A");
+        $("#bbsrcCodeSummary").text("N/A");
     }
     $("#billingAddressSummary").val($("#billingAddressInput").val());
     $("#deliveryAddressSummary").val($("#deliveryAddressInput").val());
 
     $("#noteSummary").text($("#noteInput").val());
-
-}
-
-function displayErrorModal(message) {
 
 }
 
@@ -37,23 +34,6 @@ function submitBasket() {
         $("#quoteForm").submit();
 }
 
-function validateEmail() {
-    if ($("#emailInput").val() == $("#confirmEmailInput").val()) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function validateBBSRCCode() {
-    if ($("#fundingTypeDropdown").val() == "B") {
-        if ($("#bbsrcCodeInpuut").val() == "") {
-            return false;
-        }
-    }
-    return true;
-}
-
 
 $(document).ready(function() {
 
@@ -72,16 +52,39 @@ $(document).ready(function() {
     });
 
     $("#viewSummary").click(function() {
+        var success = true;
+        if (!validateName()) {
+            displayErrorModal("Name required to submit order.");
+            success = false;
+        }
+        if (!validateEmail()) {
+            displayErrorModal("Email required to submit order.");
+            success = false;
+        }
+        if (!validateEmailConfirm()) {
+            displayErrorModal("Please confirm your email is correct.");
+            success = false;
+        }
+        if (!validateFundingTypeSelection()) {
+            displayErrorModal("Please select a funding type.");
+            success = false;
+        }
+        if (!validateBBSRCCode()) {
+            displayErrorModal("BBSRC Code is required for BBSRC funded purchases.");
+            success = false;
+        }
+        if (!validateBillingAddress()) {
+            displayErrorModal("Billing Address is required to submit order.");
+            success = false;
+        }
+        if (!validateDeliveryAddress()) {
+            displayErrorModal("Delivery Address is required to submit order.");
+            success = false;
+        }
 
-        if (validateEmail()) {
-            if (validateBBSRCCode()) {
-                populateSummaryModal();
-                $("#checkoutSummaryModal").modal("show");
-            } else {
-                displayErrorModal("BBSRC Code required for BBSRC funded purchases.")
-            }
-        } else {
-            displayErrorModal("Please ensure your email is correct.")
+        if (success) {
+            populateSummaryModal();
+            $("#checkoutSummaryModal").modal("show");
         }
 
     });
