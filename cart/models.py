@@ -49,6 +49,7 @@ class Quote(models.Model):
         ("R", "Rejected"),
         ("C", "Cancelled")
     )
+
     FUNDING_TYPES = (
         ("NC", "Non-Commercial"),
         ("B", "BBSRC"),
@@ -63,6 +64,7 @@ class Quote(models.Model):
         max_length = 1
     )
 
+    customer_name = models.CharField(max_length = 100, null = True)
     customer_email = models.EmailField(null = True)
     basket = models.OneToOneField(ConfirmedBasket, null = True)
     funding_type = models.CharField(max_length = 2, default = "NS")
@@ -70,7 +72,6 @@ class Quote(models.Model):
 
     billing_address = models.TextField(default = "")
     delivery_address = models.TextField(default = "")
-
     customer_note = models.TextField(default = "")
 
 
