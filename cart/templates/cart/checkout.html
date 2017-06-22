@@ -17,6 +17,13 @@
 
 {% block page_content %}
 
+    <form name="quoteForm" id="quoteForm">
+        {% csrf_token %}
+        {% for field in quote_form %}
+            {% field.as_hidden %}
+        {% endform %}
+    </form>
+
     {% include 'include/checkoutSummaryModal.html' %}
     <div class="col-md-12">
         <h2>My Basket</h2>

@@ -16,6 +16,12 @@ function populateSummaryModal() {
 
 }
 
+function submitBasket() {
+    $("#quoteForm").submit(function() {
+        
+    });
+}
+
 
 $(document).ready(function() {
 

@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponse
 from archive.models import Strain
+from . forms import QuoteForm
 from . import utils
 
 import json
@@ -11,12 +12,27 @@ import json
 
 def checkout(request):
 
+    if request.method == "POST":
+
+        quote_form = QuoteForm(request.POST)
+
+        if quote_form.is_valid():
+
+            quote_form.process(request)
+        
+        else:
+
+            quote_form.process_errors(request)
     
+    else:
+
+        quote_form = QuoteForm()
 
     return render(
         request,
         "cart/checkout.html",
         {
+            "quote_form": quote_form,
             "basket": request.session["basket"]
         }
     )
