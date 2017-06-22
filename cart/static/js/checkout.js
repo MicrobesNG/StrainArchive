@@ -30,7 +30,7 @@ function submitBasket() {
         }
 
         $("#id_note").val($("#noteInput").val());
-        alert($("#id_customer_name").val());
+        
         $("#quoteForm").submit();
 }
 

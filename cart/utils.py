@@ -1,4 +1,4 @@
-from . models import ConfirmedBasket
+from . models import ConfirmedBasket, Purchase
 from archive.models import Strain
 
 
@@ -9,14 +9,14 @@ def save_session_basket_to_db(request):
 
         session_basket = request.session["basket"]
 
-        newBasket = ConfirmedBasket(
+        newBasket = ConfirmedBasket.objects.create(
             total_cost = session_basket["total_cost"]
         )
 
-        for item in session_basket:
+        for item in session_basket["items"]:
 
-            newPurchase = Purchase(
-                strain = Strain.objects.get(pk = item["pk"]),
+            newPurchase = Purchase.objects.create(
+                strain = Strain.objects.get(pk = int(item["pk"])),
                 quantity = item["amount"],
                 cost = item["cost"]
             )

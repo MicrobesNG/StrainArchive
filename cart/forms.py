@@ -25,7 +25,7 @@ class QuoteForm(forms.Form):
     
     def process(self, request):
 
-        cleaned_name = self.cleaned_data["name"]
+        cleaned_name = self.cleaned_data["customer_name"]
         cleaned_email = self.cleaned_data["email"]
         cleaned_billing_address = self.cleaned_data["billing_address"]
         cleaned_delivery_address = self.cleaned_data["delivery_address"]
@@ -70,13 +70,6 @@ class QuoteForm(forms.Form):
         newQuote.save()
         
 
-
-
-
-
-        
-
-    
     def process_errors(self, request):
         
         error_dict = json.loads(self.errors.as_json())
