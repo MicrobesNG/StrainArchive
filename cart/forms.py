@@ -3,6 +3,7 @@ from django.conf import messages
 from archive.models import Strain
 from . models import Quote
 import json
+import utils
 
 class QuoteForm(forms.Form):
 
@@ -61,8 +62,11 @@ class QuoteForm(forms.Form):
 
         if cleaned_note:
             newQuote.customer_note = cleaned_note
+
         
 
+        confirmed_basket = utils.save_session_basket_to_db(request)
+        newQuote.basket = confirmed_basket
         newQuote.save()
         
 

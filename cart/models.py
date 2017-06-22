@@ -11,6 +11,7 @@ class Purchase(models.Model):
 
     strain = models.ForeignKey(Strain)
     quantity = models.IntegerField(default = 0)
+    cost = models.FloatField(default = 0.0)
 
 # collection of purchases and user which requested them
 class ConfirmedBasket(models.Model):

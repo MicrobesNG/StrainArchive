@@ -1,12 +1,31 @@
 from . models import ConfirmedBasket
+from archive.models import Strain
+
+
 
 def save_session_basket_to_db(request):
 
     if request.session["basket"]:
-        pass        
-        # newBasket = ConfirmedBasket(
 
-        # )
+        session_basket = request.session["basket"]
+
+        newBasket = ConfirmedBasket(
+            total_cost = session_basket["total_cost"]
+        )
+
+        for item in session_basket:
+
+            newPurchase = Purchase(
+                strain = Strain.objects.get(pk = item["pk"]),
+                quantity = item["amount"],
+                cost = item["cost"]
+            )
+
+            newBasket.purchases.add(newPurchase)
+        
+        newBasket.save()
+
+        return newBasket
 
     else:
 
