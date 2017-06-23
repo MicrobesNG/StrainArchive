@@ -43,6 +43,7 @@
             <table class="table table-hover" id="quotesTable">
                 <thead>
                     <tr>
+                        <th class="dateCell">Submission Date</th>
                         <th class="customerCell">Customer</th>
                         <th class="costCell">Cost</th>
                         <th class="quoteStatusCell">Quote Status</th>
@@ -53,6 +54,7 @@
                 <tbody>
                     {% for q in quotes %}
                         <tr class="quoteRow" id="{{q.pk}}">
+                            <td class="dateCell">{{q.creation_date}}
                             <td class="customerCell">{{q.customer_name}}</td>
                             <td class="costCell"><b>£{{q.basket.total_cost}}</b></td>
                             <td class="quoteStatusCell">

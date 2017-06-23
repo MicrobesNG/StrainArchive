@@ -1,7 +1,5 @@
 function populateQuoteDetailsModal(data) {
 
-    console.log(data);
-
     $("#quoteDetailsCustomerName").text(data["customer_name"]);
     $("#quoteDetailsCustomerEmail").text(data["customer_email"]);
     $("#quoteDetailsFundingType").text(data["funding_type"]);
@@ -25,6 +23,7 @@ function populateQuoteDetailsModal(data) {
             row += "</li>";
 
         $("#basketContentList").append(row);
+
     }
 
 }
@@ -40,6 +39,14 @@ function getQuoteDetails(quotePK) {
     });
 }
 
+function getOrderDetails(orderPK) {
+    $.ajax({
+        url: "/management/getOrderDetails/" + orderPK,
+        success: function(data) {
+            console.log(data);
+        }
+    });
+}
 
 
 $(document).ready(function() {
