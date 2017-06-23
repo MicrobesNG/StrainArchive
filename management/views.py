@@ -9,15 +9,17 @@ from cart.models import Quote, Order, ConfirmedBasket, Purchase
 from django.http import HttpResponse
 import json
 
-
+# view to get order details
 def get_order_details(request, order_pk):
 
+    # check order exists
     try:
     
         order = Order.objects.get(pk = order_pk)
     
     except Order.DoesNotExist:
-    
+        
+        # process case if order not existing
         messages.error(request, "Details for quote could not be located")
         order = None
     
@@ -33,19 +35,23 @@ def get_order_details(request, order_pk):
         content_type = "application/json"
     )
 
+# view to get quote details
 def get_quote_details(request, quote_pk):
 
+    # check quote exists
     try:
     
         quote = Quote.objects.get(pk = quote_pk)
     
     except Quote.DoesNotExist:
-    
+        
+        # process case if quote not existing
         messages.error(request, "Details for quote could not be located")
         quote = None
     
     else:
 
+        # create dict representing quote
         quote_data = {
             "customer_name": quote.customer_name,
             "customer_email": quote.customer_email,
@@ -55,11 +61,13 @@ def get_quote_details(request, quote_pk):
             "customer_notes": quote.customer_note
         }
 
+        # if bbsrc code present, add to dict
         if quote.bbsrc_code:
             quote_data["bbsrc_code"] = quote.bbsrc_code
         else:
             quote_data["bbsrc_code"] = ""
         
+        # check existence of basket and add to dict
         if quote.basket:
             quote_data["basket"] = quote.basket.as_dict()
         else:
@@ -73,10 +81,9 @@ def get_quote_details(request, quote_pk):
 
 
 
-
+# management dashboard view
 def management_dashboard(request):
 
-    
 
     return render(
         request,
@@ -86,7 +93,7 @@ def management_dashboard(request):
         }
     )
 
-
+# strain management view
 def management_strains(request):
 
 
@@ -99,7 +106,7 @@ def management_strains(request):
         }
     )
 
-
+# sales management view
 def management_sales(request):
 
     return render(
@@ -110,7 +117,7 @@ def management_sales(request):
         }
     )
 
-
+# user management view
 def management_users(request):
 
     return render(
