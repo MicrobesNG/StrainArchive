@@ -23,14 +23,15 @@ class ConfirmedBasket(models.Model):
 
     def as_dict(self):
 
-        output = {"purchases": []}
+        output = {"purchases": [], "total_cost": self.total_cost}
 
         for purchase in self.purchases.all():
             output["purchases"].append(
                 {
                     "strain_id": purchase.strain.pk,
                     "strain_name": purchase.strain.name,
-                    "quantity": purchase.quantity
+                    "quantity": purchase.quantity,
+                    "cost": purchase.cost
                 }
             )
         
@@ -69,7 +70,7 @@ class Quote(models.Model):
     customer_name = models.CharField(max_length = 100, null = True)
     customer_email = models.EmailField(null = True)
     basket = models.OneToOneField(ConfirmedBasket, null = True)
-    funding_type = models.CharField(max_length = 2, default = "NS")
+    funding_type = models.CharField(max_length = 2, choices = FUNDING_TYPES, default = "NS")
     bbsrc_code = models.CharField(max_length = 10, null = True)
 
     billing_address = models.TextField(default = "")
@@ -79,6 +80,9 @@ class Quote(models.Model):
     creation_date = models.DateTimeField(default = datetime.now)
 
 
+    def get_verbose_funding_type_name(self):
+
+        return self.get_funding_type_display()
 
     def get_verbose_status_name(self):
 

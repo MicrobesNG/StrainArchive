@@ -5,5 +5,7 @@ urlpatterns = [
     url(r'^$', views.management_dashboard, name = "dashboard"),
     url(r'^strains', views.management_strains, name = "strains"),
     url(r'^sales', views.management_sales, name = "sales"),
-    url(r'^users', views.management_users, name = "users")
+    url(r'^users', views.management_users, name = "users"),
+    url(r'^getQuoteDetails/(?P<quote_pk>\d+)/$', views.get_quote_details, name = "get_quote_details"),
+    url(r'^getOrderDetails/(?P<order_pk>\d+)/$', views.get_order_details, name = "get_order_details")
 ]
