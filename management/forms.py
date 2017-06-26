@@ -2,8 +2,7 @@ from django import forms
 
 from django.contrib import messages
 from cart.models import Quote, Promotion
-from datetime import datetime
-
+import json
 
 
 class CreateNewPromotionForm(forms.Form):
@@ -19,14 +18,16 @@ class CreateNewPromotionForm(forms.Form):
         cleaned_description = self.cleaned_data["description"]
         cleaned_start_date = self.cleaned_data["start_date"]
         cleaned_expiry_date = self.cleaned_data["expiry_date"]
-        
+
+        print cleaned_start_date, type(cleaned_start_date)
+
         if cleaned_start_date:
 
             Promotion.objects.create(
                 name = cleaned_name,
                 description = cleaned_description,
-                start_date = datetime.strptime(cleaned_start_date, "%d/%m/%Y"),
-                expiry_date = datetime.strptime(cleaned_expiry_date, "%d/%m/%Y")
+                start_date = cleaned_start_date,
+                expiry_date = cleaned_expiry_date
             )
 
             messages.success(
@@ -39,7 +40,7 @@ class CreateNewPromotionForm(forms.Form):
             Promotion.objects.create(
                 name = cleaned_name,
                 description = cleaned_description,
-                expiry_date = datetime.strptime(cleaned_expiry_date, "%d/%m/%Y")
+                expiry_date = cleaned_expiry_date
             )
 
             messages.success(

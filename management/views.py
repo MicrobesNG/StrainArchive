@@ -112,7 +112,7 @@ def management_sales(request):
 
     if request.method == "POST":
 
-        createNewPromotionForm = CreateNewPromotionForm(request.method)
+        createNewPromotionForm = CreateNewPromotionForm(request.POST)
 
         if createNewPromotionForm.is_valid():
 
@@ -121,6 +121,10 @@ def management_sales(request):
         else:
 
             createNewPromotionForm.process_errors(request)
+    
+    else:
+
+        createNewPromotionForm = CreateNewPromotionForm()
 
     return render(
         request,
