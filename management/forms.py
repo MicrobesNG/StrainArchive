@@ -38,13 +38,13 @@ class CreateNewPromotionForm(forms.Form):
 
             Promotion.objects.create(
                 name = cleaned_name,
-                description = cleaned_description
+                description = cleaned_description,
                 expiry_date = datetime.strptime(cleaned_expiry_date, "%d/%m/%Y")
             )
 
             messages.success(
                 request,
-                "New promotion '%s' has been created successfully and will be active as of today." % cleaned_name)
+                "New promotion '%s' has been created successfully and will be active as of today." % cleaned_name
             )
     
 
