@@ -10,12 +10,20 @@ import json
 
 class PromotionCode(models.Model):
 
-    code = models.CharField(max_length = 10)
+    code = models.CharField(max_length = 10, unique = True)
+    max_usages = models.IntegerField(default = 1)
+
 
 
 class Promotion(models.Model):
 
     code = models.ManyToManyField(PromotionCode)
+    description = models.TextField(null = True)
+    start_date = models.DateField(default = datetime.now)
+    expiry_date = models.DateField(null = True)
+    
+
+
 
 
 
