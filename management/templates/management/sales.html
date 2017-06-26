@@ -58,18 +58,7 @@
                             <td class="customerCell">{{q.customer_name}}</td>
                             <td class="costCell"><b>£{{q.basket.total_cost}}</b></td>
                             <td class="quoteStatusCell">
-                                <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle quoteStatusSelect" type="button" data-toggle="dropdown">
-                                        {{q.get_verbose_status_name}}
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu quoteStatusDropdownMenu">
-                                        <li class="quoteStatusDropdownOption">Pending</li>
-                                        <li class="quoteStatusDropdownOption">Sent</li>
-                                        <li class="quoteStatusDropdownOption">Accepted</li>
-                                        <li class="quoteStatusDropdownOption">Cancelled</li>
-                                    </ul>
-                                </div>
+                                {{q.get_verbose_status_name}}
                             </td>
                             {% if q.order %}
                                 <td class="orderStatusCell">{{q.order.get_verbose_status_name}}</td>

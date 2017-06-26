@@ -39,6 +39,8 @@ function populateQuoteDetailsModal(data) {
 
     }
 
+    $("#quoteDetailsTotalBasketCost").text("Total: £" + data["basket"]["total_cost"]);
+
 }
 
 // send request for details of quote with pk = quotePK
