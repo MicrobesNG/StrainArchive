@@ -12,16 +12,40 @@ class PromotionCode(models.Model):
 
     code = models.CharField(max_length = 10, unique = True)
     max_usages = models.IntegerField(default = 1)
+    number_of_uses = models.IntegerField(default = 0)
+
 
 
 
 class Promotion(models.Model):
 
-    code = models.ManyToManyField(PromotionCode)
+    codes = models.ManyToManyField(PromotionCode)
     description = models.TextField(null = True)
     start_date = models.DateField(default = datetime.now)
     expiry_date = models.DateField(null = True)
+    expired = models.BooleanField(default = False)
+
+    def check_expiry_date(self):
+
+        if datetime.now().date() >= self.expiry_date.date():
+
+            return True
+        
+        else:
+
+            return False
     
+    def update_expiry_date(self):
+
+        if self.check_expiry_date():
+
+            self.expired = True
+        
+        else:
+
+            self.expired = False
+        
+        self.save()
 
 
 
