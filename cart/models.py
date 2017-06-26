@@ -13,6 +13,7 @@ class PromotionCode(models.Model):
     code = models.CharField(max_length = 10, unique = True)
     max_usages = models.IntegerField(default = 1)
     number_of_uses = models.IntegerField(default = 0)
+    active = models.BooleanField(default = True)
 
 
 
@@ -26,7 +27,7 @@ class Promotion(models.Model):
 
     start_date = models.DateField(default = datetime.now)
     expiry_date = models.DateField(null = True)
-    
+
     expired = models.BooleanField(default = False)
 
     def check_expiry_date(self):
