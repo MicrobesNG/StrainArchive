@@ -6,6 +6,7 @@ from django.core import serializers
 from archive.models import Strain
 from django.contrib.auth.models import User
 from cart.models import Quote, Order, ConfirmedBasket, Purchase, Promotion, PromotionCode
+from forms import CreateNewPromotionForm
 from django.http import HttpResponse
 import json
 
@@ -108,6 +109,18 @@ def management_strains(request):
 
 # sales management view
 def management_sales(request):
+
+    if request.method == "POST":
+
+        createNewPromotionForm = CreateNewPromotionForm(request.method)
+
+        if createNewPromotionForm.is_valid():
+
+            createNewPromotionForm.process(request)
+        
+        else:
+
+            createNewPromotionForm.process_errors(request)
 
     return render(
         request,
