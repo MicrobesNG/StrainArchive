@@ -7,6 +7,18 @@ from archive.models import Strain
 from datetime import datetime
 import json
 
+
+class PromotionCode(models.Model):
+
+    code = models.CharField(max_length = 10)
+
+
+class Promotion(models.Model):
+
+    code = models.ManyToManyField(PromotionCode)
+
+
+
 # how many of which strain to be purchased
 class Purchase(models.Model):
 
