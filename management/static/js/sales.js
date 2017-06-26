@@ -1,3 +1,15 @@
+function submitNewPromoForm() {
+    
+    $("#id_name").val($("#newPromoNameInput").val());
+    $("#id_description").val($("#newPromoDescriptionInput").val());
+    $("#id_start_date").val($("#newPromoNameInput").val());
+    $("#id_expiry_date").val($("#newPromoNameInput").val());
+
+    $("#createNewPromotionForm").submit();
+    
+}
+
+
 
 // populate quote details modal with data from backend
 function populateQuoteDetailsModal(data) {
@@ -71,6 +83,11 @@ $(document).ready(function() {
     $("#openNewPromoModal").click(function() {
         $("#newPromoModal").modal("show");
     });
+
+    $("#submitNewPromoForm").click(function() {
+        submitNewPromoForm();
+    });
+    
 
     // get the details for quote on button click
     $(".viewQuote").click(function() {

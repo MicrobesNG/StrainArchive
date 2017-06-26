@@ -126,6 +126,7 @@ def management_sales(request):
         request,
         "management/sales.html",
         {
+            "createNewPromotionForm": createNewPromotionForm,
             "quotes": Quote.objects.all(),
             "promotions": Promotion.objects.all()
         }

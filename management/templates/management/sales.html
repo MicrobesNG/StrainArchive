@@ -34,7 +34,14 @@
     {% include 'include/costModal.html' %}
     {% include 'include/quoteDetailsModal.html' %}
     {% include 'include/newPromoModal.html' %}
-    
+
+    <form id="createNewPromotionForm" method="post" name="createNewPromotionForm">
+        {% csrf_token %}
+        {% for field in createNewPromotionForm %}
+            {{field.as_hidden}}
+        {% endfor %}
+    </form>
+
     <div class="col-md-12"><br></div>
 
     <div class="col-md-12" id="mainViewContainer">
