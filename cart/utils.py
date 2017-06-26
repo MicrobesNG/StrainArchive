@@ -1,5 +1,47 @@
-from . models import ConfirmedBasket, Purchase
+from . models import ConfirmedBasket, Purchase, Promotion, PromotionCode
 from archive.models import Strain
+import random, string
+
+def generate_code(length):
+
+    return ''.join(random.choice(string.lowercase) for i in range(length)).upper()
+
+
+def generate_codes_for_promotion(promotion_pk, number_of_new_codes, max_uses_per_code):
+
+    try:
+
+        promo = Promotion.objects.get(pk = promotion_pk)
+    
+    except Promotion.DoesNotExist:
+
+        pass
+    
+    else:
+        
+        codes = [code.code for code in promo.promotioncode_set.all()]
+
+        for i in range(0, number_of_new_codes):
+
+            already_in_use = True
+            
+            while already_in_use:
+                
+                new_code = generate_code(10)
+
+                if new_code not in codes:
+                    
+                    codes.append(new_code)
+
+                    already_in_use = False
+            
+            PromotionCode.objects.create(
+                code = new_code,
+                max_usages = max_uses_per_code,
+                number_of_uses = 0,
+                active = True,
+                promotion = promo
+            )
 
 
 
