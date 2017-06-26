@@ -33,6 +33,8 @@
 {% block content %}
     {% include 'include/costModal.html' %}
     {% include 'include/quoteDetailsModal.html' %}
+    {% include 'include/newPromoModal.html' %}
+    
     <div class="col-md-12"><br></div>
 
     <div class="col-md-12" id="mainViewContainer">
@@ -135,6 +137,9 @@
                             </td>
                         </tr>
                     {% endfor %}
+                    <tr>
+                        <td colspan="6" align="middle"><button type="button" class="btn btn-success" id="openNewPromoModal">Create New</button></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

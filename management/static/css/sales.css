@@ -39,3 +39,7 @@
     height: 30vh;
     overflow-y: auto;
 }
+
+#newPromoDescriptionInput {
+    resize: none;
+}

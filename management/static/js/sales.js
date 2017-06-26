@@ -68,6 +68,10 @@ function getOrderDetails(orderPK) {
 // when page is ready, execute this code
 $(document).ready(function() {
 
+    $("#openNewPromoModal").click(function() {
+        $("#newPromoModal").modal("show");
+    });
+
     // get the details for quote on button click
     $(".viewQuote").click(function() {
         getQuoteDetails($(this).parent().parent().attr("id"));    
