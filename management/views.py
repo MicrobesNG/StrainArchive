@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.core import serializers
 from archive.models import Strain
 from django.contrib.auth.models import User
-from cart.models import Quote, Order, ConfirmedBasket, Purchase
+from cart.models import Quote, Order, ConfirmedBasket, Purchase, Promotion, PromotionCode
 from django.http import HttpResponse
 import json
 
@@ -113,7 +113,8 @@ def management_sales(request):
         request,
         "management/sales.html",
         {
-            "quotes": Quote.objects.all()
+            "quotes": Quote.objects.all(),
+            "promotions": Promotion.objects.all()
         }
     )
 

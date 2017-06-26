@@ -17,3 +17,25 @@
 #quoteDetailsCustomerNotes {
     white-space: pre-wrap;
 }
+
+.viewCodes {
+    width: 100%;
+}
+.generateCodes {
+    width: 100%;
+}
+
+#quotesTableContainer {
+    height: 40vh;
+    overflow-y: auto;
+}
+
+#promoContainer {
+    height: 30vh;
+    overflow-y: auto;
+}
+
+#placeholderContainer {
+    height: 30vh;
+    overflow-y: auto;
+}

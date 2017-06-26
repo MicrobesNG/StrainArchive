@@ -92,23 +92,53 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-12">
-            <div class="col-md-6" id="promoContainer">
-                <div class="col-md-12">
-                    <h2>Promotions</h2>
-                </div>
-                <div class="col-md-12" id="promotionsTablecontainer">
-                    <table class="table table-hover" id="promotionsTable">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
+        <div class="col-md-6">
+            <h2>Promotions</h2>
+        </div>
+        <div class="col-md-6">
+            <h2>Placeholder...</h2>
+        </div>
+        <div class="col-md-6" id="promoContainer">
+            <table class="table table-hover" id="promotionsTable">
+                <thead>
+                    <tr>
+                        <th class="promoNameCell">Name</th>
+                        <th class="promoDescriptionCell">Description</th>
+                        <th class="promoStartDateCell">Start Date</th>
+                        <th class="promoExpiryDateCell">Expiry Date</th>
+                        <th class="promoExpiredCell">Expired</th>
+                        <th class="promoCodesCell">Codes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="promoNameCell">A</td>
+                        <td class="promoDescriptionCell">B</td>
+                        <td class="promoStartDateCell">C</td>
+                        <td class="promoExpiryDateCell">D</td>
+                        <td class="promoExpiredCell">E</td>
+                        <td class="promoCodesCell">
+                            <p><button type="button" class="btn btn-xs btn-primary viewCodes">View</button></p>
+                            <p><button type="button" class="btn btn-xs btn-primary generateCodes">Generate</button></p>
+                        </td>
+                    </tr>
+                    {% for promo in promotions %}
+                        <tr class="promoRow" id="promo_{{promo.pk}}">
+                            <td class="promoNameCell">{{promo.name}}</td>
+                            <td class="promoDescriptionCell">{{promo.description}}</td>
+                            <td class="promoStartDateCell">{{promo.start_date}}</td>
+                            <td class="promoExpiryDateCell">{{promo.expiry_date}}</td>
+                            <td class="promoExpiredCell">{{promo.expired}}</td>
+                            <td class="promoCodesCell">
+                                <p><button type="button" class="btn btn-xs btn-primary viewCodes">View</button></p>
+                                <p><button type="button" class="btn btn-xs btn-primary generateCodes">Generate</button></p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6" id="placeholderContainer">
         </div>
     </div>
 

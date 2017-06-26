@@ -8,13 +8,6 @@ from datetime import datetime
 import json
 
 
-class PromotionCode(models.Model):
-
-    code = models.CharField(max_length = 10, unique = True)
-    max_usages = models.IntegerField(default = 1)
-    number_of_uses = models.IntegerField(default = 0)
-    active = models.BooleanField(default = True)
-
 
 
 
@@ -22,8 +15,6 @@ class Promotion(models.Model):
 
     name = models.CharField(max_length = 50)
     description = models.TextField(null = True)
-
-    codes = models.ManyToManyField(PromotionCode)
 
     start_date = models.DateField(default = datetime.now)
     expiry_date = models.DateField(null = True)
@@ -51,6 +42,17 @@ class Promotion(models.Model):
             self.expired = False
         
         self.save()
+
+
+class PromotionCode(models.Model):
+
+    code = models.CharField(max_length = 10, unique = True)
+    max_usages = models.IntegerField(default = 1)
+    number_of_uses = models.IntegerField(default = 0)
+    active = models.BooleanField(default = True)
+
+    promotion = models.ForeignKey(Promotion, null = True)
+
 
 
 
