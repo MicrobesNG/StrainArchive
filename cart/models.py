@@ -19,10 +19,14 @@ class PromotionCode(models.Model):
 
 class Promotion(models.Model):
 
-    codes = models.ManyToManyField(PromotionCode)
+    name = models.CharField(max_length = 50)
     description = models.TextField(null = True)
+
+    codes = models.ManyToManyField(PromotionCode)
+
     start_date = models.DateField(default = datetime.now)
     expiry_date = models.DateField(null = True)
+    
     expired = models.BooleanField(default = False)
 
     def check_expiry_date(self):
