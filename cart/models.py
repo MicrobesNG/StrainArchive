@@ -14,8 +14,8 @@ import json
 class Promotion(models.Model):
 
     PROMOTION_TYPES = (
-        ("FP", "Fixed Price Reduction"),
-        ("PR", "Percentage Reduction"),
+        ("FPR", "Fixed Price Reduction"),
+        ("PPR", "Percentage Reduction"),
         ("NS", "Not Set")
     )
 
