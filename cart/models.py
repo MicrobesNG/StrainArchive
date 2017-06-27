@@ -20,6 +20,7 @@ class Promotion(models.Model):
     expiry_date = models.DateField(null = True)
 
     expired = models.BooleanField(default = False)
+    promotion_parameters = models.TextField(null = True)
 
     def check_expiry_date(self):
 

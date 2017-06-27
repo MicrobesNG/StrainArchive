@@ -82,7 +82,12 @@ def get_basket(request):
 
     empty_basket = {
         "total_cost": 0.0,
-        "items": []
+        "items": [],
+        "promotion": {
+            "promotion_code": "",
+            "promotion_pk": "",
+            "promotion_total_cost": 0.0
+        }
     }
     
     if "basket" not in request.session:
@@ -94,10 +99,21 @@ def get_basket(request):
 
 
 
-
 def apply_code_to_session_basket(request, promocode_code):
 
-    pass
+    try:
+
+        promotion_code = PromotionCode.objects.get(code = promocode_code)
+    
+    except PromotionCode.DoesNotExist:
+
+        pass
+    
+    else:
+
+        pass
+
+        # apply onto basket
 
 
 
