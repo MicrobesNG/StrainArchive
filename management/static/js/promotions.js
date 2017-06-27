@@ -52,5 +52,9 @@ $(document).ready(function() {
         getPromotionCodes(parseInt(promoPK));
 
     });
+
+    $(".generateCodes").click(function() {
+        $("#generateCodesModal").modal("show");
+    });
     
 });
