@@ -10,6 +10,40 @@ from forms import CreateNewPromotionForm
 from django.http import HttpResponse
 import json
 
+def get_promo_codes(request, promo_pk):
+
+    try:
+
+        promo = Promotion.objects.get(pk = promo_pk)
+    
+    except Promotion.DoesNotExist:
+
+        pass
+    
+    else:
+
+        codes = [
+            {
+                "code": code.code,
+                "max_usages": code.max_usages,
+                "number_of_uses": code.number_of_uses,
+                "active": code.active
+            } for code in promo.promotioncode_set.all()
+        ]
+
+    return HttpResponse(
+        json.dumps(codes),
+        content_type = "application/json"
+    )
+
+
+def generate_promotion_codes(request, promo_pk):
+
+    pass
+
+
+
+
 # view to get order details
 def get_order_details(request, order_pk):
 

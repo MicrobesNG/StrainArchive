@@ -10,6 +10,25 @@ function submitNewPromoForm() {
 }
 
 
+function getPromotionCodes(promoPK) {
+    $.ajax({
+        url: "/management/getPromoCodes/" + promoPK,
+        success: function(data) {
+            console.log(data)
+        }
+    });
+}
+
+function generatePromotionCodes(promoPK) {
+    $.ajax({
+        url: "/management/getPromoCodes/" + promoPK,
+        success: function(data) {
+            console.log(data)
+        }
+    });
+}
+
+
 
 
 $(document).ready(function() {
@@ -20,6 +39,18 @@ $(document).ready(function() {
 
     $("#submitNewPromoForm").click(function() {
         submitNewPromoForm();
+    });
+
+    $(".viewCodes").click(function() {
+        var promoPK = $(this)
+                        .parent()
+                        .parent()
+                        .parent()
+                        .attr("id")
+                        .replace("promo_", "");
+        
+        getPromotionCodes(parseInt(promoPK));
+
     });
     
 });
