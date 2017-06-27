@@ -5,7 +5,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" id="viewCodesModalTitle"></h4>
+                <h4 class="modal-title" id="generateCodesModalTitle"></h4>
+                <div id="selectedPromoID"></div>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
@@ -14,7 +15,7 @@
                             <h4>Number of Codes:</h4>
                         </div>
                         <div class="col-md-6">
-                            <input type="number" class="form-control" id="newCodesInput" step="1">
+                            <input type="number" class="form-control" id="newCodesInput" step="1" min="1">
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -31,6 +32,15 @@
                         </div>
                         <div class="col-md-6">
                             <input type="checkbox" value="" checked="checked" id="codesInitiallyActive">
+                        </div>
+                    </div>
+                    <div class="col-md-12"><hr></div>
+                    <div class="col-md-12">
+                        <div class="col-md-6" align="left">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="col-md-6" align="right">
+                            <button type="button" class="btn btn-success" id="generateCodesSubmission">Generate</button>
                         </div>
                     </div>
                 </div>

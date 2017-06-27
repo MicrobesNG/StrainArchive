@@ -44,7 +44,6 @@ def generate_promotion_codes(request, promo_pk):
 
 
 
-
 # view to get order details
 def get_order_details(request, order_pk):
 

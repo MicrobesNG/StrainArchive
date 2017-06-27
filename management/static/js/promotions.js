@@ -54,7 +54,34 @@ $(document).ready(function() {
     });
 
     $(".generateCodes").click(function() {
+        var promoName = $(this)
+                            .parent()
+                            .parent()
+                            .parent()
+                            .find(".promoNameCell")
+                            .html();
+        var promoPK = $(this)
+                        .parent()
+                        .parent()
+                        .parent()
+                        .attr("id")
+                        .replace("promo_", "");
+
+        $("#generateCodesModalTitle").text("Generate Codes For: " + promoName);
+        
+        $("#selectedPromoID").removeClass();
+        $("#selectedPromoID").addClass(promoPK);
+
         $("#generateCodesModal").modal("show");
+
+    });
+
+    $("#generateCodesSubmission").click(function() {
+
+        var promoPK = parseInt($("#selectedPromoID").attr("class"));
+
+        generatePromotionCodes(promoPK);
+
     });
     
 });
