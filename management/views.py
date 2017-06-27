@@ -24,6 +24,7 @@ def get_promo_codes(request, promo_pk):
 
         codes = [
             {
+                "pk": code.pk,
                 "code": code.code,
                 "max_usages": code.max_usages,
                 "number_of_uses": code.number_of_uses,
