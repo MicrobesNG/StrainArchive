@@ -13,6 +13,12 @@ import json
 
 class Promotion(models.Model):
 
+    PROMOTION_TYPES = (
+        ("FP", "Fixed Price Reduction"),
+        ("PR", "Percentage Reduction"),
+        ("NS", "Not Set")
+    )
+
     name = models.CharField(max_length = 50)
     description = models.TextField(null = True)
 
@@ -21,6 +27,11 @@ class Promotion(models.Model):
 
     expired = models.BooleanField(default = False)
     promotion_parameters = models.TextField(null = True)
+    promotion_type = models.CharField(max_length = 4, choices = PROMOTION_TYPES, default = "NS")
+
+    def get_verbose_promotion_type_name(self):
+
+        return self.get_promotion_type_display()
 
     def check_expiry_date(self):
 
