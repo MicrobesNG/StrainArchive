@@ -2,11 +2,16 @@ from . models import ConfirmedBasket, Purchase, Promotion, PromotionCode
 from archive.models import Strain
 import random, string
 
+
+
+# generates random string
 def generate_code(length):
 
     return ''.join(random.choice(string.lowercase) for i in range(length)).upper()
 
 
+
+# generates codes for promotion
 def generate_codes_for_promotion(
         promotion_pk,
         number_of_new_codes,
@@ -41,6 +46,7 @@ def generate_codes_for_promotion(
 
 
 
+# creates basket in the DB based on session basket
 def save_session_basket_to_db(request):
 
     if request.session["basket"]:
@@ -71,8 +77,7 @@ def save_session_basket_to_db(request):
 
 
 
-
-
+# gets empty basket or session basket if present
 def get_basket(request):
 
     empty_basket = {
@@ -87,6 +92,19 @@ def get_basket(request):
     return request.session["basket"]
 
 
+
+
+
+def apply_code_to_session_basket(request, promocode_code):
+
+    pass
+
+
+
+
+
+
+# adds an item to the basket
 def add_to_basket(request, selected_strain):
 
     present_in_basket = False
@@ -116,7 +134,7 @@ def add_to_basket(request, selected_strain):
     request.session.modified = True
 
 
-
+# removes an item from the basket
 def remove_from_basket(request, selected_strain):
 
     orders = request.session["basket"]["items"]
@@ -140,12 +158,13 @@ def remove_from_basket(request, selected_strain):
 
 
 
+# returns total cost by summing each purchase cost
 def calculate_basket_cost(request):
 
     return sum(item["cost"] for item in request.session["basket"]["items"])
 
 
-
+# sets the total cost of the basked based on calculated basket cost
 def set_basket_cost(request):
 
     request.session["basket"]["total_cost"] = calculate_basket_cost(request)
