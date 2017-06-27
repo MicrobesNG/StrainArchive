@@ -113,7 +113,7 @@ def apply_code_to_session_basket(request, promocode_code):
 
         pass
 
-        # apply onto basket
+        
 
 
 

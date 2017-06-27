@@ -128,17 +128,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="promoNameCell">A</td>
-                        <td class="promoDescriptionCell">B</td>
-                        <td class="promoStartDateCell">C</td>
-                        <td class="promoExpiryDateCell">D</td>
-                        <td class="promoExpiredCell">E</td>
-                        <td class="promoCodesCell">
-                            <p><button type="button" class="btn btn-xs btn-primary viewCodes">View</button></p>
-                            <p><button type="button" class="btn btn-xs btn-primary generateCodes">Generate</button></p>
-                        </td>
-                    </tr>
                     {% for promo in promotions %}
                         <tr class="promoRow" id="promo_{{promo.pk}}">
                             <td class="promoNameCell">{{promo.name}}</td>
