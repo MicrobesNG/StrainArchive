@@ -9,8 +9,6 @@ function submitNewPromoForm() {
 
 }
 
-
-
 // populate quote details modal with data from backend
 function populateQuoteDetailsModal(data) {
 
@@ -79,15 +77,6 @@ function getOrderDetails(orderPK) {
 
 // when page is ready, execute this code
 $(document).ready(function() {
-
-    $("#openNewPromoModal").click(function() {
-        $("#newPromoModal").modal("show");
-    });
-
-    $("#submitNewPromoForm").click(function() {
-        submitNewPromoForm();
-    });
-    
 
     // get the details for quote on button click
     $(".viewQuote").click(function() {
