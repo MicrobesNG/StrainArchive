@@ -172,10 +172,22 @@ class Order(models.Model):
         ("V", "Void")
     )
 
+    PAYMENT_METHODS = (
+        ("PO", "Payment Order"),
+        ("OS", "Online Shop"),
+        ("NS", "Not Set")
+    )
+
     status = models.CharField(
-        default = "A",
+        default = "P",
         choices = STATUS_CHOICES,
         max_length = 1
+    )
+
+    payment_method = models.CharField(
+        default = "NS",
+        choices = PAYMENT_METHODS,
+        max_length = 2
     )
 
     # quote for which order is for
@@ -185,6 +197,11 @@ class Order(models.Model):
     start_date = models.DateTimeField(default = datetime.now)
     post_date = models.DateTimeField(null = True)
     received_date = models.DateTimeField(null = True)
+
+    # get the display name for the payment type
+    def get_verbose_payment_method(self):
+
+        return self.get_payment_method_display()
 
     # get display name for order status
     def get_verbose_status_name(self):
