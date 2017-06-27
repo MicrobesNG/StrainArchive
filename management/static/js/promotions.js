@@ -9,6 +9,9 @@ function submitNewPromoForm() {
 
 }
 
+
+
+
 $(document).ready(function() {
 
     $("#openNewPromoModal").click(function() {
@@ -19,6 +22,4 @@ $(document).ready(function() {
         submitNewPromoForm();
     });
     
-
-
 });
