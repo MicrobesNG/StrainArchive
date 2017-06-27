@@ -26,8 +26,8 @@ def get_promo_codes(request, promo_pk):
             {
                 "pk": code.pk,
                 "code": code.code,
-                "max_usages": code.max_usages,
                 "number_of_uses": code.number_of_uses,
+                "max_usages": code.max_usages,
                 "active": code.active
             } for code in promo.promotioncode_set.all()
         ]

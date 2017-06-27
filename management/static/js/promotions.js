@@ -1,15 +1,47 @@
 
-function getPromotionCodes(promoPK) {
-    $.ajax({
-        url: "/management/getPromoCodes/" + promoPK,
-        success: function(data) {
-            console.log(data)
-        }
-    });
+// populate the view codes modal
+function populateCodesModal(data) {
+
+    // clear the table
+    $("#codesTableBody").empty();
+
+    // loop through returned codes and add row to table for each one
+    for (var i = 0; i < data.length; i++) {
+
+        // get the code at index i
+        var currentCode = data[i];
+
+        // construct table row html
+        var tableRow = "<tr>";
+            tableRow += "<td>" + currentCode["pk"] + "</td>";
+            tableRow += "<td>" + currentCode["code"] + "</td>";
+            tableRow += "<td>" + currentCode["number_of_uses"] + "</td>";
+            tableRow += "<td>" + currentCode["max_usages"] + "</td>";
+            if (currentCode["active"]) {
+                tableRow += "<td>YES</td>";
+            } else {
+                tableRow += "<td>NO</td>";
+            }
+            
+
+        // add table row to table
+        $("#codesTableBody").append(tableRow);
+
+    }
+
 }
 
 
 
+function getPromotionCodes(promoPK) {
+    $.ajax({
+        url: "/management/getPromoCodes/" + promoPK,
+        success: function(data) {
+            populateCodesModal(data);
+            $("#viewCodesModal").modal("show");
+        }
+    });
+}
 
 
 $(document).ready(function() {
@@ -20,9 +52,7 @@ $(document).ready(function() {
     });
 
 
-
-
-
+    // sends get request for promotion's code
     $(".viewCodes").click(function() {
         var promoPK = $(this)
                         .parent()
