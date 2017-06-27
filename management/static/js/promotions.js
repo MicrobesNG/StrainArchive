@@ -71,12 +71,6 @@ $(document).ready(function() {
         $("#id_max_number_of_uses").val($("#maxUsesInput").val());
         $("#id_initially_active").val($("#codesInitiallyActive").attr("checked"));
         $("#id_promo_pk").val(parseInt($("#selectedPromoID").attr("class")));
-
-        alert($("#id_number_of_codes").val());
-        alert($("#id_max_number_of_uses").val());
-        alert($("#id_initially_active").val());
-        alert($("#id_promo_pk").val());
-
     });
 
     // submit the new promotion form
