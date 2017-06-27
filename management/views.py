@@ -6,7 +6,7 @@ from django.core import serializers
 from archive.models import Strain
 from django.contrib.auth.models import User
 from cart.models import Quote, Order, ConfirmedBasket, Purchase, Promotion, PromotionCode
-from forms import CreateNewPromotionForm
+from forms import CreateNewPromotionForm, GenerateNewCodesForm
 from django.http import HttpResponse
 import json
 
@@ -38,19 +38,6 @@ def get_promo_codes(request, promo_pk):
     )
 
 
-def generate_promotion_codes(request, promo_pk):
-
-    try:
-
-        promo = Promotion.objects.get(pk = promo_pk)
-    
-    except Promotion.DoesNotExist:
-
-        pass
-
-    else:
-
-        
 
 
 # view to get order details
@@ -140,8 +127,6 @@ def management_dashboard(request):
 # strain management view
 def management_strains(request):
 
-
-
     return render(
         request,
         "management/strains.html",
@@ -150,34 +135,56 @@ def management_strains(request):
         }
     )
 
+
+
+
 # sales management view
 def management_sales(request):
 
+    createNewPromotionForm = CreateNewPromotionForm()
+    generateCodesForm = GenerateNewCodesForm()
+
     if request.method == "POST":
 
-        createNewPromotionForm = CreateNewPromotionForm(request.POST)
-
-        if createNewPromotionForm.is_valid():
-
-            createNewPromotionForm.process(request)
+        print request.POST
         
-        else:
+        if "generateCodesForm" in request.POST:
 
-            createNewPromotionForm.process_errors(request)
+            generateCodesForm = GenerateNewCodesForm(request.POST)
+
+            if generateCodesForm.is_valid():
+
+                generateCodesForm.process(request)
+            
+            else:
+
+                generateCodesForm.process_errors(request)
+
+        if "createNewPromotionForm" in request.POST:
+
+            createNewPromotionForm = CreateNewPromotionForm(request.POST)
+
+            if createNewPromotionForm.is_valid():
+
+                createNewPromotionForm.process(request)
+            
+            else:
+
+                createNewPromotionForm.process_errors(request)
     
-    else:
-
-        createNewPromotionForm = CreateNewPromotionForm()
 
     return render(
         request,
         "management/sales.html",
         {
+            "generateCodesForm": GenerateNewCodesForm,
             "createNewPromotionForm": createNewPromotionForm,
             "quotes": Quote.objects.all(),
             "promotions": Promotion.objects.all()
         }
     )
+
+
 
 # user management view
 def management_users(request):

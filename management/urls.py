@@ -9,5 +9,4 @@ urlpatterns = [
     url(r'^getQuoteDetails/(?P<quote_pk>\d+)/$', views.get_quote_details, name = "get_quote_details"),
     url(r'^getOrderDetails/(?P<order_pk>\d+)/$', views.get_order_details, name = "get_order_details"),
     url(r'^getPromoCodes/(?P<promo_pk>\d+)/$', views.get_promo_codes, name = "get_promo_codes"),
-    url(r'^generatePromoCodes/(?P<promo_pk>\d+)/$', views.generate_promotion_codes, name = "generate_promotion_codes"),
 ]

@@ -43,6 +43,12 @@
             {{field.as_hidden}}
         {% endfor %}
     </form>
+    <form id="generateCodesForm" method="post" name="generateCodesForm">
+        {% csrf_token %}
+        {% for field in generateCodesForm %}
+            {{field.as_hidden}}
+        {% endfor %}
+    </form>
 
     <div class="col-md-12"><br></div>
 

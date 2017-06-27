@@ -3,16 +3,16 @@ from django import forms
 from django.contrib import messages
 from cart.models import Quote, Promotion
 import json
+from cart.utils import generate_codes_for_promotion
 
-
-class GenerateNewCodes(forms.Form):
+class GenerateNewCodesForm(forms.Form):
 
     number_of_codes = forms.IntegerField(required = True)
     max_number_of_uses = forms.IntegerField(required = True)
     initially_active = forms.BooleanField(required = True)
     promo_pk = forms.IntegerField(required = True)
 
-    def process(self, request);
+    def process(self, request):
 
         cleaned_number_of_codes = self.cleaned_data["number_of_codes"]
         cleaned_max_number_of_uses = self.cleaned_data["max_number_of_uses"]
@@ -28,7 +28,7 @@ class GenerateNewCodes(forms.Form):
             messages.error(request, "Promotion with id %d could not be found." % cleaned_promo_pk)
         
         else:
-
+            
             generate_codes_for_promotion(
                 cleaned_promo_pk,
                 cleaned_number_of_codes,
