@@ -75,6 +75,21 @@ def save_session_basket_to_db(request):
 
         raise AttributeError("Could not find basket in session.")
 
+# returns empty basket
+def generate_empty_basket():
+
+    empty_basket = {
+        "total_cost": 0.0,
+        "items": [],
+        "promotion": {
+            "promotion_code": "",
+            "promotion_pk": "",
+            "promotion_total_cost": 0.0
+        }
+    }
+
+    return empty_basket
+
 
 
 # gets empty basket or session basket if present
@@ -113,10 +128,7 @@ def apply_code_to_session_basket(request, promocode_code):
 
         pass
 
-        
-
-
-
+        # TODO: finish
 
 
 
@@ -142,7 +154,12 @@ def add_to_basket(request, selected_strain):
     if not present_in_basket:
 
         orders.append(
-            {"name": selected_strain.name, "amount": 1, "cost": selected_strain.cost, "pk": selected_strain.pk}
+            {
+                "name": selected_strain.name,
+                "amount": 1,
+                "cost": selected_strain.cost,
+                "pk": selected_strain.pk
+            }
         )
     
 

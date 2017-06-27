@@ -68,6 +68,9 @@ class QuoteForm(forms.Form):
         confirmed_basket = utils.save_session_basket_to_db(request)
         newQuote.basket = confirmed_basket
         newQuote.save()
+
+        request.session["basket"] = utils.generate_empty_basket()
+        request.session.modified = True
         
 
     def process_errors(self, request):
