@@ -10,8 +10,10 @@ from forms import CreateNewPromotionForm, GenerateNewCodesForm
 from django.http import HttpResponse
 import json
 
+# view to get and return promotional codes for promotion with pk == promotion_pk
 def get_promo_codes(request, promo_pk):
 
+    # try to find promotino
     try:
 
         promo = Promotion.objects.get(pk = promo_pk)
@@ -22,6 +24,7 @@ def get_promo_codes(request, promo_pk):
     
     else:
 
+        # generate list of dicts with data for each code
         codes = [
             {
                 "pk": code.pk,
@@ -31,7 +34,8 @@ def get_promo_codes(request, promo_pk):
                 "active": code.active
             } for code in promo.promotioncode_set.all()
         ]
-
+    
+    # send data back to page
     return HttpResponse(
         json.dumps(codes),
         content_type = "application/json"

@@ -32,7 +32,7 @@ function populateCodesModal(data) {
 }
 
 
-
+// ajax function to get codes related to promotion with pk == promoPK
 function getPromotionCodes(promoPK) {
     $.ajax({
         url: "/management/getPromoCodes/" + promoPK,
