@@ -5,6 +5,48 @@ from cart.models import Quote, Promotion
 import json
 
 
+class GenerateNewCodes(forms.Form):
+
+    number_of_codes = forms.IntegerField(required = True)
+    max_number_of_uses = forms.IntegerField(required = True)
+    initially_active = forms.BooleanField(required = True)
+    promo_pk = forms.IntegerField(required = True)
+
+    def process(self, request);
+
+        cleaned_number_of_codes = self.cleaned_data["number_of_codes"]
+        cleaned_max_number_of_uses = self.cleaned_data["max_number_of_uses"]
+        cleaned_initially_active = self.cleaned_data["initially_active"]
+        cleaned_promo_pk = self.cleaned_data["promo_pk"]
+
+        try:
+
+            promotion = Promotion.objects.get(pk = cleaned_promo_pk)
+        
+        except Promotion.DoesNotExist:
+
+            messages.error(request, "Promotion with id %d could not be found." % cleaned_promo_pk)
+        
+        else:
+
+            generate_codes_for_promotion(
+                cleaned_promo_pk,
+                cleaned_number_of_codes,
+                cleaned_max_number_of_uses,
+                cleaned_initially_active
+            )
+
+            messages.success(request, "The codes were generated successfully.")
+    
+    def process_errors(self, request):
+        
+        error_dict = json.loads(self.errors.as_json())
+        for key in error_dict:
+            for error in error_dict[key]:
+                messages.error(request, "Error: %s - %s" % (key, error["message"]))
+
+
+
 class CreateNewPromotionForm(forms.Form):
 
     name = forms.CharField(max_length = 50, required = True)

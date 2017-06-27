@@ -40,8 +40,17 @@ def get_promo_codes(request, promo_pk):
 
 def generate_promotion_codes(request, promo_pk):
 
-    pass
+    try:
 
+        promo = Promotion.objects.get(pk = promo_pk)
+    
+    except Promotion.DoesNotExist:
+
+        pass
+
+    else:
+
+        
 
 
 # view to get order details

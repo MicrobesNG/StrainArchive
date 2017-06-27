@@ -7,41 +7,37 @@ def generate_code(length):
     return ''.join(random.choice(string.lowercase) for i in range(length)).upper()
 
 
-def generate_codes_for_promotion(promotion_pk, number_of_new_codes, max_uses_per_code):
+def generate_codes_for_promotion(
+        promotion_pk,
+        number_of_new_codes,
+        max_uses_per_code,
+        initially_active
+    ):
+    promo = Promotion.objects.get(pk = promotion_pk)
 
-    try:
+    codes = [code.code for code in promo.promotioncode_set.all()]
 
-        promo = Promotion.objects.get(pk = promotion_pk)
-    
-    except Promotion.DoesNotExist:
+    for i in range(0, number_of_new_codes):
 
-        pass
-    
-    else:
-        
-        codes = [code.code for code in promo.promotioncode_set.all()]
+        already_in_use = True
 
-        for i in range(0, number_of_new_codes):
-
-            already_in_use = True
+        while already_in_use:
             
-            while already_in_use:
+            new_code = generate_code(10)
+
+            if new_code not in codes:
                 
-                new_code = generate_code(10)
+                codes.append(new_code)
 
-                if new_code not in codes:
-                    
-                    codes.append(new_code)
+                already_in_use = False
 
-                    already_in_use = False
-            
-            PromotionCode.objects.create(
-                code = new_code,
-                max_usages = max_uses_per_code,
-                number_of_uses = 0,
-                active = True,
-                promotion = promo
-            )
+        PromotionCode.objects.create(
+            code = new_code,
+            max_usages = max_uses_per_code,
+            number_of_uses = 0,
+            active = initially_active,
+            promotion = promo
+        )
 
 
 
