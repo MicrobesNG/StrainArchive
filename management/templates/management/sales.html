@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.min.js"></script>
     <script type="text/javascript" src="{% static 'js/quotes.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/promotions.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/confirmation.js' %}"></script>
 {% endblock %}
 
 
@@ -36,6 +37,7 @@
     {% include 'include/newPromoModal.html' %}
     {% include 'include/viewCodesModal.html' %}
     {% include 'include/generateCodesModal.html' %}
+    {% include 'include/confirmationModal.html' %}
 
     <form id="createNewPromotionForm" method="post" name="createNewPromotionForm">
         {% csrf_token %}
@@ -65,7 +67,8 @@
                         <th class="costCell">Cost</th>
                         <th class="quoteStatusCell">Quote Status</th>
                         <th class="orderStatusCell">Order Status</th>
-                        <th class="viewQuoteCell"></th>
+                        <th class="viewCell"></th>
+                        <th class="sendQuoteCell"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -104,6 +107,15 @@
                                     <button type="button" class="btn btn-xs btn-primary viewOrder" disabled>View Order</button>
                                 {% endif %}
                             </td>
+                            {% if q.status == "S" %}
+                                <td class="sendQuoteCell">
+                                    <button type="button" class="btn btn-xs btn-danger sendQuote" disabled>Send Quote</button>
+                                </td>
+                            {% else %}
+                                <td class="sendQuoteCell">
+                                    <button type="button" class="btn btn-xs btn-danger sendQuote">Send Quote</button>
+                                </td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                 </tbody>
