@@ -1,7 +1,5 @@
 
 
-
-
 function openSendQuoteConfirmationModal(customerName) {
 
     var message = "By clicking confirm, you will be sending a quote via email to ";

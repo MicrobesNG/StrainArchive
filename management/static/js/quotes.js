@@ -1,4 +1,16 @@
 
+
+// ajax function to send quote to customer
+function sendQuote(quotePK) {
+    $.ajax({
+        url: "/management/sendQuote/" + quotePK,
+        success: function(data) {
+            
+        }
+    });
+}
+
+
 // populate quote details modal with data from backend
 function populateQuoteDetailsModal(data) {
 

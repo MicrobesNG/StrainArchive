@@ -10,6 +10,23 @@ from forms import CreateNewPromotionForm, GenerateNewCodesForm
 from django.http import HttpResponse
 import json
 
+
+
+def send_quote(request, quote_pk):
+
+    try:
+
+        quote = Quote.objects.get(pk = quote_pk)
+    
+    except Quote.DoesNotExist:
+
+        pass
+    
+    else:
+
+        pass
+
+
 # view to get and return promotional codes for promotion with pk == promotion_pk
 def get_promo_codes(request, promo_pk):
 

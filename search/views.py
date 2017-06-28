@@ -6,14 +6,14 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from archive.models import Strain, Family, Genus, Species
 from . forms import SearchParameterForm
-import cart.utils
+import cart.basket_utils
 import json
 
 
 
 def results(request, page_number):
     
-    basket = cart.utils.get_basket(request)
+    basket = cart.basket_utils.get_basket(request)
     
     paginator = Paginator(request.session["search_results"], 25)
 

@@ -3,7 +3,7 @@ from django import forms
 from django.contrib import messages
 from cart.models import Quote, Promotion
 import json
-from cart.utils import generate_codes_for_promotion
+from cart.promo_utils import generate_codes_for_promotion
 
 class GenerateNewCodesForm(forms.Form):
 

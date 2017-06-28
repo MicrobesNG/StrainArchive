@@ -3,7 +3,7 @@ from django.contrib import messages
 from archive.models import Strain
 from . models import Quote
 import json
-import utils
+import cart.basket_utils
 
 class QuoteForm(forms.Form):
 
@@ -65,11 +65,11 @@ class QuoteForm(forms.Form):
 
         
 
-        confirmed_basket = utils.save_session_basket_to_db(request)
+        confirmed_basket = cart.basket_utils.save_session_basket_to_db(request)
         newQuote.basket = confirmed_basket
         newQuote.save()
 
-        request.session["basket"] = utils.generate_empty_basket()
+        request.session["basket"] = cart.basket_utils.generate_empty_basket()
         request.session.modified = True
         
 

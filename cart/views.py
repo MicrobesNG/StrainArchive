@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from archive.models import Strain
 from . forms import QuoteForm
-from . import utils
+from . import basket_utils
 
 import json
 
@@ -50,8 +50,8 @@ def add_to_basket(request, strain_pk):
 
     else:
 
-        utils.add_to_basket(request, selected_strain)
-        utils.set_basket_cost(request)
+        basket_utils.add_to_basket(request, selected_strain)
+        cart.basket_utils.set_basket_cost(request)
 
 
     return HttpResponse(
@@ -75,8 +75,8 @@ def remove_from_basket(request, strain_pk):
 
     else:
 
-        utils.remove_from_basket(request, selected_strain)
-        utils.set_basket_cost(request)
+        cart.basket_utils.remove_from_basket(request, selected_strain)
+        cart.basket_utils.set_basket_cost(request)
 
 
     return HttpResponse(
