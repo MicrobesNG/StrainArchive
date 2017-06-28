@@ -68,15 +68,6 @@ function getQuoteDetails(quotePK) {
     });
 }
 
-// send request for details of order with pk = orderPK
-function getOrderDetails(orderPK) {
-    $.ajax({
-        url: "/management/getOrderDetails/" + orderPK,
-        success: function(data) {
-            console.log(data);
-        }
-    });
-}
 
 // when page is ready, execute this code
 $(document).ready(function() {

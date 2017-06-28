@@ -4,12 +4,13 @@
 {% block extra_css_files %}
     <link href="{% static 'css/sales.css' %}" rel="stylesheet">
 {% endblock %}
+
 {% block extra_js_files %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.min.js"></script>
     <script type="text/javascript" src="{% static 'js/confirmation.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/quotes.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/promotions.js' %}"></script>
-    
+    <script type="text/javascript" src="{% static 'js/orders.js' %}"></script>
 {% endblock %}
 
 
@@ -35,6 +36,7 @@
 {% block content %}
     {% include 'include/costModal.html' %}
     {% include 'include/quoteDetailsModal.html' %}
+    {% include 'include/orderDetailsModal.html' %}
     {% include 'include/newPromoModal.html' %}
     {% include 'include/viewCodesModal.html' %}
     {% include 'include/generateCodesModal.html' %}
@@ -89,7 +91,7 @@
                             <td class="viewCell">
                                 <button type="button" class="btn btn-xs btn-primary viewQuote">View Quote</button>
                                 {% if q.order %}
-                                    <button type="button" class="btn btn-xs btn-primary viewOrder">View Order</button>
+                                    <button type="button" class="btn btn-xs btn-primary viewOrder" id="order_{{q.order.pk}}">View Order</button>
                                 {% else %}
                                     <button type="button" class="btn btn-xs btn-primary viewOrder" disabled>View Order</button>
                                 {% endif %}
