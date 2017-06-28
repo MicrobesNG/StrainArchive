@@ -9,7 +9,14 @@
     <body>
         
         <div>
-            
+            <ul>
+                {% for purchase in quote.basket.purchases.all %}
+                    <li>{{purchase.quantity}}x {{purchase.strain.name}}: {{purchase.cost}}</li>
+                {% endfor %}
+            </ul>
+            <div>
+                <h4>Total Cost: £{{quote.basket.total_cost}}</h4>
+            </div>
         </div>
         
     </body>
