@@ -6,9 +6,10 @@
 {% endblock %}
 {% block extra_js_files %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/confirmation.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/quotes.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/promotions.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/confirmation.js' %}"></script>
+    
 {% endblock %}
 
 
@@ -82,20 +83,6 @@
                             </td>
                             {% if q.order %}
                                 <td class="orderStatusCell">{{q.order.get_verbose_status_name}}</td>
-                                <td class="orderStatusCell">
-                                    <div class="dropdown">
-                                        <button class="btn btn-primary dropdown-toggle orderStatusSelect" type="button" data-toggle="dropdown">
-                                            {{q.order.get_verbose_status_name}}
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu orderStatusDropdownMenu">
-                                            <li class="orderStatusDropdownOption">Processing</li>
-                                            <li class="orderStatusDropdownOption">Dispatched</li>
-                                            <li class="orderStatusDropdownOption">Received</li>
-                                            <li class="orderStatusDropdownOption">Void</li>
-                                        </ul>
-                                    </div>
-                                </td>
                             {% else %}
                                 <td class="orderStatusCell"><p>No Order Present</p></td>
                             {% endif %}

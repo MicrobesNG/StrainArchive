@@ -24,13 +24,25 @@ def send_quote(request, quote_pk):
     
     else:
 
-        pass
+        newOrder = Order.objects.create(
+            quote = quote
+        )
+
+        quote.status = "S"
+        quote.save()
+
+        messages.success(request, "The quote has been sent to %s successfully." % quote.customer_email)
+
+        return HttpResponse(
+            json.dumps({"status": "OK"})
+        )
+        
 
 
 # view to get and return promotional codes for promotion with pk == promotion_pk
 def get_promo_codes(request, promo_pk):
 
-    # try to find promotino
+    # try to find promotion
     try:
 
         promo = Promotion.objects.get(pk = promo_pk)

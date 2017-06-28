@@ -5,7 +5,8 @@ function sendQuote(quotePK) {
     $.ajax({
         url: "/management/sendQuote/" + quotePK,
         success: function(data) {
-            
+            $("#" + quotePK).find(".sendQuote").prop("disabled", true);
+            $("#" + quotePK).find(".viewOrder").prop("disabled", false);
         }
     });
 }
@@ -83,6 +84,21 @@ $(document).ready(function() {
     // get the details for quote on button click
     $(".viewQuote").click(function() {
         getQuoteDetails($(this).parent().parent().attr("id"));    
+    });
+
+    
+    $(".sendQuote").click(function() {
+        var selectedQuoteCustomerName = $(this).parent().parent().find(".customerCell").html();
+        $("#idContainer").addClass($(this).parent().parent().attr("id"));
+        openSendQuoteConfirmationModal(selectedQuoteCustomerName);
+    });
+
+
+    $("#confirmationModal").on("click", ".sendQuoteConfirm", function() {
+        alert("C");
+        sendQuote($("#idContainer").attr("class"));
+        $("#idContainer").removeClass();
+        $(this).removeClass("sendQuoteConfirm")
     });
 
 });
