@@ -16,8 +16,19 @@ function getOrderDetails(orderPK) {
             $("#orderDetailsPostDate").text(data["post_date"]);
             $("#orderDetailsReceiveDate").text(data["received_date"]);
             $("#orderDetailsDeliveryAddress").text(data["delivery_address"]);
+
+
+            $("#orderDetailsCIRMS").text(data["cirms_number"]);
+            $("#orderDetailsFinanceNumber").text(data["finance_reference_number"]);
+
+            $("#paymentOrderDetailsReferenceNumber").text(data["payment_order_reference_number"]);
+            $("#payment_order_filename").text(data["payment_order_pdf"]);
+            $("#onlineShopOrderNumberDetails").text(data["shop_order_details"]);
+            $("#onlineShopTransactionNumberDetails").text(data["shop_transaction_number"]);
+
             $("#editOrderIDContainer").removeClass();
             $("#editOrderIDContainer").addClass(orderPK);
+
             $("#orderDetailsModal").modal("show");
             
         }
