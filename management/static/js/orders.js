@@ -14,6 +14,7 @@ function getOrderDetails(orderPK) {
             $("#orderDetailsReceiveDate").text(data["received_date"]);
             $("#orderDetailsDeliveryAddress").text(data["delivery_address"]);
             $("#orderDetailsModal").modal("show");
+            
         }
     });
 }
