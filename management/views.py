@@ -96,8 +96,37 @@ def get_order_details(request, order_pk):
             "status": order.get_verbose_status_name(),
             "payment_method": order.get_verbose_payment_method_name(),
             "start_date": order.start_date.strftime('%d/%m/%Y'),
-            "delivery_address": order.quote.delivery_address
+            "delivery_address": order.quote.delivery_address,
         }
+
+        if order.cirms_number:
+            order_data["cirms_number"] = order.cirms_number
+        
+        if order.finance_reference_number:
+            order_data["finance_reference_number"] = order.finance_reference_number
+        
+        if order.payment_order:
+            
+            payment_order = order.payment_order
+
+            if payment_order.pdf:
+                order_data["payment_order_pdf"] = payment_order.get_pdf_filename()
+            
+            if payment_order.reference_number:
+                order_data["payment_order_reference_number"] = payment_order.reference_number
+
+        if order.shop_order:
+            shop_order = order.shop_order
+        
+            if shop_order.order_number:
+                order_data["shop_order_number"] = shop_order.order_number
+            
+            if shop_order.transaction_number:
+                order_data["shop_transaction_number"] = shop_order.transaction_number
+
+            
+        if order.invoice_file:
+            order_data["invoice_file"] = order.get_invoice_filename()
 
         if order.post_date:
             order_data["post_date"] = order.post_date.strftime('%d/%m/%Y')
@@ -108,6 +137,8 @@ def get_order_details(request, order_pk):
             order_data["received_date"] = order.received_date.strftime('%d/%m/%Y')
         else:
             order_data["received_date"] = "N/A"
+
+        
         
 
     return HttpResponse(
@@ -138,7 +169,7 @@ def get_quote_details(request, quote_pk):
             "funding_type": quote.get_verbose_funding_type_name(),
             "billing_address": quote.billing_address,
             "delivery_address": quote.delivery_address,
-            "customer_notes": quote.customer_note
+            "customer_notes": quote.customer_note,
         }
 
         # if bbsrc code present, add to dict
@@ -241,7 +272,7 @@ def management_sales(request):
         "management/sales.html",
         {
             "editOrderForm": editOrderForm,
-            "generateCodesForm": generateNewCodesForm,
+            "generateCodesForm": generateCodesForm,
             "createNewPromotionForm": createNewPromotionForm,
             "quotes": Quote.objects.all(),
             "promotions": Promotion.objects.all()

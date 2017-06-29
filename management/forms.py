@@ -14,13 +14,16 @@ class EditOrderForm(forms.Form):
     online_shop_transaction_number = forms.CharField(required = False, max_length = 30)
     status = forms.CharField(required = False, max_length = 2)
     payment_method = forms.CharField(required = False, max_length = 2)
-    post_date = forms.DateField(required = False, max_length = 10)
-    received_date = forms = forms.DateField(required = False, max_length = 10)
-    cirms_number = forms = forms.CharField(required = False, max_length = 30)
+    post_date = forms.DateField(required = False)
+    received_date = forms.DateField(required = False)
+    cirms_number = forms.CharField(required = False, max_length = 30)
     finance_reference_number = forms.CharField(required = False, max_length = 30)
     invoice_file = forms.FileField(required = False)
 
     def process_online_shop_fields(self, request, order):
+
+        cleaned_online_shop_order_number = self.cleaned_data["online_shop_order_number"]
+        cleaned_online_shop_transaction_number = self.cleaned_data["online_shop_transaction_number"]
 
         if order.shop_order:
 
@@ -48,7 +51,7 @@ class EditOrderForm(forms.Form):
     def process_payment_order_fields(self, request, order):
         
         cleaned_payment_order_reference_number = self.cleaned_data["payment_order_reference_number"]
-        cleaned_payment_order_pdf = self.cleaned_data["payment_order_pdfpdf"]
+        cleaned_payment_order_pdf = self.cleaned_data["payment_order_pdf"]
 
         if order.payment_order:
 
@@ -63,6 +66,7 @@ class EditOrderForm(forms.Form):
         if cleaned_payment_order_pdf:
 
             payment_order.pdf = cleaned_payment_order_pdf
+            messages.success(request, "The payment order file was uploaded successfully.")
         
         if cleaned_payment_order_reference_number:
 
@@ -102,13 +106,15 @@ class EditOrderForm(forms.Form):
 
         if cleaned_invoice_file:
             order.invoice_file = cleaned_invoice_file
+            messages.success(request, "The invoice file was uploaded successfully.")
+        
+        messages.success(request, "The changes were made successfully.")
+        order.save()
 
 
     def process(self, request):
 
         cleaned_selected_order_pk = self.cleaned_data["selected_order_pk"]
-        cleaned_online_shop_order_number = self.cleaned_data["online_shop_order_number"]
-        cleaned_online_shop_transaction_number = self.cleaned_data["online_shop_transaction_number"]
 
         try:
 

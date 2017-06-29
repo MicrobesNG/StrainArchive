@@ -7,7 +7,7 @@ function getOrderDetails(orderPK) {
     $.ajax({
         url: "/management/getOrderDetails/" + orderPK,
         success: function(data) {
-
+            
             $("#orderDetailsCustomerName").text(data["customer_name"]);
             $("#orderDetailsCustomerEmail").text(data["customer_email"]);
             $("#orderDetailsStatus").text(data["status"]);
@@ -16,6 +16,8 @@ function getOrderDetails(orderPK) {
             $("#orderDetailsPostDate").text(data["post_date"]);
             $("#orderDetailsReceiveDate").text(data["received_date"]);
             $("#orderDetailsDeliveryAddress").text(data["delivery_address"]);
+            $("#editOrderIDContainer").removeClass();
+            $("#editOrderIDContainer").addClass(orderPK);
             $("#orderDetailsModal").modal("show");
             
         }
@@ -81,6 +83,35 @@ $(document).ready(function() {
 
     $(".viewOrder").click(function() {
         getOrderDetails($(this).attr("id").replace("order_", ""));
+    });
+
+    $("#editOrderForm").submit(function() {
+
+        $("#id_selected_order_pk").val($("#editOrderIDContainer").attr("class"));
+
+        $("#id_status").val($("#orderStatusDropdown_edit").val());
+        $("#id_cirms_number").val($("#cirmsNumberInput").val());
+        $("#id_finance_reference_number").val($("3financeReferenceNumber").val());
+        $("#id_invoice_file").val($("#invoiceFileInput").val());
+
+
+        var paymentMethod = $("#paymentMethodDropdown_edit").val();
+
+        $("#id_payment_method").val(paymentMethod);
+
+        if (paymentMethod == "PO") {
+            $("#id_payment_order_pdf").val($("#paymentOrderFileInput").val());
+            $("#id_payment_order_reference_number").val($("#paymentOrderReferenceNumber").val());
+        } else if (paymentMethod == "OS") {
+            $("#id_online_shop_order_number").val($("#onlineShopOrderNumber").val());
+            $("#id_online_shop_transaction_number").val($("#onlineShopTransactionNumber").val());
+        }
+
+        
+        
+        $("#id_post_date").val($("#postageDate").val());
+        $("#id_received_date").val($("#receiveDate").val());
+        
     });
 
 });

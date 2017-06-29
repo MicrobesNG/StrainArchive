@@ -163,6 +163,9 @@ class PaymentOrder(models.Model):
     reference_number = models.CharField(max_length = 30, null = True)
     pdf = models.FileField(null = True)
 
+    def get_pdf_filename(self):
+        return os.path.basename(self.pdf.name)
+
 
 class ShopOrder(models.Model):
 
@@ -218,6 +221,8 @@ class Order(models.Model):
 
     invoice_file = models.FileField(null = True)
 
+    def get_invoice_filename(self):
+        return os.path.basename(self.invoice_file.name)
 
     # get the display name for the payment type
     def get_verbose_payment_method_name(self):
