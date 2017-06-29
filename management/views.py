@@ -9,6 +9,7 @@ from cart.models import Quote, Order, ConfirmedBasket, Purchase, Promotion, Prom
 from forms import CreateNewPromotionForm, GenerateNewCodesForm
 from django.http import HttpResponse
 import json
+from datetime import datetime
 
 
 
@@ -90,8 +91,20 @@ def get_order_details(request, order_pk):
     else:
 
         order_data = {
-
+            "status": order.get_verbose_status_name(),
+            "payment_method": order.get_verbose_payment_method_name(),
+            "start_date": order.start_date.strftime('%d/%m/%Y'),
         }
+
+        if order.post_date:
+            order_data["post_date"] = order.post_date.strftime('%d/%m/%Y')
+        else:
+            order_data["post_date"] = "N/A"
+
+        if order.received_date:
+            order_data["received_date"] = order.received_date.strftime('%d/%m/%Y')
+        else:
+            order_data["received_date"] = "N/A"
         
 
     return HttpResponse(

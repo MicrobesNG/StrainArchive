@@ -4,13 +4,20 @@ function getOrderDetails(orderPK) {
     $.ajax({
         url: "/management/getOrderDetails/" + orderPK,
         success: function(data) {
+
+            $("#orderDetailsStatus").text(data["status"]);
+            $("#orderDetailsPaymentMethod").text(data["payment_method"]);
+            $("#orderDetailsCreationDate").text(data["start_date"]);
+            $("#orderDetailsPostDate").text(data["post_date"]);
+            $("#orderDetailsReceiveDate").text(data["received_date"]);
+
             $("#orderDetailsModal").modal("show");
         }
     });
 }
 
 
-function populateEditOrdermodal() {
+function populateEditOrderModal() {
     
     $("#orderStatusDropdown").val($("#orderDetailsStatus").attr("class"));
     $("#orderStatusDropdown").text($("#orderDetailsStatus").text());
@@ -34,13 +41,13 @@ function populateEditOrdermodal() {
 $(document).ready(function() {
 
     $("#editOrder").click(function() {
+        alert("click");
+        populateEditOrderModal();
         $("#editOrderModal").modal("show");
     });
 
     $(".viewOrder").click(function() {
-
         getOrderDetails($(this).attr("id").replace("order_", ""));
-
     });
 
 });

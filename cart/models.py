@@ -201,7 +201,7 @@ class Order(models.Model):
     received_date = models.DateTimeField(null = True)
 
     # get the display name for the payment type
-    def get_verbose_payment_method(self):
+    def get_verbose_payment_method_name(self):
 
         return self.get_payment_method_display()
 
