@@ -1,9 +1,141 @@
 from django import forms
 
 from django.contrib import messages
-from cart.models import Quote, Promotion
+from cart.models import Quote, Promotion, Order, PaymentOrder, ShopOrder
 import json
 from cart.promo_utils import generate_codes_for_promotion
+
+class EditOrderForm(forms.Form):
+
+    selected_order_pk = forms.IntegerField(required = False)
+    payment_order_reference_number = forms.CharField(required = False, max_length = 30)
+    payment_order_pdf = forms.FileField(required = False)
+    online_shop_order_number = forms.CharField(required = False, max_length = 30)
+    online_shop_transaction_number = forms.CharField(required = False, max_length = 30)
+    status = forms.CharField(required = False, max_length = 2)
+    payment_method = forms.CharField(required = False, max_length = 2)
+    post_date = forms.DateField(required = False, max_length = 10)
+    received_date = forms = forms.DateField(required = False, max_length = 10)
+    cirms_number = forms = forms.CharField(required = False, max_length = 30)
+    finance_reference_number = forms.CharField(required = False, max_length = 30)
+    invoice_file = forms.FileField(required = False)
+
+    def process_online_shop_fields(self, request, order):
+
+        if order.shop_order:
+
+            shop_order = order.shop_order
+        
+        else:
+
+            shop_order = ShopOrder.objects.create()
+            order.shop_order = shop_order
+            order.save()
+
+        
+        if cleaned_online_shop_order_number:
+
+            shop_order.order_number = cleaned_online_shop_order_number
+            
+        if cleaned_online_shop_transaction_number:
+
+            shop_order.transaction_number = cleaned_online_shop_transaction_number
+
+        shop_order.save()
+
+
+
+    def process_payment_order_fields(self, request, order):
+        
+        cleaned_payment_order_reference_number = self.cleaned_data["payment_order_reference_number"]
+        cleaned_payment_order_pdf = self.cleaned_data["payment_order_pdfpdf"]
+
+        if order.payment_order:
+
+            payment_order = order.payment_order
+        
+        else:
+
+            payment_order = PaymentOrder.objects.create()
+            order.payment_order = payment_order
+            order.save()
+
+        if cleaned_payment_order_pdf:
+
+            payment_order.pdf = cleaned_payment_order_pdf
+        
+        if cleaned_payment_order_reference_number:
+
+            payment_order.reference_number = cleaned_payment_order_reference_number
+
+        payment_order.save()
+
+
+
+    def process_order_fields(self, request, order):
+
+        cleaned_status = self.cleaned_data["status"]
+        cleaned_payment_method = self.cleaned_data["payment_method"]
+        cleaned_post_date = self.cleaned_data["post_date"]
+        cleaned_received_date = self.cleaned_data["received_date"]
+        cleaned_cirms_number = self.cleaned_data["cirms_number"]
+        cleaned_finance_reference_number = self.cleaned_data["finance_reference_number"]
+        cleaned_invoice_file = self.cleaned_data["invoice_file"]
+
+        if cleaned_finance_reference_number:
+            order.finance_reference_number = cleaned_finance_reference_number
+        
+        if cleaned_cirms_number:
+            order.cirms_number = cleaned_cirms_number
+        
+        if cleaned_status:
+            order.status = cleaned_status
+        
+        if cleaned_payment_method:
+            order.payment_method = cleaned_payment_method
+
+        if cleaned_post_date:
+            order.post_date = cleaned_post_date
+        
+        if cleaned_received_date:
+            order.received_date = cleaned_received_date
+
+        if cleaned_invoice_file:
+            order.invoice_file = cleaned_invoice_file
+
+
+    def process(self, request):
+
+        cleaned_selected_order_pk = self.cleaned_data["selected_order_pk"]
+        cleaned_online_shop_order_number = self.cleaned_data["online_shop_order_number"]
+        cleaned_online_shop_transaction_number = self.cleaned_data["online_shop_transaction_number"]
+
+        try:
+
+            order = Order.objects.get(pk = cleaned_selected_order_pk)
+
+        except Order.DoesNotExist:
+
+            messages.error(request, "The order could not be found in the database.")
+
+        else:
+
+            self.process_order_fields(request, order)
+            self.process_payment_order_fields(request, order)
+            self.process_online_shop_fields(request, order)
+    
+    def process_errors(self, requets):
+
+        error_dict = json.loads(self.errors.as_json())
+        for key in error_dict:
+            for error in error_dict[key]:
+                messages.error(request, "Error: %s - %s" % (key, error["message"]))
+
+
+
+
+            
+
 
 class GenerateNewCodesForm(forms.Form):
 
