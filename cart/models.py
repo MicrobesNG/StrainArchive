@@ -9,8 +9,6 @@ import json
 
 
 
-
-
 class Promotion(models.Model):
 
     PROMOTION_TYPES = (
@@ -161,6 +159,20 @@ class Quote(models.Model):
         return self.get_status_display()
 
 
+class PaymentOrder(models.Model):
+    
+    # numbers stored as char fields so large ints dont need to be stored
+    reference_number = models.CharField(max_length = 30, null = True)
+    pdf = models.FileField(null = True)
+
+
+class ShopOrder(models.Model):
+
+    # numbers stored as char fields so large ints dont need to be stored
+    order_number = models.CharField(max_length = 30, null = True)
+    transaction_number = models.CharField(max_length = 30, null = True)
+
+
 # represents dispatched product/order status
 class Order(models.Model):
 
@@ -201,12 +213,10 @@ class Order(models.Model):
     received_date = models.DateTimeField(null = True)
 
     cirms_number = models.CharField(max_length = 30, null = True)
-    shop_order_number = models.CharField(max_length = 30, null = True)
-    shop_transaction_number = models.CharField(max_length = 30, null = True)
-    payment_order_reference_number = models.CharField(max_length = 30, null = True)
+    
     finance_reference_number = models.CharField(max_length = 30, null = True)
-    # PO FILE FIELD
-    # I FILE FIELD
+    payment_order = models.OneToOneField(PaymentOrder, null = True)
+    shop_order = models.OneToOneField(ShopOrder, null = True)
 
 
     # get the display name for the payment type
