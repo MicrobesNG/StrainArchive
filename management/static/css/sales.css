@@ -49,7 +49,16 @@
     height: 30px;
 }
 
+#orderStatusDropdown {
+    width: 100%;
+}
+#orderStatusDropdownMenu {
+    width: 100%;
+}
 
-.detailsContent {
-    padding-top: 13px;
+#paymentMethodDropdown {
+    width: 100%;
+}
+#paymentMethodDropdownMenu {
+    width: 100%;
 }

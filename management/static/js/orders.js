@@ -41,7 +41,6 @@ function populateEditOrderModal() {
 $(document).ready(function() {
 
     $("#editOrder").click(function() {
-        alert("click");
         populateEditOrderModal();
         $("#editOrderModal").modal("show");
     });
