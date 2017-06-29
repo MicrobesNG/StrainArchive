@@ -216,6 +216,8 @@ class Order(models.Model):
     payment_order = models.OneToOneField(PaymentOrder, null = True)
     shop_order = models.OneToOneField(ShopOrder, null = True)
 
+    invoice_file = models.FileField(null = True)
+
 
     # get the display name for the payment type
     def get_verbose_payment_method_name(self):
