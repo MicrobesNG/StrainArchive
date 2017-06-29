@@ -6,7 +6,7 @@ from django.core import serializers
 from archive.models import Strain
 from django.contrib.auth.models import User
 from cart.models import Quote, Order, ConfirmedBasket, Purchase, Promotion, PromotionCode
-from forms import CreateNewPromotionForm, GenerateNewCodesForm
+from forms import CreateNewPromotionForm, GenerateNewCodesForm, EditOrderForm
 from django.http import HttpResponse
 import json
 from datetime import datetime
@@ -192,11 +192,25 @@ def management_sales(request):
 
     createNewPromotionForm = CreateNewPromotionForm()
     generateCodesForm = GenerateNewCodesForm()
+    editOrderForm = EditOrderForm()
 
     if request.method == "POST":
 
-        print request.POST
-        
+        if "editOrderForm" in request.POST:
+
+            editOrderForm = EditOrderForm(request.POST)
+
+            if editOrderForm.is_valid():
+
+                editOrderForm.process(request)
+            
+            else:
+
+                editOrderForm.process_errors(request)
+
+
+    if request.method == "POST":
+
         if "generateCodesForm" in request.POST:
 
             generateCodesForm = GenerateNewCodesForm(request.POST)
@@ -226,7 +240,8 @@ def management_sales(request):
         request,
         "management/sales.html",
         {
-            "generateCodesForm": GenerateNewCodesForm,
+            "editOrderForm": editOrderForm,
+            "generateCodesForm": generateNewCodesForm,
             "createNewPromotionForm": createNewPromotionForm,
             "quotes": Quote.objects.all(),
             "promotions": Promotion.objects.all()

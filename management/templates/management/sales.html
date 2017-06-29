@@ -55,6 +55,12 @@
             {{field.as_hidden}}
         {% endfor %}
     </form>
+    <form id="editOrderForm" method="post" name="editOrderForm" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in editOrderForm %}
+            {{field.as_hidden}}
+        {% endfor %}
+    </form>
     
 
     <div class="col-md-12"><br></div>
