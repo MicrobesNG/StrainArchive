@@ -166,6 +166,7 @@ class Order(models.Model):
 
     # status of order
     STATUS_CHOICES = (
+        ("PP", "Pending Payment"),
         ("P", "Processing"),
         ("D", "Dispatched"),
         ("R", "Received"),
@@ -179,9 +180,9 @@ class Order(models.Model):
     )
 
     status = models.CharField(
-        default = "P",
+        default = "PP",
         choices = STATUS_CHOICES,
-        max_length = 1
+        max_length = 2
     )
 
     payment_method = models.CharField(
