@@ -34,7 +34,7 @@
                                             <li class="orderStatusOption" id="P">Processing</li>
                                             <li class="orderStatusOption" id="AD">Awaiting Dispatch</li>
                                             <li class="orderStatusOption" id="D">Dispatched</li>
-                                            <li class="orderStatusOption" id="R">Received</li>
+                                            <li class="orderStatusOption" id="R">Received</liid
                                             <li class="orderStatusOption" id="V">Void</li>
                                         </ul>
                                     </div>
@@ -46,6 +46,25 @@
 
                         <!-- CONTAINS FIELDS FOR EDITING FINANCE DATA -->
                         <div id="financeTab_edit" class="tab-pane fade">
+
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <h3>CIRMS Number:</h3>
+                                </div>
+                                <div class="col-md-6 detailsContent">
+                                    <input type="text" class="form-control" id="cirmsNumberInput">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <h3>Invoice File:</h3>
+                                </div>
+                                <div class="col-md-6 detailsContent">
+                                    <input type="file" id="invoiceFileInput">
+                                </div>
+                            </div>
+
                             <div class="col-md-12">
                                 <div class="col-md-6">
                                     <h3>Payment Method:</h3>
@@ -57,7 +76,7 @@
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" id="paymentMethodDropdownMenu_edit">
-                                            <li class="paymentMethodOption" id="PP">Payment Pending</li>
+                                            <li class="paymentMethodOption" id="PO">Payment Order</li>
                                             <li class="paymentMethodOption" id="OS">Online Shop</li>
                                             <li class="paymentMethodOption" id="NS">Not Set</li>
                                         </ul>
@@ -65,7 +84,7 @@
                                 </div>
                             </div>
 
-                            <div id="poSection">
+                            <div id="poSection" hidden>
                                 <div class="col-md-12">
                                     <div class="col-md-6">
                                         <h3>Payment Order File:</h3>
@@ -83,7 +102,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="osSection">
+                            <div id="osSection" hidden>
                                 <div class="col-md-12">
                                     <div class="col-md-6">
                                         <h3>Order Number:</h3>

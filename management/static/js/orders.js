@@ -1,4 +1,7 @@
 
+
+
+
 // send request for details of order with pk = orderPK
 function getOrderDetails(orderPK) {
     $.ajax({
@@ -43,6 +46,34 @@ function populateEditOrderModal() {
 
 $(document).ready(function() {
 
+    $(".orderStatusOption").click(function() {
+        $(this).parent().parent().val($(this).attr("id"));
+        $(this).parent().parent().find("button").text($(this).text());
+    });
+
+    $(".paymentMethodOption").click(function() {
+        $(this).parent().parent().val($(this).attr("id"));
+        $(this).parent().parent().find("button").text($(this).text());
+
+        switch ($(this).attr("id")) {
+            case "PO":
+                $("#poSection").show();
+                $("#osSection").hide();
+                break;
+            case "OS":
+                $("#poSection").hide();
+                $("#osSection").show();
+                break;
+            case "NS":
+                $("#poSection").hide();
+                $("#osSection").hide();
+                break;
+            default:
+                break;
+        }
+
+    });
+ 
     $("#editOrder").click(function() {
         populateEditOrderModal();
         $("#editOrderModal").modal("show");
