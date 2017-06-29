@@ -168,6 +168,7 @@ class Order(models.Model):
     STATUS_CHOICES = (
         ("PP", "Pending Payment"),
         ("P", "Processing"),
+        ("AD", "Awaiting Dispatch"),
         ("D", "Dispatched"),
         ("R", "Received"),
         ("V", "Void")
