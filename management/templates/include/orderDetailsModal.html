@@ -15,9 +15,7 @@
                         <li><a data-toggle="tab" href="#deliveryTab">Delivery</a></li>
                     </ul>
                     
-                    <div class="tab-content">
-
-
+                    <div class="tab-content" id="orderDetailsTabContent">
 
                         <!-- TAB CONTAINING CUSTOMER INFORMATION -->
                         <div id="customerTab" class="tab-pane fade in active">
@@ -77,9 +75,9 @@
                                 <div class="col-md-6">
                                     <h3>Payment Order:</h3>
                                 </div>
-                                <div class="col-md-6 detailsContent">
+                                <div class="col-md-6 detailsContent subDetails">
                                     <div class="col-md-12">
-                                        <div class="col-md-6">
+                                        <div class="col-md-6 subDetails">
                                             <h4>Reference Number:</h4>
                                         </div>
                                         <div class="col-md-6">
@@ -101,9 +99,9 @@
                                 <div class="col-md-6">
                                     <h3>Online Shop:</h3>
                                 </div>
-                                <div class="col-md-6 detailsContent">
+                                <div class="col-md-6 detailsContent subDetails">
                                     <div class="col-md-12">
-                                        <div class="col-md-6">
+                                        <div class="col-md-6 subDetails">
                                             <h4>Order Number:</h4>
                                         </div>
                                         <div class="col-md-6">
@@ -111,7 +109,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="col-md-6">
+                                        <div class="col-md-6 subDetails">
                                             <h4>Transaction Number:</h4>
                                         </div>
                                         <div class="col-md-6">
@@ -162,8 +160,204 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12"><hr></div>
+                    
+                    <div class="col-md-12">
+                        <div class="col-md-6" align="left">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" id="editOrder">Edit</button>    
+                        </div>
+                        <div class="col-md-6" align="right">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<!--
+
+<div id="orderDetailsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="orderDetailsTitle"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+
+                    <div class="col-md-12">
+                        <h2>Personal Data</h2>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h3>Customer Name:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="detailsContent" id="orderDetailsCustomerName"></h4>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h3>Customer Email:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="detailsContent" id="orderDetailsCustomerEmail"></h4>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12"><hr></div>
+                    
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h3>Status:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="detailsContent" id="orderDetailsStatus"></h4>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12"><hr></div>
+                    
+                    <div class="col-md-12">
+                        <h2>Finance</h2>
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h3>CIRMS Number:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="detailsContent" id="orderDetailsCIRMS"></h4>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h3>Finance Number:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="detailsContent" id="orderDetailsFinanceNumber"></h4>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h3>Payment Method:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="detailsContent" id="orderDetailsPaymentMethod"></h4>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" id="orderDetailsPO" hidden>
+                        <div class="col-md-6">
+                            <h3>Payment Order:</h3>
+                        </div>
+                        <div class="col-md-6 detailsContent">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <h4>Reference Number:</h4>
+                                </div>
+                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Reference number here</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <h4>PO File:</h4>
+                                </div>
+                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>filename here</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" id="orderDetailsOS" hidden>
+                        <div class="col-md-6">
+                            <h3>Online Shop:</h3>
+                        </div>
+                        <div class="col-md-6 detailsContent">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <h4>Order Number:</h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Order Number Here</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <h4>Transaction Number:</h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Transaction Number Here</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12"><hr></div>
+                    <div class="col-md-12">
+                        <h2>Delivery</h2>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h3>Creation Date:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="detailsContent" id="orderDetailsCreationDate"></h4>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h3>Postage Date:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="detailsContent" id="orderDetailsPostDate"></h4>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h3>Receive Date:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="detailsContent" id="orderDetailsReceiveDate"></h4>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h3>Delivery Address:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="detailsContent" id="orderDetailsDeliveryAddress"></h4>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12"><hr></div>
+                    
+                    <div class="col-md-12">
+                        <div class="col-md-6" align="left">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal" id="editOrder">Edit</button>    
+                        </div>
+                        <div class="col-md-6" align="right">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->

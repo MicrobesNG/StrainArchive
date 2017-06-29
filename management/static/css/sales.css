@@ -62,3 +62,28 @@
 #paymentMethodDropdownMenu {
     width: 100%;
 }
+
+#orderDetailsTabContent {
+    min-height: 40vh !important;
+}
+#editOrderTabContent {
+    min-height: 40vh !important;
+}
+.subDetails {
+    padding-left: 0px;
+}
+
+#paymentMethodDropdown_edit {
+    width: 100%;
+}
+
+#paymentMethodDropdownMenu_edit {
+    width: 100%;
+}
+
+#orderStatusDropdown_edit {
+    width: 100%;
+}
+#orderStatusDropdownMenu_edit {
+    width: 100%;
+}
