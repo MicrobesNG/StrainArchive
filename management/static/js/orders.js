@@ -5,12 +5,14 @@ function getOrderDetails(orderPK) {
         url: "/management/getOrderDetails/" + orderPK,
         success: function(data) {
 
+            $("#orderDetailsCustomerName").text(data["customer_name"]);
+            $("#orderDetailsCustomerEmail").text(data["customer_email"]);
             $("#orderDetailsStatus").text(data["status"]);
             $("#orderDetailsPaymentMethod").text(data["payment_method"]);
             $("#orderDetailsCreationDate").text(data["start_date"]);
             $("#orderDetailsPostDate").text(data["post_date"]);
             $("#orderDetailsReceiveDate").text(data["received_date"]);
-
+            $("#orderDetailsDeliveryAddress").text(data["delivery_address"]);
             $("#orderDetailsModal").modal("show");
         }
     });

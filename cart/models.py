@@ -7,8 +7,6 @@ from archive.models import Strain
 from datetime import datetime
 import json
 
-
-
 class Promotion(models.Model):
 
     PROMOTION_TYPES = (

@@ -91,9 +91,12 @@ def get_order_details(request, order_pk):
     else:
 
         order_data = {
+            "customer_name": order.quote.customer_name,
+            "customer_email": order.quote.customer_email,
             "status": order.get_verbose_status_name(),
             "payment_method": order.get_verbose_payment_method_name(),
             "start_date": order.start_date.strftime('%d/%m/%Y'),
+            "delivery_address": order.quote.delivery_address
         }
 
         if order.post_date:
