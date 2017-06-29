@@ -200,6 +200,15 @@ class Order(models.Model):
     post_date = models.DateTimeField(null = True)
     received_date = models.DateTimeField(null = True)
 
+    cirms_number = models.CharField(max_length = 30, null = True)
+    shop_order_number = models.CharField(max_length = 30, null = True)
+    shop_transaction_number = models.CharField(max_length = 30, null = True)
+    payment_order_reference_number = models.CharField(max_length = 30, null = True)
+    finance_reference_number = models.CharField(max_length = 30, null = True)
+    # PO FILE FIELD
+    # I FILE FIELD
+
+
     # get the display name for the payment type
     def get_verbose_payment_method_name(self):
 
