@@ -33,7 +33,7 @@ function getOrderDetails(orderPK) {
             $("#orderStatusDropdown_edit").text(data["status"]);
             $("#paymentMethodDropdown_edit").val(data["payment_method_code"]);
             $("#paymentMethodDropdown_edit").text(data["payment_method"]);
-            
+
             if ($("#orderDetailsPostDate") != "") {
                 $("#postageDate").val($("#orderDetailsPostDate").val());
             }
@@ -115,22 +115,6 @@ $(document).ready(function() {
         
         $("#id_post_date").val($("#postageDate").val());
         $("#id_received_date").val($("#receiveDate").val());
-
-        console.log($("#id_selected_order_pk").val());
-        console.log($("#id_status").val());
-        console.log($("#id_cirms_number").val());
-        console.log($("#id_finance_reference_number").val());
-        console.log($("#id_invoice_file").val());
-        console.log($("#id_payment_method").val());
-        console.log($("#id_payment_order_pdf").val());
-        console.log($("#id_payment_order_reference_number").val());
-        console.log($("#id_online_shop_order_number").val());
-        console.log($("#id_online_shop_transaction_number").val());
-        console.log($("#id_post_date").val());
-        console.log($("#id_received_date").val());
-
-        alert("L");
-
         
     });
 
