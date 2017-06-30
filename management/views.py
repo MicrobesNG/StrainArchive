@@ -94,7 +94,9 @@ def get_order_details(request, order_pk):
             "customer_name": order.quote.customer_name,
             "customer_email": order.quote.customer_email,
             "status": order.get_verbose_status_name(),
+            "status_code": order.status,
             "payment_method": order.get_verbose_payment_method_name(),
+            "payment_method_code": order.payment_method,
             "start_date": order.start_date.strftime('%d/%m/%Y'),
             "delivery_address": order.quote.delivery_address,
         }

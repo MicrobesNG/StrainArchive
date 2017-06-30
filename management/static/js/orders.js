@@ -3,6 +3,7 @@
 
 
 // send request for details of order with pk = orderPK
+// TODO: NEEDS CLEANING UP!!!!!!!!
 function getOrderDetails(orderPK) {
     $.ajax({
         url: "/management/getOrderDetails/" + orderPK,
@@ -26,32 +27,25 @@ function getOrderDetails(orderPK) {
             $("#onlineShopOrderNumberDetails").text(data["shop_order_details"]);
             $("#onlineShopTransactionNumberDetails").text(data["shop_transaction_number"]);
 
+            
+            
+            $("#orderStatusDropdown_edit").val(data["status_code"]);
+            $("#orderStatusDropdown_edit").text(data["status"]);
+            $("#paymentMethodDropdown_edit").val(data["payment_method_code"]);
+            $("#paymentMethodDropdown_edit").text(data["payment_method"]);
+            if ($("#orderDetailsPostDate") != "") {
+                $("#postageDate").val($("#orderDetailsPostDate").val());
+            }
+            if ($("#orderDetailsReceiveDate") != "") {
+                $("#reveiveDate").val($("#orderDetailsReceiveDate").val());
+            }
+            
             $("#editOrderIDContainer").removeClass();
             $("#editOrderIDContainer").addClass(orderPK);
-
             $("#orderDetailsModal").modal("show");
             
         }
     });
-}
-
-
-function populateEditOrderModal() {
-    
-    $("#orderStatusDropdown_edit").val($("#orderDetailsStatus").attr("class"));
-    $("#orderStatusDropdown_edit").text($("#orderDetailsStatus").text());
-
-    $("#paymentMethodDropdown").val($("#orderDetailsPaymentMethod").attr("class"));
-    $("#paymentMethodDropdown").text($("#orderDetailsPaymentMethod").text());
-
-    if ($("#orderDetailsPostDate") != "") {
-        $("#postageDate").val($("#orderDetailsPostDate").val());
-    }
-
-    if ($("#orderDetailsReceiveDate") != "") {
-        $("#reveiveDate").val($("#orderDetailsReceiveDate").val());
-    }
-
 }
 
 
@@ -88,7 +82,6 @@ $(document).ready(function() {
     });
  
     $("#editOrder").click(function() {
-        populateEditOrderModal();
         $("#editOrderModal").modal("show");
     });
 
@@ -104,7 +97,6 @@ $(document).ready(function() {
         $("#id_cirms_number").val($("#cirmsNumberInput").val());
         $("#id_finance_reference_number").val($("#financeReferenceNumber").val());
         $("#id_invoice_file").val($("#invoiceFileInput").val());
-
 
         var paymentMethod = $("#paymentMethodDropdown_edit").val();
         
