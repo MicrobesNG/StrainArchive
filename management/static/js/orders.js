@@ -38,8 +38,8 @@ function getOrderDetails(orderPK) {
 
 function populateEditOrderModal() {
     
-    $("#orderStatusDropdown").val($("#orderDetailsStatus").attr("class"));
-    $("#orderStatusDropdown").text($("#orderDetailsStatus").text());
+    $("#orderStatusDropdown_edit").val($("#orderDetailsStatus").attr("class"));
+    $("#orderStatusDropdown_edit").text($("#orderDetailsStatus").text());
 
     $("#paymentMethodDropdown").val($("#orderDetailsPaymentMethod").attr("class"));
     $("#paymentMethodDropdown").text($("#orderDetailsPaymentMethod").text());
