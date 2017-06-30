@@ -87,3 +87,20 @@
 #orderStatusDropdownMenu_edit {
     width: 100%;
 }
+
+#promoTypeDropdown {
+    width: 100%;
+}
+#promoTypeDropdownMenu {
+    width: 100%;
+}
+#newPromoFPRAmount {
+    margin-left: 10px;
+    width: 75%;
+    display: inline-block;
+}
+#newPromoPRAmount {
+    margin-right: 10px;
+    width: 75%;
+    display: inline-block;
+}

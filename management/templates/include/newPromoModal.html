@@ -44,6 +44,45 @@
                     </div>
                     <div class="col-md-12"><hr></div>
                     <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h4>Type:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" id="promoTypeDropdown" type="button" data-toggle="dropdown">
+                                    Promo Type
+                                    <span class="caret"></span>
+                                </button>
+                                    <ul class="dropdown-menu" id="promoTypeDropdownMenu">
+                                    <li class="promoTypeOption" id="FPR">Fixed Price Reduction</li>
+                                    <li class="promoTypeOption" id="PR">Percentage Reduction</li>
+                                    <li class="promoTypeOption" id="NS">Not Set</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" id="fprContainer" hidden>
+                        <div class="col-md-6">
+                            <h4>Amount:</h4>
+                        </div>
+                        <div class="col-md-6" align="right">
+                            <h3 style="display: inline-block;"><b>£</b></h3>
+                            <input type="number" class="form-control" id="newPromoFPRAmount" step="0.01">
+                        </div>
+                    </div>
+                    <div class="col-md-12" id="prContainer" hidden>
+                        <div class="col-md-6">
+                            <h4>Percentage:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" class="form-control" id="newPromoPRAmount" step="0.01">
+                            <h3 style="display: inline-block;">%</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12"><hr></div>
+                    <div class="col-md-12">
                         <div class="col-md-6" align="left">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>

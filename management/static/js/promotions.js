@@ -1,4 +1,5 @@
 
+
 // populate the view codes modal
 function populateCodesModal(data) {
 
@@ -49,6 +50,27 @@ $(document).ready(function() {
     // opens the promotion creation modal
     $("#openNewPromoModal").click(function() {
         $("#newPromoModal").modal("show");
+    });
+
+    $(".promoTypeOption").click(function() {
+        $(this).parent().parent().find("button").val($(this).attr("id"));
+        $(this).parent().parent().find("button").text($(this).text());
+
+        switch ($(this).attr("id")) {
+            case "FPR":
+                $("#fprContainer").show();
+                $("#prContainer").hide();
+                break;
+            case "PR":
+                $("#fprContainer").hide();
+                $("#prContainer").show();
+                break;
+            case "NS":
+                $("#fprContainer").hide();
+                $("#prContainer").hide();
+                break;
+        }
+
     });
 
 
