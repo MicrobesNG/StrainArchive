@@ -33,6 +33,7 @@ function getOrderDetails(orderPK) {
             $("#orderStatusDropdown_edit").text(data["status"]);
             $("#paymentMethodDropdown_edit").val(data["payment_method_code"]);
             $("#paymentMethodDropdown_edit").text(data["payment_method"]);
+            
             if ($("#orderDetailsPostDate") != "") {
                 $("#postageDate").val($("#orderDetailsPostDate").val());
             }

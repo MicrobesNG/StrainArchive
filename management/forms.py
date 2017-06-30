@@ -77,9 +77,9 @@ class EditOrderForm(forms.Form):
             order.save()
 
         
-        if cleaned_payment_order_pdf:
+        if "paymentOrderFile" in request.FILES:
 
-            payment_order.pdf = cleaned_payment_order_pdf
+            payment_order.pdf = request.FILES["paymentOrderFile"]
             messages.success(request, "The payment order file was uploaded successfully.")
         
         if cleaned_payment_order_reference_number:
@@ -128,8 +128,8 @@ class EditOrderForm(forms.Form):
         if cleaned_received_date:
             order.received_date = cleaned_received_date
 
-        if cleaned_invoice_file:
-            order.invoice_file = cleaned_invoice_file
+        if "invoiceFile" in request.FILES:
+            order.invoice_file = request.FILES["invoiceFile"]
             messages.success(request, "The invoice file was uploaded successfully.")
         
         messages.success(request, "The changes were made successfully.")
