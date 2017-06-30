@@ -159,7 +159,7 @@ class EditOrderForm(forms.Form):
             self.process_payment_order_fields(request, order)
             self.process_online_shop_fields(request, order)
     
-    def process_errors(self, requets):
+    def process_errors(self, request):
 
         error_dict = json.loads(self.errors.as_json())
         for key in error_dict:
