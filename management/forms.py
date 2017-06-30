@@ -25,6 +25,12 @@ class EditOrderForm(forms.Form):
         cleaned_online_shop_order_number = self.cleaned_data["online_shop_order_number"]
         cleaned_online_shop_transaction_number = self.cleaned_data["online_shop_transaction_number"]
 
+        print "-- os --"
+        print cleaned_online_shop_order_number
+        print cleaned_online_shop_transaction_number
+        print "--------"
+
+
         if order.shop_order:
 
             shop_order = order.shop_order
@@ -50,8 +56,15 @@ class EditOrderForm(forms.Form):
 
     def process_payment_order_fields(self, request, order):
         
+
         cleaned_payment_order_reference_number = self.cleaned_data["payment_order_reference_number"]
-        cleaned_payment_order_pdf = self.cleaned_data["payment_order_pdf"]
+        cleaned_payment_order_pdf = self.cleaned_data["payment_order_pdf"]   
+
+        print "-- po --"
+        print cleaned_payment_order_reference_number
+        print cleaned_payment_order_pdf
+        print "--------"
+
 
         if order.payment_order:
 
@@ -63,6 +76,7 @@ class EditOrderForm(forms.Form):
             order.payment_order = payment_order
             order.save()
 
+        
         if cleaned_payment_order_pdf:
 
             payment_order.pdf = cleaned_payment_order_pdf
@@ -85,6 +99,16 @@ class EditOrderForm(forms.Form):
         cleaned_cirms_number = self.cleaned_data["cirms_number"]
         cleaned_finance_reference_number = self.cleaned_data["finance_reference_number"]
         cleaned_invoice_file = self.cleaned_data["invoice_file"]
+
+        print "-- order --"
+        print cleaned_status
+        print cleaned_payment_method
+        print cleaned_post_date
+        print cleaned_received_date
+        print cleaned_cirms_number
+        print cleaned_finance_reference_number
+        print cleaned_invoice_file
+        print "------------"
 
         if cleaned_finance_reference_number:
             order.finance_reference_number = cleaned_finance_reference_number
@@ -113,6 +137,11 @@ class EditOrderForm(forms.Form):
 
 
     def process(self, request):
+
+        print "- - - - - - - - - - - -"
+        print request.POST
+        print request.FILES
+        print "- - - - - - - - - - - -"
 
         cleaned_selected_order_pk = self.cleaned_data["selected_order_pk"]
 

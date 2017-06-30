@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from archive.models import Strain
 from datetime import datetime
 import json
+import os
 
 class Promotion(models.Model):
 

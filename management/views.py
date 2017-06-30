@@ -230,8 +230,6 @@ def management_sales(request):
         if "editOrderForm" in request.POST:
 
             editOrderForm = EditOrderForm(request.POST, request.FILES)
-            print request.POST
-            print request.FILES
 
             if editOrderForm.is_valid():
 

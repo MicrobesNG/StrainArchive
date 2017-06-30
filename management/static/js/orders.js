@@ -60,12 +60,12 @@ function populateEditOrderModal() {
 $(document).ready(function() {
 
     $(".orderStatusOption").click(function() {
-        $(this).parent().parent().val($(this).attr("id"));
+        $(this).parent().parent().find("button").val($(this).attr("id"));
         $(this).parent().parent().find("button").text($(this).text());
     });
 
     $(".paymentMethodOption").click(function() {
-        $(this).parent().parent().val($(this).attr("id"));
+        $(this).parent().parent().find("button").val($(this).attr("id"));
         $(this).parent().parent().find("button").text($(this).text());
 
         switch ($(this).attr("id")) {
@@ -102,12 +102,12 @@ $(document).ready(function() {
 
         $("#id_status").val($("#orderStatusDropdown_edit").val());
         $("#id_cirms_number").val($("#cirmsNumberInput").val());
-        $("#id_finance_reference_number").val($("3financeReferenceNumber").val());
+        $("#id_finance_reference_number").val($("#financeReferenceNumber").val());
         $("#id_invoice_file").val($("#invoiceFileInput").val());
 
 
         var paymentMethod = $("#paymentMethodDropdown_edit").val();
-
+        
         $("#id_payment_method").val(paymentMethod);
 
         if (paymentMethod == "PO") {
@@ -122,6 +122,22 @@ $(document).ready(function() {
         
         $("#id_post_date").val($("#postageDate").val());
         $("#id_received_date").val($("#receiveDate").val());
+
+        console.log($("#id_selected_order_pk").val());
+        console.log($("#id_status").val());
+        console.log($("#id_cirms_number").val());
+        console.log($("#id_finance_reference_number").val());
+        console.log($("#id_invoice_file").val());
+        console.log($("#id_payment_method").val());
+        console.log($("#id_payment_order_pdf").val());
+        console.log($("#id_payment_order_reference_number").val());
+        console.log($("#id_online_shop_order_number").val());
+        console.log($("#id_online_shop_transaction_number").val());
+        console.log($("#id_post_date").val());
+        console.log($("#id_received_date").val());
+
+        alert("L");
+
         
     });
 
