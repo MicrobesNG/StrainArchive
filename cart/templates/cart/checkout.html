@@ -9,6 +9,7 @@
 {% block extra_js_files %}
 <script type="text/javascript" src="{% static 'js/validation.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/checkout.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/checkoutProgression.js' %}"></script>
 {% endblock %}
 
 {% block header_text %}
@@ -53,11 +54,10 @@
     </div>
     <div class="col-md-12">
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#paymentDetailsTab">Payment</a></li>
-            <li><a class="disabledTabSelector" data-toggle="tab" href="#billingAddressTab">Billing</a></li>
-            <li><a class="disabledTabSelector" data-toggle="tab" href="#deliveryAddressTab">Delivery</a></li>
-            <li><a class="disabledTabSelector" data-toggle="tab" href="#promotionsTab">Promotions</a></li>
-            <li><a class="disabledTabSelector" data-toggle="tab" href="#notesTab">Notes</a></li>
+            <li class="active"><a class="activeSelector" href="#paymentDetailsTab">Payment</a></li>
+            <li><a class="disabledSelector" href="#addressTab">Addresses</a></li>
+            <li><a class="disabledSelector" href="#promotionsTab">Promotions</a></li>
+            <li><a class="disabledSelector" href="#notesTab">Notes</a></li>
         </ul>
     </div>
     <div class="tab-content">
@@ -122,11 +122,35 @@
                     <input type="text" class="form-control" id="bbsrcCodeInput">
                 </div>
             </div>
-            
+            <div class="col-md-12" align="right">
+                <br>
+                <button type="button" class="btn btn-success nextButton" id="frame_0">Next</button>
+            </div>
         </div>
-        <div id="billingAddressTab" class="tab-pane fade">
-        </div>
-        <div id="deliveryAddressTab" class="tab-pane fade">
+        <div id="addressTab" class="tab-pane fade">
+            <div class="col-md-12"><br></div>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <h4><b>Billing</b> Address:</h4>
+                </div>
+                <div class="col-md-6">
+                    <textarea class="form-control addressInput" rows="10" cols="20" id="billingAddressInput"></textarea>
+                </div>
+            </div>
+            <div class="col-md-12"><br></div>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <h4><b>Delivery</b> Address:</h4>
+                </div>
+                <div class="col-md-6">
+                    <textarea class="form-control addressInput" rows="10" cols="20" id="deliveryAddressInput"></textarea>
+                </div>
+            </div>
+            <div class="col-md-12"><br></div>
+            <div class="col-md-12" align="right">
+                <br>
+                <button type="button" class="btn btn-success nextButton"id="frame_1">Next</button>
+            </div>
         </div>
     </div>
 {% endblock %}

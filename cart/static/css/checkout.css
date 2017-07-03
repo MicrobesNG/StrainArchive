@@ -56,6 +56,22 @@
     white-space: pre-wrap;
 }
 
-.disabledTabSelector {
-    background-color: #55555f;
+.disabledSelector {
+    background-color: #efefef;
+    color: #555555;
+}
+
+.activeSelector {
+    background-color: #5cb85c !important;
+    color: #ffffff !important;
+}
+
+.completeSelector {
+    background-color: #a2d8a2 !important;
+    color: #e8e8e8 !important;
+}
+
+.nextButton {
+    margin-right: 15px;
+    margin-bottom: 15px;
 }
