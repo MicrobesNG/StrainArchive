@@ -10,12 +10,13 @@
 }
 
 #basketContentTableContainer {
-    height: 80vh;
+    height: 75vh;
     overflow-y: auto;
 }
 
 #checkout {
     width: 100%;
+    margin-bottom: 15px;
 }
 
 #totalContainer {
@@ -43,7 +44,11 @@
 #basketHeaderRow {
     padding-left: 0px;
 }
+#basketFooter {
+    background-color: #e8e8e8;
+}
 
 #editButtonContainer {
     padding-top: 25px;
 }
+
