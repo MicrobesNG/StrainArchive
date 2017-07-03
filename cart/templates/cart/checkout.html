@@ -56,14 +56,13 @@
             <li class="active"><a data-toggle="tab" href="#paymentDetailsTab">Payment</a></li>
             <li><a data-toggle="tab" href="#billingAddressTab">Billing</a></li>
             <li><a data-toggle="tab" href="#deliveryAddressTab">Delivery</a></li>
+            <li><a data-toggle="tab" href="#promotionsTab">Promotions</a></li>
+            <li><a data-toggle="tab" href="#notesTab">Notes</a></li>
         </ul>
     </div>
-    <div class="col-md-12" id="orderDetailsRow">
-        <div class="col-md-4 orderDetailsContainer">
-            <div class="col-md-12">
-                <h3>Order Details</h3>
-                <hr>
-            </div>
+    <div class="tab-content">
+        <div id="paymentDetailsTab" class="tab-pane fade in active">
+            <div class="col-md-12"><br></div>
             <div class="col-md-12">
                 <div class="col-md-5">
                     <h4>Name:</h4>
@@ -123,35 +122,11 @@
                     <input type="text" class="form-control" id="bbsrcCodeInput">
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="col-md-5">
-                    <h4>Notes:</h4>
-                </div>
-                <div class="co-md-7">
-                    <textarea class="form-control" rows="5" id="noteInput" placeholder="max 250 chars"></textarea>
-                </div>
-            </div>
+            
         </div>
-        <div class="col-md-4 orderDetailsContainer">
-            <div class="col-md-12">
-                <h3><b>Billing</b> Address</h3>
-                <hr>
-            </div>
-            <div class="col-md-12">
-                <textarea class="form-control addressInput" rows="13" id="billingAddressInput"></textarea>
-            </div>
+        <div id="billingAddressTab" class="tab-pane fade">
         </div>
-        <div class="col-md-4 orderDetailsContainer">
-            <div class="col-md-12">
-                <h3><b>Delivery</b> Address</h3>
-                <hr>
-            </div>
-            <div class="col-md-12">
-                <textarea class="form-control addressInput" rows="13" id="deliveryAddressInput"></textarea>
-            </div>
+        <div id="deliveryAddressTab" class="tab-pane fade">
         </div>
-    </div>
-    <div class="col-md-12" align="right">
-        <button type="button" class="btn btn-success" id="viewSummary">Submit</button>
     </div>
 {% endblock %}
