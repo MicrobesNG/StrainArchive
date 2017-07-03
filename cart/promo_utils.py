@@ -1,5 +1,8 @@
 from . models import ConfirmedBasket, Purchase, Promotion, PromotionCode
 import random, string
+import json
+from promotions import *
+
 
 # generates random string
 def generate_code(length):
@@ -58,5 +61,6 @@ def apply_code_to_session_basket(request, promocode_code):
 
         pass
 
-        # TODO: finish
+        parameters = json.loads(promotion_code.promotion.promotion_type)
 
+        

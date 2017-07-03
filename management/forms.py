@@ -193,6 +193,9 @@ class CreateNewPromotionForm(forms.Form):
     description = forms.CharField(max_length = 200, required = True)
     start_date = forms.DateField(required = True)
     expiry_date = forms.DateField(required = True)
+    promo_type = forms.CharField(required = True, max_length = 3)
+    percentage_amount = forms.FloatField(required = False)
+    fixed_amount = forms.FloatField(required = False)
 
     def process(self, request):
 
@@ -200,17 +203,34 @@ class CreateNewPromotionForm(forms.Form):
         cleaned_description = self.cleaned_data["description"]
         cleaned_start_date = self.cleaned_data["start_date"]
         cleaned_expiry_date = self.cleaned_data["expiry_date"]
-
-        print cleaned_start_date, type(cleaned_start_date)
+        cleaned_promo_type = self.cleaned_data["promo_type"]
+        cleaned_percentage_amount = self.cleaned_data["percentage_amount"]
+        cleaned_fixed_amount = self.cleaned_data["fixed_amount"]
 
         if cleaned_start_date:
 
-            Promotion.objects.create(
+            new_promo = Promotion.objects.create(
                 name = cleaned_name,
                 description = cleaned_description,
                 start_date = cleaned_start_date,
-                expiry_date = cleaned_expiry_date
+                expiry_date = cleaned_expiry_date,
+                promo_type = cleaned_promo_type
             )
+
+            if new_promo.promo_type == "FPR":
+
+                params = {"reduction_amount": cleaned_fixed_amount, "percentage_reduction": "NULL"}
+
+            elif new_promo.promo_type == "PR":
+
+                params = {"reduction_amount": "NULL", "percentage_reduction": cleaned_percentage_amount}
+
+            else:
+                
+                params = {"reduction_amount": "NULL", "percentage_reduction": "NULL"}
+
+            new_promo.promotion_parameters = json.dumps(params)
+
 
             messages.success(
                 request,

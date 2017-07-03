@@ -1,4 +1,10 @@
 
+def apply_free_strains(basket, numer_of_free_strains):
+
+    reduction_in_cost = 0
+
+
+
 
 def apply_fixed_price_reduction(basket, amount):
 
@@ -8,6 +14,8 @@ def apply_fixed_price_reduction(basket, amount):
     # clamp the cost to be greater than or equal to 0
     if basket["promotion"]["promotion_total_cost"] < 0:
         basket["promotion"]["promotion_total_cost"] = 0.0
+    
+    request.session.modified = True
 
 
 
@@ -19,6 +27,8 @@ def apply_percentage_price_reduction(basket, percentage):
     # reduce total cost by percentage
     basket["promotion"]["promotion_total_cost"] = basket["total_cost"] - percentage_amount
 
+    request.session.modified = True
+
 
 
 
@@ -26,5 +36,6 @@ def apply_percentage_price_reduction(basket, percentage):
 # lets functions be called by dict key
 PROMOTION_FUNCTION_MAP = {
     "FPR": apply_fixed_price_reduction,
-    "PPR": apply_percentage_price_reduction
+    "PPR": apply_percentage_price_reduction,
+    "FS": apply_free_strains
 }
