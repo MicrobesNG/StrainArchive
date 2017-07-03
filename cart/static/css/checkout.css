@@ -55,3 +55,7 @@
 #noteSummary {
     white-space: pre-wrap;
 }
+
+.disabledTabSelector {
+    background-color: #55555f;
+}
