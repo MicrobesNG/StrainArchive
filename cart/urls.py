@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [
     url(r'^addToBasket/(?P<strain_pk>\d+)/$', views.add_to_basket, name = 'add_to_basket'),
     url(r'^removeFromBasket/(?P<strain_pk>\d+)/$', views.remove_from_basket, name = 'remove_from_basket'),
-    url(r'^checkout/', views.checkout, name = "checkout")
+    url(r'^checkout/', views.checkout, name = "checkout"),
+    url(r'applyPromotion/(?P<promotion_code>[\w\-]+)/$', views.apply_promotion, name = "apply_promotion")
 ]

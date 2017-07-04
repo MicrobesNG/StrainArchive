@@ -6,8 +6,48 @@ from django.http import HttpResponse
 from archive.models import Strain
 from . forms import QuoteForm
 from . import basket_utils
+from . import promo_utils
+
+from . models import Promotion, PromotionCode
+
+
 
 import json
+
+
+
+def apply_promotion(request, promotion_code):
+
+
+    try:
+
+        promotion_code = PromotionCode.objects.get(code = promotion_code)
+
+    except PromotionCode.DoesNotExist:
+
+        data = {"status": "NOT_FOUND"}
+
+    else:
+
+        if promotion_code.promotion.expired:
+
+            data = {"status": "EXPIRED"}
+        
+        elif promotion_code.check_usage_limit_hit():
+
+            data = {"status": "USEAGE_LIMIT"}
+        
+        elif not promotion_code.active:
+
+            data = {"status": "INACTIVE"}
+
+        else:
+
+
+
+            promo_utils.apply_code_to_session_basket(request, promotion_code)
+
+
 
 
 def checkout(request):

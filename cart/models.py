@@ -59,8 +59,17 @@ class PromotionCode(models.Model):
     max_usages = models.IntegerField(default = 1)
     number_of_uses = models.IntegerField(default = 0)
     active = models.BooleanField(default = True)
-
     promotion = models.ForeignKey(Promotion, null = True)
+
+    def check_usage_limit_hit(self):
+
+        if self.number_of_uses >= self.max_usages:
+
+            return True
+
+        else:
+
+            return False
 
 
 
