@@ -18,24 +18,35 @@ def generate_codes_for_promotion(
         max_uses_per_code,
         initially_active
     ):
+
+    # get the promotion
     promo = Promotion.objects.get(pk = promotion_pk)
 
+    # get all the existing codes
     codes = [code.code for code in promo.promotioncode_set.all()]
 
+    # create number of new codes
     for i in range(0, number_of_new_codes):
 
+        # keep track of codes with the same code value
         already_in_use = True
 
+        # assume new code is in use
         while already_in_use:
             
+            # generate code
             new_code = generate_code(10)
 
+            # if the code is unique append and break while loop
             if new_code not in codes:
                 
                 codes.append(new_code)
 
                 already_in_use = False
+            
+            # if already present, repeat loop
 
+        # once a unique code has been generated save to DB
         PromotionCode.objects.create(
             code = new_code,
             max_usages = max_uses_per_code,
@@ -46,7 +57,7 @@ def generate_codes_for_promotion(
 
 
 
-
+# apply a promotional code to the session basket
 def apply_code_to_session_basket(request, promotion_code):
 
     # get promotion parameters
