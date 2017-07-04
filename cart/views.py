@@ -45,6 +45,8 @@ def apply_promotion(request, promotion_code):
 
             promo_utils.apply_code_to_session_basket(request, promotion_code)
 
+            data = {"status": "SUCCESS", "basket": request.session["basket"]}
+
 
 
 

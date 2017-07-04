@@ -149,7 +149,7 @@ class GenerateNewCodesForm(forms.Form):
 
     number_of_codes = forms.IntegerField(required = True)
     max_number_of_uses = forms.IntegerField(required = True)
-    initially_active = forms.BooleanField(required = True)
+    initially_active = forms.BooleanField(required = False)
     promo_pk = forms.IntegerField(required = True)
 
     def process(self, request):

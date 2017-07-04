@@ -11,7 +11,7 @@ function populateCodesModal(data) {
 
         // get the code at index i
         var currentCode = data[i];
-
+        console.log(data);
         // construct table row html
         var tableRow = "<tr>";
             tableRow += "<td>" + currentCode["pk"] + "</td>";
@@ -121,7 +121,7 @@ $(document).ready(function() {
     $("#generateCodesForm").submit(function() {
         $("#id_number_of_codes").val($("#newCodesInput").val());
         $("#id_max_number_of_uses").val($("#maxUsesInput").val());
-        $("#id_initially_active").val($("#codesInitiallyActive").attr("checked"));
+        $("#id_initially_active").val($("#codesInitiallyActive").is(":checked"));
         $("#id_promo_pk").val(parseInt($("#selectedPromoID").attr("class")));
     });
 
