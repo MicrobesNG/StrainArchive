@@ -11,9 +11,18 @@ function populateCodesModal(data) {
 
         // get the code at index i
         var currentCode = data[i];
-        console.log(data);
+        
+        var row_class;
+        if (currentCode["number_of_uses"] == currentCode["max_usages"]) {
+            row_class = "promo_limit";
+        } else if (!currentCode["active"]) {
+            row_class = "promo_inactive";
+        } else {
+            row_class = "promo_active";
+        }
+
         // construct table row html
-        var tableRow = "<tr>";
+        var tableRow = "<tr class='" + row_class + "' id='" + currentCode["pk"] + "'>";
             tableRow += "<td>" + currentCode["pk"] + "</td>";
             tableRow += "<td>" + currentCode["code"] + "</td>";
             tableRow += "<td>" + currentCode["number_of_uses"] + "</td>";
@@ -23,7 +32,6 @@ function populateCodesModal(data) {
             } else {
                 tableRow += "<td>NO</td>";
             }
-            
 
         // add table row to table
         $("#codesTableBody").append(tableRow);

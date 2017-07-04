@@ -104,3 +104,23 @@
     width: 75%;
     display: inline-block;
 }
+
+.promo_limit {
+    background-color: #ff7c7c;
+}
+.promo_inactive {
+    background-color: #ffc67c;
+}
+.promo_active {
+    background-color: #b7ffaf;
+}
+
+.promo_limit:hover {
+    background-color: #ff4242 !important;
+}
+.promo_inactive:hover {
+    background-color: #ffad42 !important;
+}
+.promo_active:hover {
+    background-color: #7cff6d !important;
+}
