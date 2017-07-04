@@ -43,8 +43,6 @@ def apply_promotion(request, promotion_code):
 
         else:
 
-
-
             promo_utils.apply_code_to_session_basket(request, promotion_code)
 
 

@@ -214,14 +214,14 @@ class CreateNewPromotionForm(forms.Form):
                 description = cleaned_description,
                 start_date = cleaned_start_date,
                 expiry_date = cleaned_expiry_date,
-                promo_type = cleaned_promo_type
+                promotion_type = cleaned_promo_type
             )
 
-            if new_promo.promo_type == "FPR":
+            if new_promo.promotion_type == "FPR":
 
                 params = {"reduction_amount": cleaned_fixed_amount, "percentage_reduction": "NULL"}
 
-            elif new_promo.promo_type == "PR":
+            elif new_promo.promotion_type == "PR":
 
                 params = {"reduction_amount": "NULL", "percentage_reduction": cleaned_percentage_amount}
 

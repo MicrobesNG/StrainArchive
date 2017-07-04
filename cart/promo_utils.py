@@ -47,20 +47,17 @@ def generate_codes_for_promotion(
 
 
 
-def apply_code_to_session_basket(request, promocode_code):
+def apply_code_to_session_basket(request, promotion_code):
 
-    try:
+    # get promotion parameters
+    parameters = json.loads(promotion_code.promotion.promotion_type)
 
-        promotion_code = PromotionCode.objects.get(code = promocode_code)
-    
-    except PromotionCode.DoesNotExist:
+    # get session basket
+    basket = request.session["basket"]
 
-        pass
-    
-    else:
+    # find promotion function and apply to basket
+    PROMOTION_FUNCTION_MAP[promotion_code.promotion.promotion_type](basket, parameters)
 
-        pass
-
-        parameters = json.loads(promotion_code.promotion.promotion_type)
-
-        
+    # update the promotion code and save
+    promotion_code.number_of_uses += 1
+    promotion_code.save()

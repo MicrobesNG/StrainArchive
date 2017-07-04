@@ -6,7 +6,10 @@ def apply_free_strains(basket, numer_of_free_strains):
 
 
 
-def apply_fixed_price_reduction(basket, amount):
+def apply_fixed_price_reduction(basket, parameters):
+    
+    # get amount
+    amount = parameters["reduction_amount"]
 
     # apply reduction and set promotion total cost to new amount
     basket["promotion"]["promotion_total_cost"] = basket["total_cost"] - amount
@@ -19,7 +22,10 @@ def apply_fixed_price_reduction(basket, amount):
 
 
 
-def apply_percentage_price_reduction(basket, percentage):
+def apply_percentage_price_reduction(basket, parameters):
+    
+    # get percentage
+    percentage_amount = parameters["percentage_reduction"]
 
     # calculate percentage of amount
     percentage_amount = (basket['total_cost']/100) * percentage
