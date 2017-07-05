@@ -34,6 +34,7 @@
 
 
 {% block content %}
+
     {% include 'include/costModal.html' %}
     {% include 'include/quoteDetailsModal.html' %}
     {% include 'include/orderDetailsModal.html' %}
@@ -86,7 +87,11 @@
                         <tr class="quoteRow" id="{{q.pk}}">
                             <td class="dateCell">{{q.creation_date}}
                             <td class="customerCell">{{q.customer_name}}</td>
-                            <td class="costCell"><b>£{{q.basket.total_cost}}</b></td>
+                            {% if q.basket.promotion %}
+                                <td class="costCell"><b>£{{q.basket.promotion_total_cost}}</b></td>
+                            {% else %}
+                                <td class="costCell"><b>£{{q.basket.total_cost}}</b></td>
+                            {% endif %}
                             <td class="quoteStatusCell">
                                 {{q.get_verbose_status_name}}
                             </td>

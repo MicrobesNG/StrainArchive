@@ -124,3 +124,7 @@
 .promo_active:hover {
     background-color: #7cff6d !important;
 }
+
+#subtext {
+    font-size: 14px;
+}

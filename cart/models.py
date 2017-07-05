@@ -92,7 +92,9 @@ class ConfirmedBasket(models.Model):
     total_cost = models.FloatField(default = 0.0)
     promotion_cost = models.FloatField(null = True)
     applied_promotion = models.ForeignKey(Promotion, null = True)
+    applied_code = models.ForeignKey(PromotionCode, null = True)
 
+    
     # put data for basket into dict
     def as_dict(self):
 
@@ -100,6 +102,7 @@ class ConfirmedBasket(models.Model):
 
         if self.promotion_cost:
             output["promotion_cost"] = self.promotion_cost
+            output["promotion_pk"] = self.applied_promotion.pk
 
         for purchase in self.purchases.all():
             output["purchases"].append(
