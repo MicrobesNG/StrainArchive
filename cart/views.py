@@ -15,6 +15,16 @@ from . models import Promotion, PromotionCode
 import json
 
 
+def clear_basket(request):
+
+    request.session["basket"] = basket_utils.generate_empty_basket()
+    request.session.modified = True
+
+    return HttpResponse(
+        json.dumps(request.session["basket"]),
+        content_type = "application/json"
+    )
+
 
 def apply_promotion(request, promotion_code):
 
