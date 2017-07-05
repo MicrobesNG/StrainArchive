@@ -7,5 +7,6 @@ urlpatterns = [
     url(r'^removeFromBasket/(?P<strain_pk>\d+)/$', views.remove_from_basket, name = 'remove_from_basket'),
     url(r'^checkout/', views.checkout, name = "checkout"),
     url(r'^clearBasket/', views.clear_basket, name = "clearBasket"),
-    url(r'applyPromotion/(?P<promotion_code>[\w\-]+)/$', views.apply_promotion, name = "apply_promotion")
+    url(r'checkPromotion/(?P<promotion_code>[\w\-]+)/$', views.check_promotion, name = "check_promotion")
+    url(r'cancelPromotion/(?P<promotion_code>[\w\-]+)/$', views.cancel_promotion, name = "cancel_promotion")
 ]

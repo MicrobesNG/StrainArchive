@@ -60,9 +60,6 @@ def generate_codes_for_promotion(
 # apply a promotional code to the session basket
 def apply_code_to_session_basket(request, promotion_code):
 
-
-    print promotion_code.promotion.promotion_parameters, type(promotion_code.promotion.promotion_parameters)
-
     # get promotion parameters
     parameters = json.loads(promotion_code.promotion.promotion_parameters)
 

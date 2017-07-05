@@ -9,6 +9,7 @@ from . import basket_utils
 from . import promo_utils
 from . models import Promotion, PromotionCode
 import json
+from datetime import datetime
 
 
 # generates an empty basket (dict) and sets session basket to new empty basket
@@ -24,9 +25,43 @@ def clear_basket(request):
         content_type = "application/json"
     )
 
+
+def cancel_promotion(request, promotion_code):
+
+     try:
+
+        promotion_code = PromotionCode.objects.get(code = promotion_code)
+
+    except PromotionCode.DoesNotExist:
+
+        # code does not exist
+        data = {"status": "NOT_FOUND"}
+
+    else:
+
+        promotion_code.number_of_uses -= 1
+        promotion_code.save()
+        request.session["basket"]["promotion"] = {
+            "promotion_code": "",
+            "promotion_pk": "",
+            "promotion_total_cost": 0.0
+        }
+
+        request.session.modified = True
+
+        data = {"status": "SUCCESS", "basket": request.session["basket"]}
+
+
+    # return basket and status to the page
+    return HttpResponse(
+        json.dumps(data),
+        content_type = "application/json"
+    )
+
+
 # applies promotion code to basket
 # returns promotion status and basket
-def apply_promotion(request, promotion_code):
+def check_promotion(request, promotion_code):
 
     # attempt to find promotion code in database
     try:
@@ -42,8 +77,13 @@ def apply_promotion(request, promotion_code):
 
         if promotion_code.promotion.expired:
 
-            # code is expired
+            # promotion has expired
             data = {"status": "EXPIRED"}
+
+        elif promotion_Code.promotion.start_date > datetime.now().date():
+
+            # promotion is not yet running
+            data = {"status": "NOT_YET_RUNNING"}
         
         elif promotion_code.check_usage_limit_hit():
 
@@ -56,12 +96,22 @@ def apply_promotion(request, promotion_code):
             data = {"status": "INACTIVE"}
 
         else:
-            
+
             # if code is valid and active, apply to basket
             promo_utils.apply_code_to_session_basket(request, promotion_code)
+            
+            promotion_code.save()
+
+            remaining_usages = max_usages - number_of_uses
 
             # code has been applied successfully
-            data = {"status": "SUCCESS", "basket": request.session["basket"]}
+            data = {
+                "status": "SUCCESS",
+                "basket": request.session["basket"],
+                "promo_name", promotion_code.promotion.name,
+                "promo_description": promotion_code.promotion.description,
+                "remaining_usages": remaining_usages
+            }
 
         # return basket and status to the page
         return HttpResponse(
