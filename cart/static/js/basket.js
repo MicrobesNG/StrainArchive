@@ -120,6 +120,14 @@ function updateBasket(data) {
 
 }
 
+function clearBasket() {
+    $.ajax({
+        url: "/cart/clearBasket/",
+        success: function(data) {
+            updateBasket(data);
+        }
+    });
+}
 
 function addToBasket(strainPK) {
     $.ajax({
@@ -154,6 +162,9 @@ $(document).ready(function() {
             $(this).removeClass("btn-warning");
             $(this).addClass("btn-primary");
 
+            $("#basketFooter_clear").hide();
+            $("#basketFooter_checkout").show();
+
             $(".removeItemCell").hide();
             $(".addToBasket").show();
 
@@ -161,6 +172,9 @@ $(document).ready(function() {
 
             $(this).removeClass("btn-primary");
             $(this).addClass("btn-warning");
+            
+            $("#basketFooter_clear").show();
+            $("#basketFooter_checkout").hide();
 
             $(".removeItemCell").show();
             $(".addToBasket").hide();
@@ -174,6 +188,10 @@ $(document).ready(function() {
 
     $("#basketContainer").on("click", ".removeFromBasket", function() {
         removeFromBasket(parseInt($(this).closest(".itemRow").attr("id").replace("item_", "")));
+    });
+
+    $("#clearBasket").click(function() {
+        clearBasket();
     });
     
 });

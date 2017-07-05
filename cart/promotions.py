@@ -6,8 +6,10 @@ def apply_free_strains(basket, numer_of_free_strains):
 
 
 
-def apply_fixed_price_reduction(basket, parameters):
+def apply_fixed_price_reduction(request, parameters):
     
+    basket = request.session["basket"]
+
     # get amount
     amount = parameters["reduction_amount"]
 
@@ -22,7 +24,9 @@ def apply_fixed_price_reduction(basket, parameters):
 
 
 
-def apply_percentage_price_reduction(basket, parameters):
+def apply_percentage_price_reduction(request, parameters):
+    
+    basket = request.session["basket"]
     
     # get percentage
     percentage_amount = parameters["percentage_reduction"]

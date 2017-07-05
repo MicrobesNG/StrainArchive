@@ -36,10 +36,8 @@
         <h3 id="basketTotalCost">£{{basket.total_cost}}</h3>
     </div>
 </div>
-<div class="col-md-12" class="basketFooter" id="basketFooter_clear">
-    <a href="{% url 'cart:clearBasket' %}">
-        <button type="button" class="btn btn-xs btn-danger" id="clearBasket">Clear Basket</button>
-    </a>
+<div class="col-md-12" class="basketFooter" id="basketFooter_clear" hidden>
+    <button type="button" class="btn btn-danger" id="clearBasket">Clear Basket</button>
 </div>
 <div class="col-md-12" class="basketFooter" id="basketFooter_checkout">
     <a href="{% url 'cart:checkout' %}">

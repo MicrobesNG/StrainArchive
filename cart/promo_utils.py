@@ -70,7 +70,7 @@ def apply_code_to_session_basket(request, promotion_code):
     basket = request.session["basket"]
 
     # find promotion function and apply to basket
-    PROMOTION_FUNCTION_MAP[promotion_code.promotion.promotion_type](basket, parameters)
+    PROMOTION_FUNCTION_MAP[promotion_code.promotion.promotion_type](request, parameters)
 
     # update the promotion code and save
     promotion_code.number_of_uses += 1

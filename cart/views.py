@@ -28,7 +28,6 @@ def clear_basket(request):
 
 def apply_promotion(request, promotion_code):
 
-
     try:
 
         promotion_code = PromotionCode.objects.get(code = promotion_code)
@@ -57,10 +56,10 @@ def apply_promotion(request, promotion_code):
 
             data = {"status": "SUCCESS", "basket": request.session["basket"]}
 
-            return HttpResponse(
-                json.dumps(data),
-                content_type = "application/json"
-            )
+        return HttpResponse(
+            json.dumps(data),
+            content_type = "application/json"
+        )
 
 
 
@@ -106,7 +105,7 @@ def add_to_basket(request, strain_pk):
     else:
 
         basket_utils.add_to_basket(request, selected_strain)
-        cart.basket_utils.set_basket_cost(request)
+        basket_utils.set_basket_cost(request)
 
 
     return HttpResponse(
@@ -130,8 +129,8 @@ def remove_from_basket(request, strain_pk):
 
     else:
 
-        cart.basket_utils.remove_from_basket(request, selected_strain)
-        cart.basket_utils.set_basket_cost(request)
+        basket_utils.remove_from_basket(request, selected_strain)
+        basket_utils.set_basket_cost(request)
 
 
     return HttpResponse(
