@@ -63,8 +63,6 @@ class QuoteForm(forms.Form):
         if cleaned_note:
             newQuote.customer_note = cleaned_note
 
-        
-
         confirmed_basket = cart.basket_utils.save_session_basket_to_db(request)
         newQuote.basket = confirmed_basket
         newQuote.save()

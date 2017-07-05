@@ -94,15 +94,24 @@ class ConfirmedBasket(models.Model):
     applied_promotion = models.ForeignKey(Promotion, null = True)
     applied_code = models.ForeignKey(PromotionCode, null = True)
 
-    
+
     # put data for basket into dict
     def as_dict(self):
 
         output = {"purchases": [], "total_cost": self.total_cost}
 
         if self.promotion_cost:
-            output["promotion_cost"] = self.promotion_cost
-            output["promotion_pk"] = self.applied_promotion.pk
+            output["promotion_data"] = {
+                "applied_code": self.applied_code,
+                "promotion_cost": self.promotion_cost,
+                "promotion_pk": self.applied_promotion.pk,
+                "promotion_description": self.applied_promotion.description,
+                "promotion_name": self.applied_promotion.name
+            }
+        
+        else:
+
+            output["promotion_data"] = "NONE"
 
         for purchase in self.purchases.all():
             output["purchases"].append(

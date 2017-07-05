@@ -47,6 +47,7 @@ def generate_empty_basket():
         "promotion": {
             "promotion_code": "",
             "promotion_pk": "",
+            "promotion_description": "",
             "promotion_total_cost": 0.0
         }
     }

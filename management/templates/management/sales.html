@@ -87,7 +87,7 @@
                         <tr class="quoteRow" id="{{q.pk}}">
                             <td class="dateCell">{{q.creation_date}}
                             <td class="customerCell">{{q.customer_name}}</td>
-                            {% if q.basket.promotion %}
+                            {% if q.basket.applied_promotion %}
                                 <td class="costCell"><b>£{{q.basket.promotion_total_cost}}</b></td>
                             {% else %}
                                 <td class="costCell"><b>£{{q.basket.total_cost}}</b></td>

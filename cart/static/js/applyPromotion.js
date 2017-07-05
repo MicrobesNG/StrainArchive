@@ -8,7 +8,7 @@ $(document).ready(function() {
         
         $("#promoCodeInput").prop("disabled", true);
         $("#clearPromocode").show();
-        $("#checkPromoCode").hide();
+        $("#checkPromocode").hide();
         $("#promoDetailsModal").modal("hide");
 
     });
@@ -36,11 +36,11 @@ $(document).ready(function() {
     });
 
 
-    $("#checkPromoCode").click(function() {
+    $("#checkPromocode").click(function() {
         $.ajax({
             url: "/cart/checkPromotion/" + $("#promoCodeInput").val(),
             success: function(data) {
-                console.log(data);
+
                 switch (data["status"]) {
                     case "NOT_FOUND":
                         var message = "The promo code is not valid.";

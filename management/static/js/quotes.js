@@ -54,6 +54,17 @@ function populateQuoteDetailsModal(data) {
 
     $("#quoteDetailsTotalBasketCost").text("Total: £" + data["basket"]["total_cost"]);
 
+    if (data["basket"]["promotion_data"] != "NONE") {
+        
+        var promoData = data["basket"]["promotion_data"];
+        
+        $("#appliedPromoName").text(promoData["promotion_name"]);
+        $("#appliedPromotionDetails").text(promoData["promotion_description"]);
+        $("#finalBasketTotalCost").text(promoData["promotion_cost"]);
+        $("#appliedPromoCode").text(promoData["applied_code"]);
+        
+    }
+
 }
 
 // send request for details of quote with pk = quotePK

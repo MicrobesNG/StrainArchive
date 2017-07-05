@@ -72,6 +72,8 @@ def apply_code_to_session_basket(request, promotion_code):
     # add promotion details to basket
     basket["promotion"]["promotion_code"] = promotion_code.code
     basket["promotion"]["promotion_pk"] = promotion_code.promotion.pk
+
+    request.session["basket"] = basket
     request.session.modified = True
 
     # update the promotion code and save
