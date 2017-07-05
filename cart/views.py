@@ -28,7 +28,7 @@ def clear_basket(request):
 
 def cancel_promotion(request, promotion_code):
 
-     try:
+    try:
 
         promotion_code = PromotionCode.objects.get(code = promotion_code)
 
@@ -50,6 +50,12 @@ def cancel_promotion(request, promotion_code):
         request.session.modified = True
 
         data = {"status": "SUCCESS", "basket": request.session["basket"]}
+
+
+    return HttpResponse(
+        json.dumps(data),
+        content_type = "application/json"
+    )
 
 
     # return basket and status to the page
@@ -80,7 +86,7 @@ def check_promotion(request, promotion_code):
             # promotion has expired
             data = {"status": "EXPIRED"}
 
-        elif promotion_Code.promotion.start_date > datetime.now().date():
+        elif promotion_code.promotion.start_date > datetime.now().date():
 
             # promotion is not yet running
             data = {"status": "NOT_YET_RUNNING"}
@@ -102,13 +108,13 @@ def check_promotion(request, promotion_code):
             
             promotion_code.save()
 
-            remaining_usages = max_usages - number_of_uses
+            remaining_usages = promotion_code.max_usages - promotion_code.number_of_uses
 
             # code has been applied successfully
             data = {
                 "status": "SUCCESS",
                 "basket": request.session["basket"],
-                "promo_name", promotion_code.promotion.name,
+                "promo_name": promotion_code.promotion.name,
                 "promo_description": promotion_code.promotion.description,
                 "remaining_usages": remaining_usages
             }

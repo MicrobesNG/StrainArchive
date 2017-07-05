@@ -1,12 +1,36 @@
 
 
 $(document).ready(function() {
+    
+    $("#clearPromocode").hide();
+    
+    $("#confirmCode").click(function() {
+        
+        $("#promoCodeInput").prop("disabled", true);
+        $("#clearPromocode").show();
+        $("#checkPromoCode").hide();
+        $("#promoDetailsModal").modal("hide");
 
-    $("#cancelPromotion").click(function() {
+    });
+
+    $("#clearPromocode").click(function() {
+        $.ajax({
+            url: "/cart/cancelPromotion/" + $("#promoCodeInput").val(),
+            success: function(data) {
+                $("#promoCodeInput").prop("disabled", false);
+                $("#clearPromocode").hide();
+                $("#checkPromocode").show();
+                $("#finalCost").text("£" + data["basket"]["total_cost"]);
+            }
+        });
+    });
+
+    $("#cancelPromotionApplication").click(function() {
         $.ajax({
             url: "/cart/cancelPromotion/" + $("#promoCodeInput").val(),
             success: function(data) {
                 $("#promoDetailsModal").hide();
+                $("#finalCost").text("£" + data["basket"]["total_cost"]);
             }
         });
     });
@@ -16,7 +40,7 @@ $(document).ready(function() {
         $.ajax({
             url: "/cart/checkPromotion/" + $("#promoCodeInput").val(),
             success: function(data) {
-                
+                console.log(data);
                 switch (data["status"]) {
                     case "NOT_FOUND":
                         var message = "The promo code is not valid.";
@@ -49,11 +73,12 @@ $(document).ready(function() {
                         $("#promoStatusModal").modal("show");
                         break;
                     case "SUCCESS":
-                        var message = "This will reduce your total basket cost from " + data["basket"]["total_cost"];
-                            message += " to" + data["basket"]["promotion"]["promotion_total_cost"];
+                        var message = "This will reduce your total basket cost from £" + data["basket"]["total_cost"];
+                            message += " to £" + data["basket"]["promotion"]["promotion_total_cost"];
                         $("#promoName").text(data["promo_name"]);
                         $("#promoDescription").text(data["promo_description"]);
                         $("#promoApplicationSummary").text(message);
+                        $("#finalCost").text("£" + data["basket"]["promotion"]["promotion_total_cost"]);
                         $("#promoDetailsModal").modal("show");
                         break;
                     default:
