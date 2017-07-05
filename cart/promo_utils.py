@@ -2,6 +2,8 @@ from . models import ConfirmedBasket, Purchase, Promotion, PromotionCode
 import random, string
 import json
 from promotions import *
+import pprint
+
 
 
 # generates random string
@@ -75,6 +77,8 @@ def apply_code_to_session_basket(request, promotion_code):
 
     request.session["basket"] = basket
     request.session.modified = True
+    
+    pprint.pprint(request.session["basket"])
 
     # update the promotion code and save
     promotion_code.number_of_uses += 1

@@ -88,7 +88,7 @@
                             <td class="dateCell">{{q.creation_date}}
                             <td class="customerCell">{{q.customer_name}}</td>
                             {% if q.basket.applied_promotion %}
-                                <td class="costCell"><b>£{{q.basket.promotion_total_cost}}</b></td>
+                                <td class="costCell"><b>£{{q.basket.promotion_cost}}</b></td>
                             {% else %}
                                 <td class="costCell"><b>£{{q.basket.total_cost}}</b></td>
                             {% endif %}
