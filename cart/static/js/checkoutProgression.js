@@ -1,22 +1,27 @@
 
-var CHECKOUT_FRAMES = [
-    "paymentDetailsTab",
-    "addressTab",
-    "promotionsTab",
-    "notesTab"
-];
-
-function validatePaymentDetails() {
-
-    return true;
-
-}
-
-
 $(document).ready(function() {
 
     $(".nextButton").click(function() {
-        if (validatePaymentDetails) {
+        
+        var moveNext = false;
+
+        if ($(this).attr("id") == "paymentNext") {
+            if (validatePaymentDetails()) {
+                moveNext = true;
+            }
+        } else if ($(this).attr("id") == "billingNext") {
+            if (validateBillingAddressDetails()) {
+                moveNext = true;
+            }
+        } else if ($(this).attr("id") == "deliveryNext") {
+            if (validateDeliveryAddressDetails()) {
+                moveNext = true;
+            }
+        } else {
+            moveNext = true;
+        }
+
+        if (moveNext) {
             
             var currentID = $(this).parents(".tab-pane").attr("id");
             

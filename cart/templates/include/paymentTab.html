@@ -1,0 +1,71 @@
+<div id="paymentDetailsTab" class="tab-pane fade in active">
+    <div class="col-md-12"><br></div>
+    <div class="col-md-12">
+        <div class="col-md-5">
+            <h4>Name:</h4>
+        </div>
+        <div class="col-md-7">
+            <input type="text" class="form-control" id="nameInput">
+        </div>
+    </div>
+    <div class="col-md-12"><br></div>
+    <div class="col-md-12">
+        <div class="col-md-5">
+            <h4>Email:</h4>
+        </div>
+        <div class="col-md-7">
+            <input type="text" class="form-control" id="emailInput">
+        </div>
+    </div>
+    <div class="col-md-12"><br></div>
+    <div class="col-md-12">
+        <div class="col-md-5">
+            <h4>Confirm Email:</h4>
+        </div>
+        <div class="col-md-7">
+            <input type="text" class="form-control" id="confirmEmailInput">
+        </div>
+    </div>
+    <div class="col-md-12"><br></div>
+    <div class="col-md-12">
+        <div class="col-md-5">
+            <h4>Funding Type:</h4>
+        </div>
+        <div class="col-md-7">
+            <div class="dropdown">
+                
+                <button class="btn btn-primary dropdown-toggle" id="fundingTypeDropdown" type="button" data-toggle="dropdown">
+                    Select Funding Type
+                    <span class="caret"></span>
+                </button>
+                
+                <ul class="dropdown-menu" id="fundingTypeDropdownMenu">
+                    <li class="fundingTypeOption" id="NC">Non-Commercial</li>
+                    <li class="fundingTypeOption" id="B">BBSRC</li>
+                    <li class="fundingTypeOption" id="I">Industry</li>
+                    <li class="fundingTypeOption" id="UB">Internal UoB</li>
+                    <li class="fundingTypeOption" id="NS">Not Set</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12"><br></div>
+    <div class="col-md-12" id="bbsrcContainer">
+        <div class="col-md-5">
+            <h4>BBSRC Code:</h4>
+        </div>
+        <div class="col-md-7">
+            <input type="text" class="form-control" id="bbsrcCodeInput">
+        </div>
+    </div>
+    <div class="col-md-12"><br></div>
+    <div class="col-md-12">
+        <div class="col-md-6" align="left">
+            <button type="button" class="btn btn-success previousButton" id="frame_0" disabled>Previous</button>
+        </div>
+        <div class="col-md-6" align="right">
+            <button type="button" class="btn btn-success nextButton" id="paymentNext">Next</button>
+        </div>
+    </div>
+</div>

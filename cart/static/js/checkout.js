@@ -52,40 +52,40 @@ $(document).ready(function() {
     });
 
     $("#viewSummary").click(function() {
-        var success = true;
-        if (!validateName()) {
-            displayErrorModal("Name required to submit order.");
-            success = false;
-        }
-        if (!validateEmail()) {
-            displayErrorModal("Email required to submit order.");
-            success = false;
-        }
-        if (!validateEmailConfirm()) {
-            displayErrorModal("Please confirm your email is correct.");
-            success = false;
-        }
-        if (!validateFundingTypeSelection()) {
-            displayErrorModal("Please select a funding type.");
-            success = false;
-        }
-        if (!validateBBSRCCode()) {
-            displayErrorModal("BBSRC Code is required for BBSRC funded purchases.");
-            success = false;
-        }
-        if (!validateBillingAddress()) {
-            displayErrorModal("Billing Address is required to submit order.");
-            success = false;
-        }
-        if (!validateDeliveryAddress()) {
-            displayErrorModal("Delivery Address is required to submit order.");
-            success = false;
-        }
+        // var success = true;
+        // if (!validateName()) {
+        //     displayErrorModal("Name required to submit order.");
+        //     success = false;
+        // }
+        // if (!validateEmail()) {
+        //     displayErrorModal("Email required to submit order.");
+        //     success = false;
+        // }
+        // if (!validateEmailConfirm()) {
+        //     displayErrorModal("Please confirm your email is correct.");
+        //     success = false;
+        // }
+        // if (!validateFundingTypeSelection()) {
+        //     displayErrorModal("Please select a funding type.");
+        //     success = false;
+        // }
+        // if (!validateBBSRCCode()) {
+        //     displayErrorModal("BBSRC Code is required for BBSRC funded purchases.");
+        //     success = false;
+        // }
+        // if (!validateBillingAddress()) {
+        //     displayErrorModal("Billing Address is required to submit order.");
+        //     success = false;
+        // }
+        // if (!validateDeliveryAddress()) {
+        //     displayErrorModal("Delivery Address is required to submit order.");
+        //     success = false;
+        // }
 
-        if (success) {
-            populateSummaryModal();
-            $("#checkoutSummaryModal").modal("show");
-        }
+        // if (success) {
+        populateSummaryModal();
+        $("#checkoutSummaryModal").modal("show");
+        // }
 
     });
 

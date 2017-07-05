@@ -90,11 +90,16 @@ class ConfirmedBasket(models.Model):
     # purchases in order and summed cost for all of them
     purchases = models.ManyToManyField(Purchase)
     total_cost = models.FloatField(default = 0.0)
+    promotion_cost = models.FloatField(null = True)
+    applied_promotion = models.ForeignKey(Promotion, null = True)
 
     # put data for basket into dict
     def as_dict(self):
 
         output = {"purchases": [], "total_cost": self.total_cost}
+
+        if self.promotion_cost:
+            output["promotion_cost"] = self.promotion_cost
 
         for purchase in self.purchases.all():
             output["purchases"].append(
