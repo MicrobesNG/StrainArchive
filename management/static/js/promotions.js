@@ -142,17 +142,9 @@ $(document).ready(function() {
         $("#id_start_date").val($("#newPromoStartDateInput").val());
         $("#id_expiry_date").val($("#newPromoExpiryDateInput").val());
         $("#id_promo_type").val($("#promoTypeDropdown").val());
-        
-        switch ($("#promoTypeDropdown").val()) {
-            case "FPR":
-                $("fixed_amount").val($("#newPromoFPRAmount").val());
-                break;
-            case "PR":
-                $("percentage_amount").val($("#newPromoPRAmount").val());
-                break;
-            default:
-                break;
-        }
 
+        $("#id_fixed_amount").val($("#newPromoFPRAmount").val());
+        $("#id_percentage_amount").val($("#newPromoPRAmount").val());
+        alert($("#id_fixed_amount").val());
     });
 });

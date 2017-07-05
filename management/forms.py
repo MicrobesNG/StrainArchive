@@ -217,19 +217,29 @@ class CreateNewPromotionForm(forms.Form):
                 promotion_type = cleaned_promo_type
             )
 
-            if new_promo.promotion_type == "FPR":
 
+            print "-- -- -- -- --"
+            print cleaned_promo_type
+            print new_promo.promotion_type
+            print "-- -- -- -- --"
+
+
+            if new_promo.promotion_type == "FPR":
+                print "A"
                 params = {"reduction_amount": cleaned_fixed_amount, "percentage_reduction": "NULL"}
+                print params
+                print "--"
 
             elif new_promo.promotion_type == "PR":
-
+                
                 params = {"reduction_amount": "NULL", "percentage_reduction": cleaned_percentage_amount}
 
             else:
-                
+                print "B"
                 params = {"reduction_amount": "NULL", "percentage_reduction": "NULL"}
-
+            
             new_promo.promotion_parameters = json.dumps(params)
+            new_promo.save()
 
 
             messages.success(

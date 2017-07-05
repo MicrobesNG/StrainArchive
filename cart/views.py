@@ -47,6 +47,11 @@ def apply_promotion(request, promotion_code):
 
             data = {"status": "SUCCESS", "basket": request.session["basket"]}
 
+            return HttpResponse(
+                json.dumps(data),
+                content_type = "application/json"
+            )
+
 
 
 

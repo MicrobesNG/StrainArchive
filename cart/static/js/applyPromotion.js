@@ -1,15 +1,15 @@
 
-$("#applyPromoCode").click(function() {
-    $.ajax({
-        url: "/cart/applyPromotion/" + promotionCode,
-        success: function(data) {
-            console.log(data);
-        }
-    });
-});
+
 
 
 
 $(document).ready(function() {
-
+    $("#applyPromoCode").click(function() {
+        $.ajax({
+            url: "/cart/applyPromotion/" + $("#promoCodeInput").val(),
+            success: function(data) {
+                console.log(data);
+            }
+        });
+    });
 });
