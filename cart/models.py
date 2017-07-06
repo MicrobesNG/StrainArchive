@@ -102,7 +102,7 @@ class ConfirmedBasket(models.Model):
 
         if self.promotion_cost:
             output["promotion_data"] = {
-                "applied_code": self.applied_code,
+                "applied_code": self.applied_code.code,
                 "promotion_cost": self.promotion_cost,
                 "promotion_pk": self.applied_promotion.pk,
                 "promotion_description": self.applied_promotion.description,

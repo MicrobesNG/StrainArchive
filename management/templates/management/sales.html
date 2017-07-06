@@ -3,6 +3,7 @@
 
 {% block extra_css_files %}
     <link href="{% static 'css/sales.css' %}" rel="stylesheet">
+    <link href="{% static 'css/promoModal.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block extra_js_files %}
@@ -100,7 +101,7 @@
                             {% else %}
                                 <td class="orderStatusCell"><p>No Order Present</p></td>
                             {% endif %}
-                            <td class="viewCell">
+                            <td class="viewCell" align="middle">
                                 <button type="button" class="btn btn-xs btn-primary viewQuote">View Quote</button>
                                 {% if q.order %}
                                     <button type="button" class="btn btn-xs btn-primary viewOrder" id="order_{{q.order.pk}}">View Order</button>

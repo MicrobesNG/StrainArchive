@@ -1,0 +1,50 @@
+#promoTypeDropdown {
+    width: 100%;
+}
+#promoTypeDropdownMenu {
+    width: 100%;
+}
+#newPromoFPRAmount {
+    margin-left: 10px;
+    width: 75%;
+    display: inline-block;
+}
+#newPromoPRAmount {
+    margin-right: 10px;
+    width: 75%;
+    display: inline-block;
+}
+
+#newPromoDescriptionInput {
+    resize: none;
+}
+
+#codesInitiallyActive {
+    width: 30px;
+    height: 30px;
+}
+
+
+.promo_limit {
+    background-color: #ff7c7c;
+}
+.promo_inactive {
+    background-color: #ffc67c;
+}
+.promo_active {
+    background-color: #b7ffaf;
+}
+
+.promo_limit:hover {
+    background-color: #ff4242 !important;
+}
+.promo_inactive:hover {
+    background-color: #ffad42 !important;
+}
+.promo_active:hover {
+    background-color: #7cff6d !important;
+}
+
+#subtext {
+    font-size: 14px;
+}

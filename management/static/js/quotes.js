@@ -60,8 +60,12 @@ function populateQuoteDetailsModal(data) {
         
         $("#appliedPromoName").text(promoData["promotion_name"]);
         $("#appliedPromotionDetails").text(promoData["promotion_description"]);
-        $("#finalBasketTotalCost").text(promoData["promotion_cost"]);
+        $("#finalBasketTotalCost").html("<span id='finalTotalText'>Final Total:</span> £" + promoData["promotion_cost"]);
         $("#appliedPromoCode").text(promoData["applied_code"]);
+        
+    } else {
+
+        $("#finalBasketTotalCost").html("<span id='finalTotalText'>Final Total:</span> £" + data["basket"]["total_cost"]);
         
     }
 
