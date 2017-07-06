@@ -12,6 +12,11 @@ import json
 from datetime import datetime
 
 
+def checkout_complete(request):
+
+    return render(request, "cart/checkoutSuccess.html", {})
+
+
 # generates an empty basket (dict) and sets session basket to new empty basket
 def clear_basket(request):
 
