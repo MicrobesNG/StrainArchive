@@ -15,30 +15,32 @@ def save_session_basket_to_db(request):
             total_cost = session_basket["total_cost"]
         )
 
-        try:
-        
-            applied_promotion = Promotion.objects.get(pk = session_basket["promotion"]["promotion_pk"])
-        
-        except Promotion.DoesNotExist:
+        if session_basket["promotion"]["promotion_pk"]:
+
+            try:
             
-            print "PROMO NOT FOUND"
+                applied_promotion = Promotion.objects.get(pk = session_basket["promotion"]["promotion_pk"])
+            
+            except Promotion.DoesNotExist:
+                
+                print "PROMO NOT FOUND"
 
-        else:
+            else:
 
-            new_basket.applied_promotion = applied_promotion
-            new_basket.promotion_cost = session_basket["promotion"]["promotion_total_cost"]
+                new_basket.applied_promotion = applied_promotion
+                new_basket.promotion_cost = session_basket["promotion"]["promotion_total_cost"]
 
-        try:
+            try:
 
-            applied_promotion_code = PromotionCode.objects.get(code = session_basket["promotion"]["promotion_code"])
-        
-        except PromotionCode.DoesNotExist:
+                applied_promotion_code = PromotionCode.objects.get(code = session_basket["promotion"]["promotion_code"])
+            
+            except PromotionCode.DoesNotExist:
 
-            print "CODE NOT FOUND"
-        
-        else:
+                print "CODE NOT FOUND"
+            
+            else:
 
-            new_basket.applied_code = applied_promotion_code
+                new_basket.applied_code = applied_promotion_code
 
         for item in session_basket["items"]:
 
