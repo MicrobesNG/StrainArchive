@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from archive.models import Strain
 from . forms import QuoteForm
@@ -12,7 +12,7 @@ import json
 from datetime import datetime
 
 
-def checkout_complete(request):
+def success(request):
 
     return render(request, "cart/checkoutSuccess.html", {})
 
@@ -196,6 +196,9 @@ def checkout(request):
         if quote_form.is_valid():
 
             quote_form.process(request)
+
+            return redirect("cart:success")
+            
         
         else:
 

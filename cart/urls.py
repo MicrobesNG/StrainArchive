@@ -9,5 +9,5 @@ urlpatterns = [
     url(r'^clearBasket/', views.clear_basket, name = "clearBasket"),
     url(r'checkPromotion/(?P<promotion_code>[\w\-]+)/$', views.check_promotion, name = "check_promotion"),
     url(r'cancelPromotion/(?P<promotion_code>[\w\-]+)/$', views.cancel_promotion, name = "cancel_promotion"),
-    url(r'^success/', views.checkout_complete, name = "clearComplete"),
+    url(r'^success/', views.success, name = "success"),
 ]
