@@ -7,6 +7,7 @@ import cart.basket_utils
 
 class QuoteForm(forms.Form):
 
+    # verbose name mappings for funding types
     FUNDING_TYPES = (
         ("NC", "Non-Commercial"),
         ("B", "BBSRC"),
@@ -14,6 +15,7 @@ class QuoteForm(forms.Form):
         ("UB", "Internal UoB")
     )
 
+    # form fields
     customer_name = forms.CharField(max_length = 100, required = True)
     email = forms.EmailField(required = True)
     billing_address = forms.CharField(required = True, max_length = 200)
@@ -22,9 +24,10 @@ class QuoteForm(forms.Form):
     bbsrc_code = forms.CharField(required = False, max_length = 10)
     note = forms.CharField(required = False, max_length = 250)
 
-    
+    # clean the data and process the form
     def process(self, request):
 
+        # get cleaned data
         cleaned_name = self.cleaned_data["customer_name"]
         cleaned_email = self.cleaned_data["email"]
         cleaned_billing_address = self.cleaned_data["billing_address"]
@@ -33,6 +36,7 @@ class QuoteForm(forms.Form):
         cleaned_bbsrc_code = self.cleaned_data["bbsrc_code"]
         cleaned_note = self.cleaned_data["note"]
 
+        # if needed, make sure that a BBSRC code has been given
         if cleaned_funding_type == "B":
             
             if not cleaned_bbsrc_code:
@@ -41,6 +45,7 @@ class QuoteForm(forms.Form):
 
             else:
 
+                # create BBSRC funded quote
                 newQuote = Quote.objects.create(
                     customer_name = cleaned_name,
                     customer_email = cleaned_email,
@@ -52,6 +57,7 @@ class QuoteForm(forms.Form):
         
         else:
 
+            # create non-BBSRC funded quote
             newQuote = Quote.objects.create(
                 customer_name = cleaned_name,
                 customer_email = cleaned_email,
@@ -60,13 +66,18 @@ class QuoteForm(forms.Form):
                 delivery_address = cleaned_delivery_address
             )
 
+        # add the note if one was submitted
         if cleaned_note:
             newQuote.customer_note = cleaned_note
 
+        # save the session basket to the database
         confirmed_basket = cart.basket_utils.save_session_basket_to_db(request)
+
+        # add the basket to the quote and save
         newQuote.basket = confirmed_basket
         newQuote.save()
 
+        # clear the session basket
         request.session["basket"] = cart.basket_utils.generate_empty_basket()
         request.session.modified = True
         

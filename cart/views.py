@@ -11,7 +11,7 @@ from . models import Promotion, PromotionCode
 import json
 from datetime import datetime
 
-
+# view for checkout completion
 def success(request):
 
     return render(request, "cart/checkoutSuccess.html", {})
@@ -113,6 +113,7 @@ def check_promotion(request, promotion_code):
             
             promotion_code.save()
 
+            # calculate remaining usages
             remaining_usages = promotion_code.max_usages - promotion_code.number_of_uses
 
             # code has been applied successfully
