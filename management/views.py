@@ -298,6 +298,7 @@ def management_users(request):
     )
 
 
+# view for management login
 def login(request):
 
     if request.method == "POST":
