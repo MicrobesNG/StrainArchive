@@ -1,6 +1,16 @@
+
 .activationDropdown {
     width: 70%;
 }
+
 .activationMenu {
     width: 70%;
+}
+
+#newPermissionsDropdown {
+    width: 100%;
+}
+
+#permissionsMenu {
+    width: 100%;
 }

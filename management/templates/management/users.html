@@ -5,7 +5,7 @@
     <link href="{% static 'css/users.css' %}" rel="stylesheet">
 {% endblock %}
 {% block extra_js_files %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.min.js"></script>
+    <script src="{% static 'js/newUser.js' %}"></script>
 {% endblock %}
 
 
@@ -29,6 +29,15 @@
 
 
 {% block content %}
+    
+    {% include 'include/newUserModal.html' %}
+
+    <form id="newUserForm" method="post" name="newUserForm">
+        {% csrf_token %}
+        {% for field in new_user_form %}
+            {{field.as_hidden}}
+        {% endfor %}
+    </form>
 
     <div class="col-md-12"><br></div>
 
@@ -62,7 +71,7 @@
                                         <li class="promoTypeOption deactivate">Deactivate</li>
                                     </ul>
                                 {% else %}
-                                    <button class="btn btn-primary dropdown-toggle" id="activeDropdown" type="button" data-toggle="dropdown">
+                                    <button class="btn btn-xs btn-primary dropdown-toggle activationDropdown" type="button" data-toggle="dropdown">
                                         Not Active
                                         <span class="caret"></span>
                                     </button>

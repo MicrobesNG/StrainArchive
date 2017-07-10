@@ -6,8 +6,9 @@ import json
 from cart.promo_utils import generate_codes_for_promotion
 from django.contrib.auth import authenticate
 from django.shortcuts import redirect
-from promo_utils import generate_code
+from cart.promo_utils import generate_code
 from . models import ManagementUserProfile
+from django.contrib.auth.models import User
 
 def generate_password():
 
@@ -54,6 +55,8 @@ class NewUserForm(forms.Form):
             last_name = cleaned_last_name,
             user = new_user
         )
+
+        messages.success(request, "New user '%s' was created successfully." % cleaned_username)
     
 
     def process_errors(self, request):

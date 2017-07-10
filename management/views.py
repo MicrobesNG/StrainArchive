@@ -293,7 +293,7 @@ def management_users(request):
 
         new_user_form = NewUserForm(request.POST)
 
-        if new_user_form.is_valid:
+        if new_user_form.is_valid():
 
             new_user_form.process(request)
         
