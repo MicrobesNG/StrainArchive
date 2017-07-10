@@ -296,3 +296,12 @@ def management_users(request):
             "users": User.objects.all()
         }
     )
+
+
+def login(request):
+
+    return render(
+        request,
+        "management/login.html",
+        {}
+    )
