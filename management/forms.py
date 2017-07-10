@@ -5,6 +5,42 @@ from cart.models import Quote, Promotion, Order, PaymentOrder, ShopOrder
 import json
 from cart.promo_utils import generate_codes_for_promotion
 
+class LoginForm(forms.Form):
+
+    username = forms.CharField(max_length = 20, required = True)
+    password = forms.CharField(max_length = 10, required = True)
+
+    def process(self, request):
+
+        cleaned_username = self.cleaned_data["username"]
+        cleaned_password = self.cleaned_data["password"]
+
+        user = authenticate(cleaned_username, cleaned_password)
+
+        if user:
+
+            if user.is_active:
+
+                return redirect("management:dashboard")
+
+            else:
+
+                messages.info(request, "Account not activated.")
+
+        else:
+
+            messages.error(request, "Username or password was incorrect.")
+    
+    def process_errors(self, request):
+
+        error_dict = json.loads(self.errors.as_json())
+        for key in error_dict:
+            for error in error_dict[key]:
+                messages.error(request, "Error: %s - %s" % (key, error["message"]))
+
+
+
+
 class EditOrderForm(forms.Form):
 
     selected_order_pk = forms.IntegerField(required = False)
