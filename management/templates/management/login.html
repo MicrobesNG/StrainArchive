@@ -13,12 +13,14 @@
 {% endblock %}
 
 {% block page_content %}
+
     <form action="." id="login_form" name="login_form" method="post">
-    {% csrf_token %}
-    {% for field in login_form %}
-    {{field.as_hidden}}
-    {% endfor %}
+        {% csrf_token %}
+        {% for field in login_form %}
+            {{field.as_hidden}}
+        {% endfor %}
     </form>
+
     <div class="col-md-12 loginContainer">
         <div class="col-md-12" align="middle">
             <h2>Login To Your Account</h2>
@@ -45,4 +47,5 @@
             <input type="submit" class="btn btn-success" value="LOGIN" form="login_form" id="submitLoginForm">
         </div>
     </div>
+    
 {% endblock %}

@@ -4,6 +4,8 @@ from django.contrib import messages
 from cart.models import Quote, Promotion, Order, PaymentOrder, ShopOrder
 import json
 from cart.promo_utils import generate_codes_for_promotion
+from django.contrib.auth import authenticate
+from django.shortcuts import redirect
 
 class LoginForm(forms.Form):
 
@@ -15,11 +17,13 @@ class LoginForm(forms.Form):
         cleaned_username = self.cleaned_data["username"]
         cleaned_password = self.cleaned_data["password"]
 
-        user = authenticate(cleaned_username, cleaned_password)
+        user = authenticate(username = cleaned_username, password = cleaned_password)
 
         if user:
 
             if user.is_active:
+
+                print "HERE"
 
                 return redirect("management:dashboard")
 

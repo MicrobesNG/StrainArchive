@@ -12,7 +12,6 @@ import json
 from datetime import datetime
 
 
-
 def send_quote(request, quote_pk):
 
     try:
@@ -320,5 +319,7 @@ def login(request):
     return render(
         request,
         "management/login.html",
-        {}
+        {
+            "login_form": login_form
+        }
     )
