@@ -25,7 +25,7 @@ class LoginForm(forms.Form):
 
                 print "HERE"
 
-                return redirect("management:dashboard")
+                return True
 
             else:
 

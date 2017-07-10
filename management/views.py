@@ -10,6 +10,7 @@ from forms import CreateNewPromotionForm, GenerateNewCodesForm, EditOrderForm, L
 from django.http import HttpResponse
 import json
 from datetime import datetime
+from django.shortcuts import redirect
 
 
 def send_quote(request, quote_pk):
@@ -306,7 +307,9 @@ def login(request):
 
         if login_form.is_valid():
 
-            login_form.process(request)
+            if login_form.process(request):
+
+                return redirect("management:dashboard")
 
         else:
 
