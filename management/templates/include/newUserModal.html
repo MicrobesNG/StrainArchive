@@ -1,0 +1,87 @@
+
+
+<div id="newPromoModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create New User</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h4>Username:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="createNewUsername">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h4>First name:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="createNewFirstName">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h4>Last name:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="createNewLastName">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h4>Email:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" class="form-control" id="createNewEmail">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h4>Email:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" class="form-control" id="createNewEmail">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h4>Permissions:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-xs btn-primary dropdown-toggle" id="newPermissionsDropdown" type="button" data-toggle="dropdown">
+                                Permissions
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu permissionsMenu">
+                                <li class="promoTypeOption" id="newStandard">Standard</li>
+                                <li class="promoTypeOption" id="newSuperuser">Superuser</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12"><hr></div>
+                    <div class="col-md-12">
+                        <div class="col-md-6" align="left">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="col-md-6" align="right">
+                            <input type="submit" class="btn btn-success" name="newUserForm" form="newUserForm" value="Create User">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

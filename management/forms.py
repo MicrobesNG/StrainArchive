@@ -6,6 +6,64 @@ import json
 from cart.promo_utils import generate_codes_for_promotion
 from django.contrib.auth import authenticate
 from django.shortcuts import redirect
+from promo_utils import generate_code
+from . models import ManagementUserProfile
+
+def generate_password():
+
+    return generate_code(10)
+
+
+class NewUserForm(forms.Form):
+
+    username = forms.CharField(max_length = 20, required = True)
+    first_name = forms.CharField(max_length = 20, required = True)
+    last_name = forms.CharField(max_length = 20, required = True)
+    user_type = forms.CharField(max_length = 2, required = True)
+    email = forms.EmailField(max_length = None, required = True)
+
+    def process(self, request):
+
+        cleaned_username = self.cleaned_data["username"]
+        cleaned_first_name = self.cleaned_data["first_name"]
+        cleaned_last_name = self.cleaned_data["last_name"]
+        cleaned_user_type = self.cleaned_data["user_type"]
+        cleaned_email = self.cleaned_data["email"]
+        
+        new_password = generate_password()
+
+        new_user = User.objects.create_user(
+            username = cleaned_username,
+            password = new_password,
+            email = cleaned_email
+        )
+
+        if cleaned_user_type == "ST":
+            new_user.is_superuser = False
+        elif cleaned_user_type == "SU":
+            new_user.is_superuser = True
+        else:
+            new_user.is_superuser = True
+
+        new_user.is_active = False
+
+        new_user.save()
+
+        new_management_profile = ManagementUserProfile.objects.create(
+            first_name = cleaned_first_name,
+            last_name = cleaned_last_name,
+            user = new_user
+        )
+    
+
+    def process_errors(self, request):
+
+        error_dict = json.loads(self.errors.as_json())
+        for key in error_dict:
+            for error in error_dict[key]:
+                messages.error(request, "Error: %s - %s" % (key, error["message"]))
+
+
 
 class LoginForm(forms.Form):
 
