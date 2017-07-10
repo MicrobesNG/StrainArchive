@@ -6,7 +6,7 @@ from django.core import serializers
 from archive.models import Strain
 from django.contrib.auth.models import User
 from cart.models import Quote, Order, ConfirmedBasket, Purchase, Promotion, PromotionCode
-from forms import CreateNewPromotionForm, GenerateNewCodesForm, EditOrderForm, LoginForm
+from forms import CreateNewPromotionForm, GenerateNewCodesForm, EditOrderForm, LoginForm, NewUserForm
 from django.http import HttpResponse
 import json
 from datetime import datetime
@@ -289,11 +289,28 @@ def management_sales(request):
 # user management view
 def management_users(request):
 
+    if request.method == "POST":
+
+        new_user_form = NewUserForm(request.POST)
+
+        if new_user_form.is_valid:
+
+            new_user_form.process(request)
+        
+        else:
+
+            new_user_form.process_errors(request)
+    
+    else:
+
+        new_user_form = NewUserForm()
+
     return render(
         request,
         "management/users.html",
         {
-            "users": User.objects.all()
+            "users": User.objects.all(),
+            "new_user_form": new_user_form
         }
     )
 
