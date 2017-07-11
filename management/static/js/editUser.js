@@ -20,6 +20,20 @@ $(document).ready(function() {
             .parent()
             .attr("id");
         
+        var button = $(this).parent().parent().find("button");
+        
+        if (button.text() == "Active") {
+            
+            button.text("Not Active");
+            $(this).text("Activate");
+
+        } else{
+
+            button.text("Active");
+            $(this).text("Deactivate");
+
+        }
+        
         updateStatus(userPK);
 
     });
