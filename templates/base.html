@@ -32,8 +32,10 @@
         {% include 'include/messages.html' %}
 
         <div class="col-md-12 container headerContainer">
-            <div class="col-md-6" aling="left">
-                <h2 class="headerText">MicrobesNG Strain Archive</h2>
+            <div class="col-md-6" align="left">
+                <a href="{% url 'archive:home' %}">
+                    <h2 class="headerText">MicrobesNG Strain Archive</h2>
+                </a>
             </div>
             <div class="col-md-6" align="right">
                 {% block header_text %}

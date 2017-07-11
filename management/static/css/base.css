@@ -41,3 +41,8 @@
 .logoutIcon {
     width: 64px;
 }
+
+a {
+    color: inherit !important;
+    text-decoration: None !important;
+}

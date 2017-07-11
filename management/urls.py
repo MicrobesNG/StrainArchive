@@ -12,5 +12,5 @@ urlpatterns = [
     url(r'^sendQuote/(?P<quote_pk>\d+)/$', views.send_quote, name = "send_quote"),
     url(r'^updateUserStatus/(?P<user_pk>\d+)/$', views.update_user_status, name = "update_user_status"),
     url(r'^login/', views.login, name = "login"),
-    url(r'^logout/', views.logout, name = "logout"),
+    url(r'^logoutUser/', views.logout_user, name = "logout_user"),
 ]
