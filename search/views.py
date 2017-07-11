@@ -8,7 +8,9 @@ from archive.models import Strain, Family, Genus, Species
 from . forms import SearchParameterForm
 import cart.basket_utils
 import json
+import os.path
 
+from django.contrib.staticfiles.templatetags.staticfiles import static
 
 
 def results(request, page_number):
@@ -79,13 +81,18 @@ def search(request):
     else: 
 
         data = {"data": "EMPTY"}
+    print "--"
+    print os.getcwd()
+    with open("search/world_50m.json") as j_file:
+        world_json = json.load(j_file)
 
     return render(
         request,
         "search/search.html",
         {
             "searchParameterForm": searchParameterForm,
-            "data": json.dumps(data)
+            "data": json.dumps(data),
+            "world_data": json.dumps(world_json)
         }
     )
 

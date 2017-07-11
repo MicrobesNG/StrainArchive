@@ -8,9 +8,14 @@
 {% block extra_js_files %}
     <script>
         var taxStructure = {{data|safe}};
+        var worldJson = {{world_data|safe}};
     </script>
+    
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="http://d3js.org/d3.v4.min.js"></script>
     <script type="text/javascript" src="{% static 'js/dropdownFilter.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/submitSearch.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/worldMapDisplay.js' %}"></script>
 {% endblock %}
 
 
