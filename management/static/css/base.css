@@ -28,7 +28,16 @@
     height: 95vh;
 }
 
-
 .detailsContent {
     padding-top: 13px;
+}
+
+.pageFooter {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.logoutIcon {
+    width: 64px;
 }
