@@ -13,6 +13,39 @@ from datetime import datetime
 from django.shortcuts import redirect
 
 
+
+
+
+def update_user_status(request, user_pk):
+
+    try:
+
+        user = User.objects.get(pk = user_pk)
+    
+    except User.DoesNotExist:
+
+        data = {"status": "ERROR", "message": "User not found"}
+    
+    else:
+
+        if user.is_active:
+
+            user.is_active = False
+
+        else:
+
+            user.is_active = True
+        
+        user.save()
+        
+        data = {"status": "OK"}
+
+    return HttpResponse(
+        json.dumps(data),
+        content_type = "application/json"
+    )
+
+
 def send_quote(request, quote_pk):
 
     try:
@@ -35,7 +68,8 @@ def send_quote(request, quote_pk):
         messages.success(request, "The quote has been sent to %s successfully." % quote.customer_email)
 
         return HttpResponse(
-            json.dumps({"status": "OK"})
+            json.dumps({"status": "OK"}),
+            content_type = "application/json"
         )
         
 

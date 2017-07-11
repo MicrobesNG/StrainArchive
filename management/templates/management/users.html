@@ -6,6 +6,7 @@
 {% endblock %}
 {% block extra_js_files %}
     <script src="{% static 'js/newUser.js' %}"></script>
+    <script src="{% static 'js/editUser.js' %}"></script>
 {% endblock %}
 
 
@@ -57,7 +58,7 @@
                 </thead>
                 <tbody>
                     {% for user in users %}
-                    <tr>
+                    <tr class="userRow" id="{{user.pk}}">
                         <td>{{user.username}}</td>
                         <td>{{user.managementuserprofile.get_full_name}}</td>
                         <td>

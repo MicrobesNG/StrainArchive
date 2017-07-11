@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^getOrderDetails/(?P<order_pk>\d+)/$', views.get_order_details, name = "get_order_details"),
     url(r'^getPromoCodes/(?P<promo_pk>\d+)/$', views.get_promo_codes, name = "get_promo_codes"),
     url(r'^sendQuote/(?P<quote_pk>\d+)/$', views.send_quote, name = "send_quote"),
+    url(r'^updateUserStatus(?P<user_pk>\d+)/$', views.update_user_status, name = "update_user_status"),
     url(r'^login/', views.login, name = "login")
 ]
