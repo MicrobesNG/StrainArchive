@@ -69,13 +69,13 @@ class SearchParameterForm(forms.Form):
         #         species_list.append(selected_species)
 
         
-        # strains = []
+        strains = []
 
-        for strain in Strain.objects.all():
+        # for strain in Strain.objects.all():
 
-            if strain.family in families_list and strain.genus in genera_list and strain.species in species_list:
+        #     if strain.family in families_list and strain.genus in genera_list and strain.species in species_list:
 
-                strains.append({"name": strain.name, "pk": strain.pk})
+        #         strains.append({"name": strain.name, "pk": strain.pk})
         
         request.session["search_results"] = None
         request.session["search_results"] = strains
