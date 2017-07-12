@@ -92,3 +92,4 @@ class Strain(models.Model):
     taxon_name = models.CharField(max_length = 100, blank = True)
     environmental_sample_type = models.CharField(max_length = 100, blank = True)
     collection_location = models.OneToOneField(Location, null = True)
+    collection_date = models.DateField(blank = True)
