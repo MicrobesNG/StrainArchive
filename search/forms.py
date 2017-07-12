@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 import json
 import urllib
-from archive.models import Strain, Family, Genus, Species
+from archive.models import Strain
 
 
 
@@ -26,50 +26,50 @@ class SearchParameterForm(forms.Form):
         genera_list = []
         species_list = []
 
-        for family in cleaned_family_ids.split(","):
+        # for family in cleaned_family_ids.split(","):
 
-            try:
+        #     try:
 
-                selected_family = Family.objects.get(pk = family)
+        #         selected_family = Family.objects.get(pk = family)
             
-            except Famiy.DoesNotExist:
+        #     except Famiy.DoesNotExist:
 
-                pass
+        #         pass
             
-            else:
+        #     else:
 
-                families_list.append(selected_family)
+        #         families_list.append(selected_family)
 
-        for genus in cleaned_genus_ids.split(","):
+        # for genus in cleaned_genus_ids.split(","):
 
-            try:
+        #     try:
 
-                selected_genus = Genus.objects.get(pk = genus)
+        #         selected_genus = Genus.objects.get(pk = genus)
             
-            except Genus.DoesNotExist:
+        #     except Genus.DoesNotExist:
 
-                pass
+        #         pass
             
-            else:
+        #     else:
 
-                genera_list.append(selected_genus)
+        #         genera_list.append(selected_genus)
         
-        for species in cleaned_species_ids.split(","):
+        # for species in cleaned_species_ids.split(","):
 
-            try:
+        #     try:
 
-                selected_species = Species.objects.get(pk = species)
+        #         selected_species = Species.objects.get(pk = species)
 
-            except Species.DoesNotExist:
+        #     except Species.DoesNotExist:
 
-                pass
+        #         pass
             
-            else:
+        #     else:
 
-                species_list.append(selected_species)
+        #         species_list.append(selected_species)
 
         
-        strains = []
+        # strains = []
 
         for strain in Strain.objects.all():
 

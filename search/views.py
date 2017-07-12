@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
-from archive.models import Strain, Family, Genus, Species
+from archive.models import Strain
 from . forms import SearchParameterForm
 import cart.basket_utils
 import json
@@ -70,19 +70,19 @@ def search(request):
 
 
 
-    if Family.objects.all().count() > 0:
+    # if Family.objects.all().count() > 0:
         
-        data = {"data": []}
+    #     data = {"data": []}
 
-        for family in Family.objects.all():
+    #     for family in Family.objects.all():
 
-            data["data"].append(family.to_dict())
+    #         data["data"].append(family.to_dict())
     
-    else: 
+    # else: 
 
-        data = {"data": "EMPTY"}
-    print "--"
-    print os.getcwd()
+    data = {"data": "EMPTY"}
+    
+    
     with open("search/world_50m.json") as j_file:
         world_json = json.load(j_file)
 
