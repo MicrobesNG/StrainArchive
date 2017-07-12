@@ -98,7 +98,7 @@ class Strain(models.Model):
     taxon_id = models.IntegerField(blank = True)
     taxon_name = models.CharField(max_length = 100, blank = True)
     environmental_sample_type = models.CharField(max_length = 100, blank = True)
-    collection_location = 
+    collection_location = models.OneToOneField(Location, null = True)
 
     # family = models.ForeignKey(Family, null = True)
     # genus = models.ForeignKey(Genus, null = True)
