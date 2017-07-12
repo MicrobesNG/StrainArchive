@@ -82,14 +82,7 @@ class Location(models.Model):
 
 class Strain(models.Model):
 
-    STRAIN_TYPES = (
-        ("D", "Default"),
-        ("S", "SomeotherType")
-    )
-
     name = models.CharField(max_length = 100)
-    strain_type = models.CharField(max_length = 1, choices = STRAIN_TYPES, default = "D")
-    
     data_url = models.URLField(null = True)
     number_of_sales = models.IntegerField(default = 0)
     cost = models.FloatField(default = 0.0)
@@ -99,7 +92,3 @@ class Strain(models.Model):
     taxon_name = models.CharField(max_length = 100, blank = True)
     environmental_sample_type = models.CharField(max_length = 100, blank = True)
     collection_location = models.OneToOneField(Location, null = True)
-
-    # family = models.ForeignKey(Family, null = True)
-    # genus = models.ForeignKey(Genus, null = True)
-    # species = models.ForeignKey(Species, null = True)
