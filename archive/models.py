@@ -68,6 +68,17 @@ import json
 
 
 
+class Location(models.Model):
+    full_name = models.CharField(max_length = 1000, blank = True)
+    country = models.CharField(max_length = 100, blank = True)
+    iso_alpha_2 = models.CharField(max_length = 2, blank = True)
+    iso_num = models.CharField(max_length = 3, blank = True)
+    lat = models.FloatField(blank = True)
+    lon = models.FloatField(blank = True)
+
+
+
+
 
 class Strain(models.Model):
 
@@ -81,9 +92,14 @@ class Strain(models.Model):
     
     data_url = models.URLField(null = True)
     number_of_sales = models.IntegerField(default = 0)
+    cost = models.FloatField(default = 0.0)
+    host_taxon_id = models.IntegerField(blank = True)
+    host_taxon_name = models.CharField(max_length = 100, blank = True)
+    taxon_id = models.IntegerField(blank = True)
+    taxon_name = models.CharField(max_length = 100, blank = True)
+    environmental_sample_type = models.CharField(max_length = 100, blank = True)
+    collection_location = 
 
     # family = models.ForeignKey(Family, null = True)
     # genus = models.ForeignKey(Genus, null = True)
     # species = models.ForeignKey(Species, null = True)
-    
-    cost = models.FloatField(default = 0.0)
