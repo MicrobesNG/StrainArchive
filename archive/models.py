@@ -17,7 +17,9 @@ class Location(models.Model):
     # specific location name
     full_name = models.CharField(max_length = 1000, blank = True)
 
-    # country to which location belongs
+    city = models.CharField(max_length = 100, blank = True)
+    state = models.CharField(max_length = 100, blank = True)
+    county = models.CharField(max_length = 100, blank = True)
     country = models.CharField(max_length = 100, blank = True)
 
     # 2-char country code
@@ -53,16 +55,16 @@ class Strain(models.Model):
     available = models.BooleanField(default = False)
 
     # taxonomic info of sample host
-    host_taxon_id = models.IntegerField(blank = True)
+    host_taxon_id = models.IntegerField(null = True, blank = True)
     host_taxon_name = models.CharField(max_length = 100, blank = True)
 
     # taxonomic info of strain
-    taxon_id = models.IntegerField(blank = True)
+    taxon_id = models.IntegerField(null = True, blank = True)
     taxon_name = models.CharField(max_length = 100, blank = True)
 
     # environment type of sample was extracted from
     environmental_sample_type = models.CharField(max_length = 100, blank = True)
 
     # sample collection info
-    collection_location = models.OneToOneField(Location, null = True)
-    collection_date = models.DateField(blank = True)
+    collection_location = models.ForeignKey(Location, null = True)
+    collection_date = models.DateField(null = True, blank = True)
