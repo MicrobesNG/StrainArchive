@@ -15,7 +15,7 @@ import json
 class Location(models.Model):
 
     # specific location name
-    full_name = models.CharField(max_length = 1000, blank = True)
+    full_name = models.CharField(max_length = 1000)
 
     city = models.CharField(max_length = 100, blank = True)
     state = models.CharField(max_length = 100, blank = True)
