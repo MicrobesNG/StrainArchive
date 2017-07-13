@@ -20,19 +20,44 @@ def create_db_location_from_string(location_string):
         full_name = location_string
     )
 
-    if location.city:
-        new_location.city = location.city
-    if location.state:
-        new_location.state = location.state
-    if location.county:
-        new_location.county = location.county
-    if location.country_long:
-        new_location.country = location.country_long
-    if location.country:
-        new_location.iso_alpha_2 = location.country
-    if location.lat:
-        new_location.lat = location.lat
-    if location.lon:
-        new_location.lon = location.lon
+    if location_data.city:
+        new_location.city = location_data.city
+    if location_data.state:
+        new_location.state = location_data.state
+    if location_data.county:
+        new_location.county = location_data.county
+    if location_data.country_long:
+        new_location.country = location_data.country_long
+    if location_data.country:
+        new_location.iso_alpha_2 = location_data.country
+    if location_data.lat:
+        new_location.lat = location_data.lat
+    if location_data.lng:
+        new_location.lon = location_data.lng
     
+    new_location.save()
+
+def create_db_location_from_coords(lat, lon):
+
+    location_data = geocode_location_backwards(lat, lon)
+
+    new_location = Location.objects.create(
+        full_name = location_data.address
+    )
+
+    if location_data.city:
+        new_location.city = location_data.city
+    if location_data.state:
+        new_location.state = location_data.state
+    if location_data.county:
+        new_location.county = location_data.county
+    if location_data.country_long:
+        new_location.country = location_data.country_long
+    if location_data.country:
+        new_location.iso_alpha_2 = location_data.country
+    if location_data.lat:
+        new_location.lat = location_data.lat
+    if location_data.lng:
+        new_location.lon = location_data.lng
+
     new_location.save()
