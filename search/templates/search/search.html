@@ -13,9 +13,10 @@
     
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://d3js.org/d3.v4.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/dropdownFilter.js' %}"></script>
+    <!--<script type="text/javascript" src="{% static 'js/dropdownFilter.js' %}"></script>-->
     <script type="text/javascript" src="{% static 'js/submitSearch.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/worldMapDisplay.js' %}"></script>
+    <!--<script type="text/javascript" src="{% static 'js/worldMapDisplay.js' %}"></script>-->
+    <script type="text/javascript" src="{% static 'js/blastSearch.js' %}"></script>
 {% endblock %}
 
 
@@ -33,60 +34,58 @@
 
     <div class="col-md-12">
         <h2>Construct Search</h2>
+        <br>
+    </div>
+
+    <div class="col-md-8">
+        <h3>BLAST Search</h3>
+        <hr>
+    </div>
+    <div class="col-md-4">
+        <h3>Initial Filters</h3>
+        <hr>
+    </div>
+
+    <div class="col-md-8">
+        <div class="Col-md-12">
+            <h4>Query Sequence:</h4>
+        </div>
+        <div class="col-md-12">
+            <textarea class="form-control" rows="10" cols="20" id="blastSearchInput"></textarea>
+            <br>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-2">
+                <h4>Select BLAST Type:</h4>
+            </div>
+            <div class="col-md-5 blastSelectionContainer">
+                <label class="radio-inline">
+                    <input type="radio" class="searchRadioButton" id="blastnRadio"><h4>BLAST-N</h4>
+                </label>
+            </div>
+            <div class="col-md-5 blastSelectionContainer">
+                <label class="radio-inline">
+                    <input type="radio" class="searchRadioButton" id="blastpRadio"><h4>BLAST-P</h4>
+                </label>
+            </div>
+        </div>
+        <div class="col-md-12"><br></div>
+        <div class="col-md-12">
+            <div class="col-md-2">
+                <h4>Parameters:</h4>
+            </div>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="promoCodeInput">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
     </div>
     
-    <div class="col-md-12">
-        <div class="col-md-4">
-            <h3>Family</h3>
-        </div>
-        <div class="col-md-4">
-            <h3>Genus</h3>
-        </div>
-        <div class="col-md-4">
-            <h3>Species</h3>
-        </div>
-    </div>
-
-    <div class="col-md-12">
-        <div class="col-md-4">
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle taxDropdown" id="familyDropdown" type="button" data-toggle="dropdown">
-                    Select Families
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu taxDropdownMenu" id="familyDropdownMenu">
-                
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle taxDropdown" id="generaDropdown" type="button" data-toggle="dropdown">
-                    Select Genera
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu taxDropdownMenu" id="generaDropdownMenu">
-
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle taxDropdown" id="speciesDropdown" type="button" data-toggle="dropdown">
-                    Select Species
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu taxDropdownMenu" id="speciesDropdownMenu">
-
-                </ul>
-            </div>
-        </div>
-    </div>
-
     <div class="col-md-12"><hr></div>
 
-    <div class="col-md-12">
-          <input type="submit" class="btn btn-success" form="searchParameterForm" value="Search">
+    <div class="col-md-12" id="submitFooter" align="right">
+          <input type="submit" class="btn btn-success" id="a" form="searchParameterForm" value="Search">
     </div>
 
 

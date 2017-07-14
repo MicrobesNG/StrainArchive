@@ -36,4 +36,3 @@ def blast_p(query, e_value, output_filepath):
     stdout, stderr = blast_command_line()
 
     return stdout, stderr
-

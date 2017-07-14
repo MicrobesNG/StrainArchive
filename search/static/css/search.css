@@ -1,10 +1,25 @@
+
 .selectedOption {
     background-color: #555555;
     font-weight: bold;
 }
+
 .taxDropdown {
     width: 100%;
 }
+
 .taxDropdownMenu {
     width: 100%;
+}
+
+#blastSearchInput {
+    resize: none;
+}
+
+.searchRadioButton {
+    top: 10px;
+}
+
+.blastSelectionContainer {
+    width: 15%;
 }
