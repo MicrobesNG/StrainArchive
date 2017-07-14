@@ -5,8 +5,35 @@ from django.http import HttpResponseRedirect
 import json
 import urllib
 from archive.models import Strain
+from search.blaster import search
 
 
+class BlastSearchForm(forms.Form):
+
+    query_string = forms.CharField(required = True)
+    blast_type = forms.CharField(max_length = 2, required = True)
+    blast_parameters = forms.CharField(required = False)
+
+    def process(self):
+
+        cleaned_query_string = self.cleaned_data["query_string"]
+        cleaned_blast_type = self.cleaned_data["blast_type"]
+        cleaned_blast_parameters = self.cleaned_data["blast_parameters"]
+
+        if cleaned_blast_type == "N":
+
+            output, errors = blast_n(cleaned_query_string, e_value, output_filepath)
+        
+        elif cleaned_blast_type == "P"
+            output, errors = blast_p(cleaned_query_string, e_value, output_filepath)
+            
+    
+    def process_errors(self):
+
+        error_dict = json.loads(self.errors.as_json())
+        for key in error_dict:
+            for error in error_dict[key]:
+                messages.error(request, "Error: %s - %s" % (key, error["message"]))
 
 
 
