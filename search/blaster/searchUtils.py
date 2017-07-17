@@ -20,22 +20,17 @@ def generate_temp_output_filepath(temp_directory):
 
 
 
-def get_strains_from_blast_results(results_filepath):
+def get_strains_from_blast_output(output):
 
-    if os.path.isfile(results_filepath):
+    parsed_output = NCBIXML.parse(output)
 
-        results_xml_file = open(results_filepath)
+    for record in parsed_output:
 
-        records = NCBIXML.read(results_xml_file)
+        print record.alignments
 
-        for record in records:
-            
-            print record.description.title
-            
-        results_xml_file.close()
+        for alignment in record.alignments:
+
+            alignment.title
+
     
-    else:
-
-        raise OSError(
-            "File does not exist."
-        )
+    print "-- -- -- -- -- -- -- --"

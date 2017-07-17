@@ -34,3 +34,13 @@
 .blastSelectionContainer {
     width: 15%;
 }
+
+
+#pleaseWaitIcon {
+    width: 64px;
+    height: 64px;
+}
+
+#pleaseWaitBody {
+    padding-top: 10px;
+}

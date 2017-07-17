@@ -1,0 +1,22 @@
+{% load staticfiles %}
+
+<div id="pleaseWaitModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="pleaseWaitTitle">Searching...</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="col-md-2">
+                        <img src="{% static 'images/pleaseWaitSearchIcon.png' %}" id="pleaseWaitIcon">
+                    </div>
+                    <div class="col-md-10">
+                        <h4 id="pleaseWaitBody">Please Wait...</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

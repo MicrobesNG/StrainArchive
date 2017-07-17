@@ -25,6 +25,9 @@
 {% endblock %}
 
 {% block page_content %}
+
+    {% include 'include/pleaseWaitModal.html' %}
+
     <form id="blastSearchForm" method="post" name="blastSearchForm">
         {% csrf_token %}
         {% for field in blastSearchForm %}

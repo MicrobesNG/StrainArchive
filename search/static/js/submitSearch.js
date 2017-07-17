@@ -13,7 +13,13 @@ function getSelectedTaxClass(taxClassOption, taxClassCode) {
 
 $(document).ready(function() {
 
+
+    
+
     $("#blastSearchForm").submit(function() {
+        
+        $("#pleaseWaitModal").modal("show");
+
         $("#id_query_string").val($("#blastSearchInput").val());
         if ($("#blastnRadio").is(":checked")) {
             $("#id_blast_type").val("N");
@@ -24,7 +30,7 @@ $(document).ready(function() {
         
         $("#id_blast_parameters").val($("#parameterInput").val());
 
-        
+
     });
 
     $("#searchParameterForm").submit(function() {

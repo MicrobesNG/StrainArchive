@@ -10,6 +10,8 @@ import cart.basket_utils
 import json
 import os.path
 
+import blaster.searchUtils
+
 from django.contrib.staticfiles.templatetags.staticfiles import static
 
 
@@ -54,9 +56,13 @@ def search(request):
 
         if blastSearchForm.is_valid():
 
-            blastSearchForm.process(request)
+            blast_output = blastSearchForm.process(request)
 
-            return redirect("search:results", 1)
+            if blast_output:
+
+                blaster.searchUtils.get_strains_from_blast_output(blast_output)
+
+                return redirect("search:results", 1)
 
         else:
 

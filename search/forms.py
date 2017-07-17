@@ -6,6 +6,7 @@ import json
 import urllib
 from archive.models import Strain
 import blaster.search
+import blaster.searchUtils
 
 
 class BlastSearchForm(forms.Form):
@@ -20,24 +21,46 @@ class BlastSearchForm(forms.Form):
         cleaned_blast_type = self.cleaned_data["blast_type"]
         cleaned_blast_parameters = self.cleaned_data["blast_parameters"]
         
-        print "-- -- --"
-        print cleaned_query_string
-        print cleaned_blast_type
-        print cleaned_blast_parameters
-        print "-- -- --"
+        blast_success = False
+        blast_output = None
         
         if cleaned_blast_type == "N":
 
-            output_filename = blaster.search.ncbi_blast_n("nt", cleaned_query_string)
+            try:
+
+                blast_output = blaster.search.ncbi_blast_n("nt", cleaned_query_string)
+            
+            except ValueError as e:
+
+                if "Message ID#24" in str(e):
+
+                    messages.error(request, "Protein FASTA provided for nucleotide sequence.")
+            
+            else:
+
+                blast_success = True
         
         elif cleaned_blast_type == "P":
             
-            output_filename = blaster.search.ncbi_blast_p("nt", cleaned_query_string)
+            try:
+
+                blast_output = blaster.search.ncbi_blast_p("nt", cleaned_query_string)
         
+            except ValueError as e:
+
+                if "Message ID#24" in str(e):
+
+                    messages.error(request, "Nucleutide FASTA provided for protein sequence.")
+            
+            else:
+
+                blast_success = True
+
         else:
 
             messages.error(request, "Unknown BLAST Type.")
-            
+        
+        return blast_output
     
     def process_errors(self, request):
 
