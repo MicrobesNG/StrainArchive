@@ -24,7 +24,8 @@ class BlastSearchForm(forms.Form):
 
             output_filename = blast_n(cleaned_query_string, e_value, output_filepath)
         
-        elif cleaned_blast_type == "P"
+        elif cleaned_blast_type == "P":
+            
             output_filename = blast_p(cleaned_query_string, e_value, output_filepath)
         
         else:
