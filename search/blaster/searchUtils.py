@@ -25,12 +25,28 @@ def get_strains_from_blast_output(output):
     parsed_output = NCBIXML.parse(output)
 
     for record in parsed_output:
-
+        
+        print "----------------------"
         print record.alignments
+        print record.matrix
+        print "----------------------"
+
+        for description in record.descriptions:
+            print "D_title:", description.title
+            print "-- -- -- -- -- --"
 
         for alignment in record.alignments:
 
-            print alignment.title
+            print ""
+            print "A_title:", alignment.title
 
-    
+            for hit in alignment.hsps:
+
+                print hit.score
+                print hit.sbjct_start
+                print hit.sbjct_end
+                print "--------"
+
+    print ""
+    print ""    
     print "-- -- -- -- -- -- -- --"
