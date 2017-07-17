@@ -22,10 +22,14 @@ class BlastSearchForm(forms.Form):
 
         if cleaned_blast_type == "N":
 
-            output, errors = blast_n(cleaned_query_string, e_value, output_filepath)
+            output_filename = blast_n(cleaned_query_string, e_value, output_filepath)
         
         elif cleaned_blast_type == "P"
-            output, errors = blast_p(cleaned_query_string, e_value, output_filepath)
+            output_filename = blast_p(cleaned_query_string, e_value, output_filepath)
+        
+        else:
+
+            messages.error(request, "Unknown BLAST Type.")
             
     
     def process_errors(self):
