@@ -24,11 +24,15 @@ def get_strains_from_blast_results(results_filepath):
 
     if os.path.isfile(results_filepath):
 
-        records = NCBIXML.read(results_filepath)
+        results_xml_file = open(results_filepath)
+
+        records = NCBIXML.read(results_xml_file)
 
         for record in records:
-            # get strain name? -> get pk -> get DB object
-            pass
+            
+            print record.description.title
+            
+        results_xml_file.close()
     
     else:
 
