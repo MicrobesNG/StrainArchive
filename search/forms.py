@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 import json
 import urllib
 from archive.models import Strain
-from search.blaster import search
+import blaster
 
 
 class BlastSearchForm(forms.Form):
@@ -22,11 +22,11 @@ class BlastSearchForm(forms.Form):
 
         if cleaned_blast_type == "N":
 
-            output_filename = blast_n(cleaned_query_string, e_value, output_filepath)
+            output_filename = blaster.search.blast_n(cleaned_query_string, e_value, output_filepath)
         
         elif cleaned_blast_type == "P":
             
-            output_filename = blast_p(cleaned_query_string, e_value, output_filepath)
+            output_filename = blaster.search.blast_p(cleaned_query_string, e_value, output_filepath)
         
         else:
 
