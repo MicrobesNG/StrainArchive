@@ -47,7 +47,7 @@ def blast_p(query, e_value, output_filepath):
         BLAST_P_PATH,
         BLAST_DATABASE_PATH,
         evalue = e_value,
-        "tmp/%s" % new_filename
+        ("tmp/%s" % new_filename)
     )
 
     # run the blast
