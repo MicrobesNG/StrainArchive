@@ -6,13 +6,34 @@ from Bio.Blast.Applications import NcbiblastpCommandline
 from Bio.Blast.Applications import NcbitblastxCommandline
 from Bio.Blast.Applications import NcbitblastnCommandline
 import searchUtils
+from Bio.Blast import NCBIWWW
+
 
 BLAST_N_PATH = "path"
 BLAST_P_PATH = "path"
 BLAST_DATABASE_PATH = "path"
 
+
+
+def ncbi_blast_n(target_database, fasta_query_string):
+
+    results = NCBIWWW.qblast("blastn", target_database, fasta_query_string)
+
+    return results
+    
+def ncbi_blast_p(target_database, fasta_query_string):
+
+    results = NCBIWWW.qblast("blastp", target_database, fasta_query_string)
+
+    return results
+    
+
+
+
+
+
 # nucleotide - nucleotide blast
-def blast_n(query, e_value, output_filepath):
+def local_blast_n(query, e_value, output_filepath):
 
     # get unique number for temp file name
     # avoids overwriting currently in use temp files if more than one person searching
@@ -35,7 +56,7 @@ def blast_n(query, e_value, output_filepath):
 
 
 # protein - protein blast
-def blast_p(query, e_value, output_filepath):
+def local_blast_p(query, e_value, output_filepath):
 
     # get unique number for temp file name
     # avoids overwriting currently in use temp files if more than one person searching

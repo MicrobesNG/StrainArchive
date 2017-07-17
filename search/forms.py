@@ -22,11 +22,11 @@ class BlastSearchForm(forms.Form):
 
         if cleaned_blast_type == "N":
 
-            output_filename = blaster.search.blast_n(cleaned_query_string, e_value, output_filepath)
+            output_filename = blaster.search.ncbi_blast_n("nt", cleaned_query_string)
         
         elif cleaned_blast_type == "P":
             
-            output_filename = blaster.search.blast_p(cleaned_query_string, e_value, output_filepath)
+            output_filename = blaster.search.ncbi_blast_p("nt", cleaned_query_string)
         
         else:
 

@@ -59,7 +59,6 @@ def search(request):
 
             return redirect("search:results", 1)
 
-        
         else:
 
             searchParameterForm.process_errors(request)
@@ -68,17 +67,6 @@ def search(request):
 
         searchParameterForm = SearchParameterForm()
 
-
-
-    # if Family.objects.all().count() > 0:
-        
-    #     data = {"data": []}
-
-    #     for family in Family.objects.all():
-
-    #         data["data"].append(family.to_dict())
-    
-    # else: 
 
     data = {"data": "EMPTY"}
     
