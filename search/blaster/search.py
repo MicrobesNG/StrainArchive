@@ -44,8 +44,8 @@ def local_blast_n(query, e_value, output_filepath):
     blast_command_line = NcbiblastnCommandline(
         BLAST_N_PATH,
         BLAST_DATABASE_PATH,
-        evalue = e_value,
-        ("tmp/%s" % new_filename)
+        ("tmp/%s" % new_filename),
+        evalue = e_value
     )
 
     # run the blast search
@@ -67,8 +67,8 @@ def local_blast_p(query, e_value, output_filepath):
     blast_command_line = NcbiblastpCommandline(
         BLAST_P_PATH,
         BLAST_DATABASE_PATH,
-        evalue = e_value,
-        ("tmp/%s" % new_filename)
+        ("tmp/%s" % new_filename),
+        evalue = e_value
     )
 
     # run the blast
