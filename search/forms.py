@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 import json
 import urllib
 from archive.models import Strain
-import blaster
+import blaster.search
 
 
 class BlastSearchForm(forms.Form):
@@ -14,12 +14,18 @@ class BlastSearchForm(forms.Form):
     blast_type = forms.CharField(max_length = 2, required = True)
     blast_parameters = forms.CharField(required = False)
 
-    def process(self):
+    def process(self, request):
 
         cleaned_query_string = self.cleaned_data["query_string"]
         cleaned_blast_type = self.cleaned_data["blast_type"]
         cleaned_blast_parameters = self.cleaned_data["blast_parameters"]
-
+        
+        print "-- -- --"
+        print cleaned_query_string
+        print cleaned_blast_type
+        print cleaned_blast_parameters
+        print "-- -- --"
+        
         if cleaned_blast_type == "N":
 
             output_filename = blaster.search.ncbi_blast_n("nt", cleaned_query_string)
@@ -33,7 +39,7 @@ class BlastSearchForm(forms.Form):
             messages.error(request, "Unknown BLAST Type.")
             
     
-    def process_errors(self):
+    def process_errors(self, request):
 
         error_dict = json.loads(self.errors.as_json())
         for key in error_dict:

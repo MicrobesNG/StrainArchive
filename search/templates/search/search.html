@@ -25,9 +25,9 @@
 {% endblock %}
 
 {% block page_content %}
-    <form id="searchParameterForm" method="post" name="searchParameterForm">
+    <form id="blastSearchForm" method="post" name="blastSearchForm">
         {% csrf_token %}
-        {% for field in searchParameterForm %}
+        {% for field in blastSearchForm %}
             {{field.as_hidden}}
         {% endfor %}
     </form>
@@ -75,7 +75,7 @@
                 <h4>Parameters:</h4>
             </div>
             <div class="col-md-10">
-                <input type="text" class="form-control" id="promoCodeInput">
+                <input type="text" class="form-control" id="parameterInput">
             </div>
         </div>
     </div>
@@ -86,7 +86,7 @@
 
     <div class="col-md-12" id="submitFooter" align="right">
         <div class="col-md-12"><hr></div>
-        <input type="submit" class="btn btn-success" id="searchButton" form="searchParameterForm" value="Search">
+        <input type="submit" class="btn btn-success" id="searchButton" form="blastSearchForm" value="Search">
     </div>
 
 

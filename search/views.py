@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from archive.models import Strain
-from . forms import SearchParameterForm
+from . forms import SearchParameterForm, BlastSearchForm
 import cart.basket_utils
 import json
 import os.path
@@ -48,24 +48,23 @@ def results(request, page_number):
 
 def search(request):
 
-
     if request.method == "POST":
 
-        searchParameterForm = SearchParameterForm(request.POST)
+        blastSearchForm = BlastSearchForm(request.POST)
 
-        if searchParameterForm.is_valid():
+        if blastSearchForm.is_valid():
 
-            searchParameterForm.process(request)
+            blastSearchForm.process(request)
 
             return redirect("search:results", 1)
 
         else:
 
-            searchParameterForm.process_errors(request)
+            blastSearchForm.process_errors(request)
     
     else:
 
-        searchParameterForm = SearchParameterForm()
+        blastSearchForm = BlastSearchForm()
 
 
     data = {"data": "EMPTY"}
@@ -78,7 +77,7 @@ def search(request):
         request,
         "search/search.html",
         {
-            "searchParameterForm": searchParameterForm,
+            "blastSearchForm": blastSearchForm,
             "data": json.dumps(data),
             "world_data": json.dumps(world_json)
         }
