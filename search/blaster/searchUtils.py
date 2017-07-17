@@ -30,7 +30,7 @@ def get_strains_from_blast_output(output):
 
         for alignment in record.alignments:
 
-            alignment.title
+            print alignment.title
 
     
     print "-- -- -- -- -- -- -- --"

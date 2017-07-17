@@ -13,9 +13,6 @@ function getSelectedTaxClass(taxClassOption, taxClassCode) {
 
 $(document).ready(function() {
 
-
-    
-
     $("#blastSearchForm").submit(function() {
         
         $("#pleaseWaitModal").modal("show");
