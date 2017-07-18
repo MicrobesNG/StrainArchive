@@ -5,8 +5,8 @@ from Bio.Blast.Applications import NcbiblastnCommandline
 from Bio.Blast.Applications import NcbiblastpCommandline
 from Bio.Blast.Applications import NcbitblastxCommandline
 from Bio.Blast.Applications import NcbitblastnCommandline
-import searchUtils
 from Bio.Blast import NCBIWWW
+import searchUtils
 
 
 BLAST_N_PATH = "path"
@@ -21,16 +21,13 @@ def ncbi_blast_n(target_database, fasta_query_string):
 
     return results
     
+    
 def ncbi_blast_p(target_database, fasta_query_string):
 
     results = NCBIWWW.qblast("blastp", target_database, fasta_query_string)
 
     return results
     
-
-
-
-
 
 # nucleotide - nucleotide blast
 def local_blast_n(query, e_value, output_filepath):

@@ -25,13 +25,5 @@ def get_strains_from_blast_output(output):
     parsed_output = NCBIXML.parse(output)
 
     for record in parsed_output:
+        
         pass
-        # process record to get tax data
-
-        # for description in record.descriptions:
-            
-        # for alignment in record.alignments:
-
-        #     for hit in alignment.hsps:
-        #         pass
-        #         # provess 
